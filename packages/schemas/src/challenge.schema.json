@@ -6,26 +6,42 @@
   "type": "object",
   "required": [
     "id",
+    "slug",
     "title",
+    "description",
     "type",
     "difficulty",
-    "description",
+    "zone",
+    "isBoss",
     "html",
+    "starterCss",
+    "referenceSolutions",
     "validationRules",
-    "maxPoints",
-    "tags"
+    "hints",
+    "maxScore",
+    "metadata"
   ],
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[a-z]+-[0-9]{3}$",
-      "description": "Unique challenge identifier (e.g., match-001)"
+      "minLength": 1,
+      "description": "Unique challenge identifier"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL-safe slug"
     },
     "title": {
       "type": "string",
       "minLength": 3,
       "maxLength": 80,
       "description": "Display title for the challenge"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Brief description shown to the player"
     },
     "type": {
       "type": "string",
@@ -34,76 +50,157 @@
     },
     "difficulty": {
       "type": "string",
-      "enum": ["base-camp", "trail", "ridge", "summit", "peak"],
+      "enum": ["junior", "mid-level", "senior", "staff", "principal"],
       "description": "Difficulty tier"
     },
-    "description": {
-      "type": "string",
-      "minLength": 10,
-      "description": "Brief description shown to the player"
+    "zone": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Mountain zone number (1-5)"
     },
-    "starterCss": {
-      "type": "string",
-      "description": "Starting CSS code provided to the player"
-    },
-    "targetCss": {
-      "type": "string",
-      "description": "Target CSS (hidden, used for validation)"
+    "isBoss": {
+      "type": "boolean",
+      "description": "Whether this is a boss challenge for the zone"
     },
     "html": {
       "type": "string",
       "minLength": 1,
       "description": "HTML template the CSS applies to"
     },
+    "starterCss": {
+      "type": "string",
+      "description": "Starting CSS code provided to the player"
+    },
+    "referenceSolutions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "description": "At least 2 reference solutions (hidden from player)"
+    },
     "validationRules": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["type", "description"],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Rule type identifier"
-          },
-          "property": {
-            "type": "string",
-            "description": "CSS property to validate"
-          },
-          "expected": {
-            "type": "string",
-            "description": "Expected value"
-          },
-          "description": {
-            "type": "string",
-            "description": "Human-readable description"
-          }
-        }
+        "$ref": "#/definitions/ValidationRule"
       },
+      "minItems": 1,
       "description": "Validation rules for grading"
     },
     "hints": {
       "type": "array",
       "items": {
-        "type": "string"
+        "$ref": "#/definitions/HintTier"
       },
-      "default": [],
-      "description": "Hint text, revealed on request"
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "Three tiers of hints: nudge, clue, solution"
     },
-    "maxPoints": {
+    "maxScore": {
       "type": "integer",
-      "minimum": 1,
-      "maximum": 1000,
-      "description": "Maximum points for this challenge"
+      "const": 1000,
+      "description": "Maximum score is always 1000"
     },
-    "tags": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[a-z][a-z0-9-]*$"
-      },
-      "minItems": 1,
-      "description": "Tags for filtering"
+    "metadata": {
+      "$ref": "#/definitions/ChallengeMetadata"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "definitions": {
+    "ValidationRule": {
+      "type": "object",
+      "required": ["type", "selector", "expected", "weight", "message"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["computed-style", "layout-bounds", "property-check"],
+          "description": "Rule type identifier"
+        },
+        "selector": {
+          "type": "string",
+          "minLength": 1,
+          "description": "CSS selector to target the element"
+        },
+        "property": {
+          "type": "string",
+          "description": "CSS property to validate"
+        },
+        "expected": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "number" },
+            {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": {
+                "min": { "type": "number" },
+                "max": { "type": "number" }
+              },
+              "additionalProperties": false
+            }
+          ],
+          "description": "Expected value: string, number, or { min, max } range"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Points for this rule"
+        },
+        "message": {
+          "type": "string",
+          "description": "Feedback message on failure"
+        }
+      },
+      "additionalProperties": false
+    },
+    "HintTier": {
+      "type": "object",
+      "required": ["level", "text"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["nudge", "clue", "solution"],
+          "description": "Hint level"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Hint text"
+        },
+        "code": {
+          "type": "string",
+          "description": "Optional code snippet"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ChallengeMetadata": {
+      "type": "object",
+      "required": ["topics", "estimatedMinutes", "difficulty"],
+      "properties": {
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 1,
+          "description": "CSS topics covered"
+        },
+        "estimatedMinutes": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Estimated time to complete in minutes"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Granular difficulty within the zone (1-10)"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }

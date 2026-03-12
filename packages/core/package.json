@@ -13,9 +13,15 @@
   "scripts": {
     "build": "tsc --noEmit",
     "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "zustand": "^5.0.0"
   }
 }
