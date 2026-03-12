@@ -1,0 +1,80 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--dos-space-2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--dos-space-2);
+  padding-bottom: var(--dos-space-1);
+  border-bottom: 1px solid var(--dos-dark-gray);
+}
+
+.title {
+  color: var(--dos-accent);
+  font-size: var(--dos-font-md);
+}
+
+.playerStats {
+  color: var(--dos-fg);
+  display: flex;
+  gap: var(--dos-space-3);
+}
+
+.stat {
+  display: flex;
+  gap: var(--dos-space-1);
+}
+
+.statLabel {
+  color: var(--dos-dark-gray);
+}
+
+.statValue {
+  color: var(--dos-yellow);
+}
+
+.body {
+  display: flex;
+  gap: var(--dos-space-2);
+  flex: 1;
+}
+
+.mapColumn {
+  flex: 1;
+  min-width: 0;
+}
+
+.infoColumn {
+  width: 28ch;
+  flex-shrink: 0;
+}
+
+.backButton {
+  margin-bottom: var(--dos-space-2);
+}
+
+@media (max-width: 639px) {
+  .body {
+    flex-direction: column;
+  }
+
+  .infoColumn {
+    width: 100%;
+  }
+
+  .playerStats {
+    flex-direction: column;
+    gap: var(--dos-space-1);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--dos-space-1);
+  }
+}

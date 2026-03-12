@@ -1,0 +1,66 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--dos-space-2);
+}
+
+.terminalWrapper {
+  max-width: 70ch;
+  width: 100%;
+}
+
+.paragraph {
+  margin-bottom: var(--dos-space-2);
+  line-height: 1.6;
+}
+
+.highlight {
+  color: var(--dos-light-red);
+  font-weight: bold;
+}
+
+.mission {
+  color: var(--dos-light-green);
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--dos-space-2);
+  margin-top: var(--dos-space-3);
+}
+
+.typingLine {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--dos-accent);
+  animation: typing 0.5s steps(40) forwards, blinkCaret 0.8s step-end infinite;
+}
+
+.typingComplete {
+  border-right: none;
+  animation: none;
+  white-space: normal;
+}
+
+@keyframes typing {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+  }
+}
+
+@keyframes blinkCaret {
+  0%, 100% {
+    border-color: var(--dos-accent);
+  }
+  50% {
+    border-color: transparent;
+  }
+}

@@ -1,0 +1,46 @@
+.mapContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  position: relative;
+}
+
+.zoneSeparator {
+  width: 100%;
+  text-align: center;
+  color: var(--dos-dark-gray);
+  padding: var(--dos-space-1) 0;
+  font-size: var(--dos-font-xs);
+  letter-spacing: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.lockedOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+
+.lockedText {
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-sm);
+}
+
+@media (min-width: 1024px) {
+  .mapContainer {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .mapContainer {
+    overflow-y: auto;
+    max-height: none;
+  }
+}

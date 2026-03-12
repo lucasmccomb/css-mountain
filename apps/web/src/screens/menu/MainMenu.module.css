@@ -1,0 +1,53 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--dos-space-2);
+}
+
+.logo {
+  color: var(--dos-accent);
+  text-align: center;
+  margin-bottom: var(--dos-space-4);
+  white-space: pre;
+  font-size: var(--dos-font-xs);
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .logo {
+    font-size: var(--dos-font-sm);
+  }
+}
+
+.menuWrapper {
+  min-width: 30ch;
+}
+
+.version {
+  color: var(--dos-dark-gray);
+  text-align: center;
+  margin-top: var(--dos-space-4);
+}
+
+.prompt {
+  color: var(--dos-fg);
+  text-align: center;
+  margin-top: var(--dos-space-2);
+}
+
+.cursor {
+  color: var(--dos-accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,101 @@
+.zone {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  padding: var(--dos-space-2) 0;
+}
+
+.zoneLabel {
+  position: absolute;
+  left: var(--dos-space-1);
+  top: var(--dos-space-1);
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-xs);
+  z-index: 1;
+}
+
+.node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
+}
+
+.node:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.nodeClickable {
+  cursor: pointer;
+}
+
+.nodeIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--dos-font-md);
+  line-height: 1;
+}
+
+.nodeLocked {
+  color: var(--dos-dark-gray);
+  opacity: 0.4;
+}
+
+.nodeUnlocked {
+  color: var(--dos-light-cyan);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.nodeAttempted {
+  color: var(--dos-yellow);
+}
+
+.nodeCompleted {
+  color: var(--dos-light-green);
+}
+
+.nodeBoss {
+  font-size: var(--dos-font-lg);
+}
+
+.stars {
+  color: var(--dos-yellow);
+  font-size: var(--dos-font-xs);
+  margin-top: 2px;
+  letter-spacing: 1px;
+}
+
+.connector {
+  position: absolute;
+  width: 1px;
+  background: var(--dos-dark-gray);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.4);
+  }
+}
+
+@media (max-width: 639px) {
+  .zone {
+    min-height: 250px;
+  }
+
+  .nodeIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+}
