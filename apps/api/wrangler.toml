@@ -7,6 +7,7 @@ compatibility_date = "2025-01-01"
 binding = "DB"
 database_name = "css-mountain-db"
 database_id = "placeholder-d1-id"
+migrations_dir = "src/db/migrations"
 
 # KV Namespace (session cache, rate limiting)
 [[kv_namespaces]]
@@ -20,3 +21,10 @@ bucket_name = "css-mountain-assets"
 
 [vars]
 ENVIRONMENT = "development"
+APP_URL = "http://localhost:5173"
+
+# OAuth secrets must be set via `wrangler secret put`:
+# wrangler secret put GOOGLE_CLIENT_ID
+# wrangler secret put GOOGLE_CLIENT_SECRET
+# wrangler secret put GITHUB_CLIENT_ID
+# wrangler secret put GITHUB_CLIENT_SECRET
