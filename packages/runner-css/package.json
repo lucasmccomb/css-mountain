@@ -16,9 +16,11 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@css-mountain/core": "workspace:*"
+    "@css-mountain/core": "workspace:*",
+    "css-tree": "^3.2.1"
   },
   "devDependencies": {
+    "@types/css-tree": "^2.3.11",
     "typescript": "^5.8.0"
   }
 }
