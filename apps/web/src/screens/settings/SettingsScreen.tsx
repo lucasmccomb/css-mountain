@@ -94,6 +94,28 @@ export function SettingsScreen({ onBack }: SettingsScreenProps) {
             </div>
           </div>
 
+          {/* Donation link */}
+          <div className={styles.donationRow}>
+            <span className={styles.settingLabel}>Support CSS Mountain</span>
+            <a
+              href="https://github.com/sponsors/cssmountain"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.donationLink}
+            >
+              GitHub Sponsors
+            </a>
+            <span className={styles.donationSep}>|</span>
+            <a
+              href="https://ko-fi.com/cssmountain"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.donationLink}
+            >
+              Ko-fi
+            </a>
+          </div>
+
           <div className={styles.actions}>
             <Button onClick={resetToDefaults} variant="danger">
               Reset Defaults

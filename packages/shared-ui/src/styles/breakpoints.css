@@ -1,9 +1,11 @@
 /**
  * Responsive Breakpoints
  *
- * Mobile: <640px
- * Tablet: 640-1024px
- * Desktop: >1024px
+ * Small mobile: <320px (very narrow screens)
+ * Mobile: 320-639px
+ * Tablet: 640-1023px
+ * Desktop: 1024-1439px
+ * Wide: >=1440px
  *
  * CSS custom properties for breakpoints (used in JS via getComputedStyle).
  * Actual media queries must use literal values since custom properties
@@ -11,27 +13,93 @@
  */
 
 :root {
+  --dos-bp-sm: 320px;
   --dos-bp-mobile: 640px;
   --dos-bp-tablet: 1024px;
+  --dos-bp-wide: 1440px;
 }
 
-/* Utility: hide on mobile */
+/* Utility: hide on mobile (<640px) */
 @media (max-width: 639px) {
   .dos-hide-mobile {
     display: none !important;
   }
 }
 
-/* Utility: hide on tablet */
+/* Utility: hide on tablet (640-1023px) */
 @media (min-width: 640px) and (max-width: 1023px) {
   .dos-hide-tablet {
     display: none !important;
   }
 }
 
-/* Utility: hide on desktop */
+/* Utility: hide on desktop (>=1024px) */
 @media (min-width: 1024px) {
   .dos-hide-desktop {
     display: none !important;
+  }
+}
+
+/* Utility: show only on wide screens (>=1440px) */
+@media (max-width: 1439px) {
+  .dos-only-wide {
+    display: none !important;
+  }
+}
+
+/* ── Mobile Safari Compatibility ── */
+
+/*
+ * Fix viewport height on mobile Safari where 100vh includes
+ * the address bar. Use dvh (dynamic viewport height) where supported,
+ * falling back to 100vh.
+ */
+:root {
+  --dos-vh: 1vh;
+}
+
+@supports (height: 1dvh) {
+  :root {
+    --dos-vh: 1dvh;
+  }
+}
+
+/*
+ * Prevent iOS Safari from zooming on input focus.
+ * Font size must be >= 16px to prevent auto-zoom.
+ */
+@media (max-width: 639px) {
+  input,
+  textarea,
+  select {
+    font-size: max(16px, var(--dos-font-sm));
+  }
+}
+
+/*
+ * Fix position:fixed on iOS Safari when the keyboard is open.
+ * Use -webkit-fill-available as a more reliable full-height.
+ */
+@supports (-webkit-touch-callout: none) {
+  .dos-full-height {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Small mobile adjustments (<320px) */
+@media (max-width: 319px) {
+  :root {
+    --dos-font-sm: 12px;
+    --dos-space-2: 12px;
+    --dos-space-3: 16px;
+    --dos-space-4: 24px;
+  }
+}
+
+/* Wide screen adjustments (>=1440px) */
+@media (min-width: 1440px) {
+  :root {
+    --dos-font-lg: 40px;
+    --dos-space-8: 80px;
   }
 }

@@ -69,6 +69,31 @@
   text-align: right;
 }
 
+.donationRow {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-1);
+  padding: var(--dos-space-1) 0;
+  margin-bottom: var(--dos-space-2);
+  border-top: 1px solid var(--dos-dark-gray);
+  border-bottom: 1px solid var(--dos-dark-gray);
+  flex-wrap: wrap;
+}
+
+.donationLink {
+  color: var(--dos-accent);
+  text-decoration: none;
+  font-size: var(--dos-font-xs);
+}
+
+.donationLink:hover {
+  text-decoration: underline;
+}
+
+.donationSep {
+  color: var(--dos-dark-gray);
+}
+
 .actions {
   display: flex;
   gap: var(--dos-space-2);

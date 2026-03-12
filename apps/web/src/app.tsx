@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Route, Switch, useLocation, useParams } from "wouter";
 import { CRTOverlay, useCRTMode } from "@css-mountain/shared-ui";
 import { BootSequence } from "./screens/menu/BootSequence";
@@ -9,6 +9,9 @@ import { MapScreen } from "./screens/map/MapScreen";
 import { SettingsScreen } from "./screens/settings/SettingsScreen";
 import { ComponentDemo } from "./pages/ComponentDemo";
 import { ChallengeScreen } from "./screens/challenge/ChallengeScreen";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { OfflineFallback } from "./components/OfflineFallback";
+import { authClient, type AuthState } from "./services/auth-client";
 
 function ChallengeRoute() {
   const params = useParams<{ id: string }>();
@@ -21,7 +24,7 @@ const ONBOARDING_KEY = "css-mountain-onboarding-complete";
  * Root route handler.
  * Shows boot sequence, then either onboarding flow or main menu.
  */
-function HomeRoute() {
+function HomeRoute({ authState }: { authState: AuthState }) {
   const [, navigate] = useLocation();
   const [phase, setPhase] = useState<"boot" | "narrative" | "tutorial" | "menu">("boot");
 
@@ -85,7 +88,7 @@ function HomeRoute() {
         />
       );
     case "menu":
-      return <MainMenu onNavigate={handleMenuNavigate} />;
+      return <MainMenu onNavigate={handleMenuNavigate} authState={authState} />;
   }
 }
 
@@ -166,23 +169,48 @@ function NotFound() {
 
 export function App() {
   const { enabled: crtEnabled } = useCRTMode(true);
+  const [authState, setAuthState] = useState<AuthState>(() =>
+    authClient.getCachedState(),
+  );
+
+  // Check auth on mount (and after OAuth redirects)
+  useEffect(() => {
+    authClient.checkAuth().then(setAuthState);
+  }, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <CRTOverlay enabled={crtEnabled} />
+      <OfflineFallback />
       <Switch>
-        <Route path="/" component={HomeRoute} />
-        <Route path="/map" component={MapRoute} />
-        <Route path="/challenge/:id">
-          <ChallengeRoute />
+        <Route path="/">
+          <HomeRoute authState={authState} />
         </Route>
-        <Route path="/challenge" component={ChallengeScreen} />
-        <Route path="/settings" component={SettingsRoute} />
-        <Route path="/achievements" component={AchievementsRoute} />
+        <Route path="/map">
+          <ErrorBoundary>
+            <MapRoute />
+          </ErrorBoundary>
+        </Route>
+        <Route path="/challenge/:id">
+          <ErrorBoundary>
+            <ChallengeRoute />
+          </ErrorBoundary>
+        </Route>
+        <Route path="/challenge">
+          <ErrorBoundary>
+            <ChallengeScreen />
+          </ErrorBoundary>
+        </Route>
+        <Route path="/settings">
+          <SettingsRoute />
+        </Route>
+        <Route path="/achievements">
+          <AchievementsRoute />
+        </Route>
         <Route path="/dev/components" component={ComponentDemo} />
         <Route component={NotFound} />
       </Switch>
-    </>
+    </ErrorBoundary>
   );
 }
 

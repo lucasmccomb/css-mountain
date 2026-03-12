@@ -1,0 +1,26 @@
+/**
+ * OfflineFallback - Offline indicator
+ */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-1);
+  padding: 4px var(--dos-space-2);
+  background-color: var(--dos-brown);
+  color: var(--dos-yellow);
+  font-size: var(--dos-font-xs);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.text {
+  flex: 1;
+}

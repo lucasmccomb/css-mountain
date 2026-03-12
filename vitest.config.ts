@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      "@/": path.resolve(__dirname, "apps/web/src") + "/",
       "@css-mountain/shared-ui": path.resolve(__dirname, "packages/shared-ui/src"),
       "@css-mountain/core": path.resolve(__dirname, "packages/core/src"),
       "@css-mountain/runner-css": path.resolve(__dirname, "packages/runner-css/src"),

@@ -18,8 +18,11 @@ describe("MainMenu", () => {
     const onNavigate = vi.fn();
     render(<MainMenu onNavigate={onNavigate} />);
 
-    // The ASCII art contains "Mountain"
-    expect(screen.getByText(/Mountain/)).toBeInTheDocument();
+    // The ASCII art is in a <pre> element with the logo class
+    const container = screen.getByTestId("main-menu");
+    const pre = container.querySelector("pre");
+    expect(pre).toBeTruthy();
+    expect(pre?.textContent).toContain("Mountain");
   });
 
   it("should show New Game option", () => {

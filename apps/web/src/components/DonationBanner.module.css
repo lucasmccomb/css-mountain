@@ -1,0 +1,48 @@
+/**
+ * DonationBanner - Tasteful banner for main menu
+ */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-1);
+  padding: var(--dos-space-1) var(--dos-space-2);
+  border: 1px solid var(--dos-dark-gray);
+  color: var(--dos-fg);
+  font-size: var(--dos-font-xs);
+  max-width: 40ch;
+}
+
+.icon {
+  color: var(--dos-light-red);
+  flex-shrink: 0;
+}
+
+.text {
+  flex: 1;
+}
+
+.link {
+  color: var(--dos-accent);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.dismiss {
+  background: none;
+  border: none;
+  color: var(--dos-dark-gray);
+  cursor: pointer;
+  padding: 2px;
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-xs);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+.dismiss:hover {
+  color: var(--dos-fg);
+}
