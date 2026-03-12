@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cssmountain.dev/schemas/challenge.json",
+  "title": "CSS Mountain Challenge",
+  "description": "Schema for a CSS Mountain challenge definition",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "type",
+    "difficulty",
+    "description",
+    "html",
+    "validationRules",
+    "maxPoints",
+    "tags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+-[0-9]{3}$",
+      "description": "Unique challenge identifier (e.g., match-001)"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 80,
+      "description": "Display title for the challenge"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["match", "fix", "optimize", "build", "quiz"],
+      "description": "Challenge type"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["base-camp", "trail", "ridge", "summit", "peak"],
+      "description": "Difficulty tier"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Brief description shown to the player"
+    },
+    "starterCss": {
+      "type": "string",
+      "description": "Starting CSS code provided to the player"
+    },
+    "targetCss": {
+      "type": "string",
+      "description": "Target CSS (hidden, used for validation)"
+    },
+    "html": {
+      "type": "string",
+      "minLength": 1,
+      "description": "HTML template the CSS applies to"
+    },
+    "validationRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "description"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Rule type identifier"
+          },
+          "property": {
+            "type": "string",
+            "description": "CSS property to validate"
+          },
+          "expected": {
+            "type": "string",
+            "description": "Expected value"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description"
+          }
+        }
+      },
+      "description": "Validation rules for grading"
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Hint text, revealed on request"
+    },
+    "maxPoints": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "description": "Maximum points for this challenge"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "minItems": 1,
+      "description": "Tags for filtering"
+    }
+  },
+  "additionalProperties": false
+}
