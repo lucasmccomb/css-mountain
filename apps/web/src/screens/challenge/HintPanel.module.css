@@ -1,0 +1,80 @@
+.container {
+  border: 1px solid var(--dos-dark-gray);
+  background-color: var(--dos-black);
+  padding: var(--dos-space-1);
+}
+
+.header {
+  color: var(--dos-warning);
+  padding-bottom: var(--dos-space-1);
+  border-bottom: 1px solid var(--dos-dark-gray);
+  margin-bottom: var(--dos-space-1);
+}
+
+.penalty {
+  color: var(--dos-error);
+  font-size: var(--dos-font-xs);
+}
+
+.hints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-1);
+}
+
+.hint {
+  padding: var(--dos-space-1);
+  border: 1px solid var(--dos-dark-gray);
+}
+
+.revealed {
+  border-color: var(--dos-dark-gray);
+}
+
+.locked {
+  border-color: #1a1a1a;
+}
+
+.tierLabel {
+  font-size: var(--dos-font-xs);
+  margin-bottom: 4px;
+  color: var(--dos-dark-gray);
+  text-transform: uppercase;
+}
+
+.hintContent {
+  color: var(--dos-fg);
+}
+
+.hintText {
+  margin-bottom: 4px;
+}
+
+.hintCode {
+  background-color: #111111;
+  border: 1px solid var(--dos-dark-gray);
+  padding: var(--dos-space-1);
+  overflow-x: auto;
+  color: var(--dos-light-green);
+  font-size: var(--dos-font-sm);
+  white-space: pre-wrap;
+}
+
+.lockedText {
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-sm);
+}
+
+.revealAction {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-2);
+  margin-top: var(--dos-space-1);
+  padding-top: var(--dos-space-1);
+  border-top: 1px solid var(--dos-dark-gray);
+}
+
+.warningText {
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-xs);
+}

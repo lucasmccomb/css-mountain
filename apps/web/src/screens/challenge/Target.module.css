@@ -1,0 +1,24 @@
+.target {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--dos-cyan);
+  background-color: var(--dos-black);
+}
+
+.label {
+  padding: var(--dos-space-1);
+  color: var(--dos-cyan);
+  font-size: var(--dos-font-xs);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--dos-cyan);
+  flex-shrink: 0;
+}
+
+.iframeContainer {
+  flex: 1;
+  min-height: 150px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
