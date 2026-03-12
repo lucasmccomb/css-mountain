@@ -1,0 +1,22 @@
+name = "css-mountain-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "css-mountain-db"
+database_id = "placeholder-d1-id"
+
+# KV Namespace (session cache, rate limiting)
+[[kv_namespaces]]
+binding = "KV"
+id = "placeholder-kv-id"
+
+# R2 Bucket (user screenshots, challenge assets)
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "css-mountain-assets"
+
+[vars]
+ENVIRONMENT = "development"

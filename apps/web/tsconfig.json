@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@css-mountain/core": ["../../packages/core/src"],
+      "@css-mountain/runner-css": ["../../packages/runner-css/src"],
+      "@css-mountain/shared-ui": ["../../packages/shared-ui/src"]
+    }
+  },
+  "include": ["src"]
+}
