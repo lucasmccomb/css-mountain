@@ -1,0 +1,68 @@
+.button {
+  display: inline-block;
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  line-height: 1;
+  color: var(--dos-black);
+  background-color: var(--dos-light-gray);
+  border: none;
+  padding: var(--dos-space-1) var(--dos-space-2);
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  outline: none;
+  position: relative;
+}
+
+.button::before {
+  content: "[ ";
+}
+
+.button::after {
+  content: " ]";
+}
+
+.button:hover,
+.button:focus-visible {
+  color: var(--dos-white);
+  background-color: var(--dos-cyan);
+}
+
+.button:active {
+  color: var(--dos-white);
+  background-color: var(--dos-blue);
+}
+
+.button:disabled {
+  color: var(--dos-dark-gray);
+  background-color: var(--dos-black);
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  color: var(--dos-dark-gray);
+  background-color: var(--dos-black);
+}
+
+.primary {
+  color: var(--dos-white);
+  background-color: var(--dos-cyan);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  background-color: var(--dos-light-cyan);
+  color: var(--dos-black);
+}
+
+.danger {
+  color: var(--dos-white);
+  background-color: var(--dos-red);
+}
+
+.danger:hover,
+.danger:focus-visible {
+  background-color: var(--dos-light-red);
+  color: var(--dos-white);
+}

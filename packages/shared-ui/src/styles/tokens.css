@@ -1,0 +1,49 @@
+/**
+ * DOS Design Tokens
+ *
+ * VGA 16-color palette, semantic aliases, font sizes, and spacing scale.
+ * All values derived from the original IBM VGA hardware palette.
+ */
+
+:root {
+  /* ── VGA 16-color palette ── */
+  --dos-black: #000000;
+  --dos-blue: #0000aa;
+  --dos-green: #00aa00;
+  --dos-cyan: #00aaaa;
+  --dos-red: #aa0000;
+  --dos-magenta: #aa00aa;
+  --dos-brown: #aa5500;
+  --dos-light-gray: #aaaaaa;
+  --dos-dark-gray: #555555;
+  --dos-light-blue: #5555ff;
+  --dos-light-green: #55ff55;
+  --dos-light-cyan: #55ffff;
+  --dos-light-red: #ff5555;
+  --dos-light-magenta: #ff55ff;
+  --dos-yellow: #ffff55;
+  --dos-white: #ffffff;
+
+  /* ── Semantic aliases ── */
+  --dos-bg: var(--dos-black);
+  --dos-fg: var(--dos-light-gray);
+  --dos-accent: var(--dos-light-cyan);
+  --dos-error: var(--dos-light-red);
+  --dos-success: var(--dos-light-green);
+  --dos-warning: var(--dos-yellow);
+
+  /* ── Font sizes (integer multiples of 8px base) ── */
+  --dos-font-xs: 8px;
+  --dos-font-sm: 16px;
+  --dos-font-md: 24px;
+  --dos-font-lg: 32px;
+
+  /* ── Spacing scale (character units: 1ch = 8px at base size) ── */
+  --dos-space-1: 8px;
+  --dos-space-2: 16px;
+  --dos-space-3: 24px;
+  --dos-space-4: 32px;
+  --dos-space-5: 40px;
+  --dos-space-6: 48px;
+  --dos-space-8: 64px;
+}

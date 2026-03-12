@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-1);
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  color: var(--dos-fg);
+  line-height: 1;
+}
+
+.bar {
+  display: inline-block;
+  white-space: pre;
+  letter-spacing: 0;
+}
+
+.label {
+  flex-shrink: 0;
+  min-width: 4ch;
+  text-align: right;
+}
+
+.filled {
+  color: var(--dos-success);
+}
+
+.empty {
+  color: var(--dos-dark-gray);
+}

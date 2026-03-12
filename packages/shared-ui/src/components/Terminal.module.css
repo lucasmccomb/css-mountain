@@ -1,0 +1,65 @@
+.terminal {
+  display: flex;
+  flex-direction: column;
+  color: var(--dos-fg);
+  background-color: var(--dos-bg);
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  line-height: 1.25;
+  width: 100%;
+}
+
+.titleBar {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+  color: var(--dos-white);
+  background-color: var(--dos-cyan);
+}
+
+.titleText {
+  flex: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: clip;
+  color: var(--dos-white);
+  background-color: var(--dos-cyan);
+  padding: 0 var(--dos-space-1);
+}
+
+.topBorder {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.bottomBorder {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.contentRow {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+  min-height: var(--dos-space-4);
+}
+
+.contentArea {
+  flex: 1;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  padding: var(--dos-space-1);
+  min-width: 0;
+}
+
+.fill {
+  flex: 1;
+  overflow: hidden;
+}
+
+.corner,
+.side {
+  flex-shrink: 0;
+}

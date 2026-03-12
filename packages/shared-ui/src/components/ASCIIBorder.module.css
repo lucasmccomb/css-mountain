@@ -1,0 +1,38 @@
+.border {
+  display: inline-block;
+  position: relative;
+  color: var(--dos-fg);
+}
+
+.row {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.topLeft,
+.topRight,
+.bottomLeft,
+.bottomRight,
+.horizontal,
+.vertical {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.middleRow {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.innerContent {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
