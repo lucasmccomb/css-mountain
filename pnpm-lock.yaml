@@ -121,7 +121,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^3.0.0
-        version: 3.2.4(@types/node@22.19.15)
+        version: 3.2.4(@types/node@22.19.15)(jsdom@28.1.0)
 
   packages/runner-css:
     dependencies:

@@ -1,0 +1,32 @@
+.marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  color: var(--dos-white);
+  font-size: var(--dos-font-md);
+  animation: bounce 1.5s ease-in-out infinite;
+  text-shadow: 0 0 8px var(--dos-accent);
+}
+
+.label {
+  color: var(--dos-accent);
+  font-size: var(--dos-font-xs);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}

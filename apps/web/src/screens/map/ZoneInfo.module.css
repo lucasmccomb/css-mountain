@@ -1,0 +1,41 @@
+.panel {
+  padding: var(--dos-space-2);
+}
+
+.zoneName {
+  font-size: var(--dos-font-md);
+  margin-bottom: var(--dos-space-1);
+}
+
+.subtitle {
+  color: var(--dos-dark-gray);
+  margin-bottom: var(--dos-space-2);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-1);
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.statLabel {
+  color: var(--dos-dark-gray);
+}
+
+.statValue {
+  color: var(--dos-fg);
+}
+
+.progressSection {
+  margin-top: var(--dos-space-2);
+}
+
+.progressLabel {
+  color: var(--dos-dark-gray);
+  margin-bottom: 4px;
+}
