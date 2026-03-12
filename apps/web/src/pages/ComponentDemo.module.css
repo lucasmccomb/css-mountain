@@ -1,0 +1,41 @@
+.page {
+  min-height: 100vh;
+  padding: var(--dos-space-2);
+  max-width: 80ch;
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--dos-accent);
+  font-size: var(--dos-font-md);
+  margin-bottom: var(--dos-space-2);
+}
+
+.section {
+  margin-bottom: var(--dos-space-4);
+}
+
+.sectionTitle {
+  color: var(--dos-yellow);
+  margin-bottom: var(--dos-space-1);
+}
+
+.row {
+  display: flex;
+  gap: var(--dos-space-2);
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: var(--dos-space-1);
+}
+
+.label {
+  color: var(--dos-dark-gray);
+  margin-bottom: var(--dos-space-1);
+}
+
+.crtToggle {
+  position: fixed;
+  bottom: var(--dos-space-2);
+  right: var(--dos-space-2);
+  z-index: 10000;
+}

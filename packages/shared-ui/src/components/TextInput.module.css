@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  align-items: center;
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  color: var(--dos-fg);
+  line-height: 1;
+  background-color: var(--dos-bg);
+}
+
+.prompt {
+  flex-shrink: 0;
+  color: var(--dos-fg);
+  white-space: pre;
+}
+
+.inputWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.input {
+  width: 100%;
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  line-height: 1;
+  color: var(--dos-fg);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  caret-color: transparent;
+  padding: 0;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+.cursor {
+  display: inline-block;
+  width: 1ch;
+  height: 1em;
+  background-color: var(--dos-fg);
+  animation: blink 1s step-end infinite;
+  position: absolute;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%,
+  49.9% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}

@@ -8,7 +8,8 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
-    }
+    },
+    "./styles/*": "./src/styles/*"
   },
   "scripts": {
     "build": "tsc --noEmit",

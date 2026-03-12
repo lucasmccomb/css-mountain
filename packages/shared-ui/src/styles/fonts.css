@@ -1,0 +1,15 @@
+/**
+ * IBM VGA8 Font - PxPlus pixel-outline version
+ * Source: int10h.org/oldschool-pc-fonts/
+ *
+ * 8x16 pixel grid, standard VGA text mode.
+ * font-display: block prevents FOUT - system font flash breaks DOS aesthetic.
+ */
+
+@font-face {
+  font-family: "PxPlus IBM VGA8";
+  src: url("/fonts/PxPlus_IBM_VGA8.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}

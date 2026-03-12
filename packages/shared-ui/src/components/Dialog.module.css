@@ -1,0 +1,81 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+}
+
+.dialog {
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  color: var(--dos-fg);
+  background-color: var(--dos-bg);
+  min-width: 30ch;
+  max-width: 60ch;
+  outline: none;
+}
+
+.titleBar {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.titleText {
+  flex: 1;
+  text-align: center;
+  color: var(--dos-white);
+  background-color: var(--dos-cyan);
+  padding: 0 var(--dos-space-1);
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.topBorder,
+.separatorBorder,
+.bottomBorder {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.fill {
+  flex: 1;
+  overflow: hidden;
+}
+
+.corner,
+.side {
+  flex-shrink: 0;
+}
+
+.contentRow {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.content {
+  flex: 1;
+  white-space: pre-wrap;
+  padding: var(--dos-space-1);
+  min-width: 0;
+}
+
+.actionsRow {
+  display: flex;
+  white-space: pre;
+  line-height: 1;
+}
+
+.actions {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: var(--dos-space-2);
+  padding: var(--dos-space-1);
+  min-width: 0;
+}

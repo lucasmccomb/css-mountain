@@ -1,0 +1,37 @@
+/**
+ * Responsive Breakpoints
+ *
+ * Mobile: <640px
+ * Tablet: 640-1024px
+ * Desktop: >1024px
+ *
+ * CSS custom properties for breakpoints (used in JS via getComputedStyle).
+ * Actual media queries must use literal values since custom properties
+ * are not supported in @media queries.
+ */
+
+:root {
+  --dos-bp-mobile: 640px;
+  --dos-bp-tablet: 1024px;
+}
+
+/* Utility: hide on mobile */
+@media (max-width: 639px) {
+  .dos-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Utility: hide on tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .dos-hide-tablet {
+    display: none !important;
+  }
+}
+
+/* Utility: hide on desktop */
+@media (min-width: 1024px) {
+  .dos-hide-desktop {
+    display: none !important;
+  }
+}

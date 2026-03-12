@@ -1,0 +1,71 @@
+/**
+ * DOS Reset
+ *
+ * Minimal CSS reset that applies the DOS font, colors, and sizing to body.
+ * Disables font smoothing for authentic pixel rendering.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  line-height: 1.25;
+  color: var(--dos-fg);
+  background-color: var(--dos-bg);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  image-rendering: pixelated;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}

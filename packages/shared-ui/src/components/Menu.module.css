@@ -1,0 +1,36 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  font-family: "PxPlus IBM VGA8", monospace;
+  font-size: var(--dos-font-sm);
+  color: var(--dos-fg);
+  outline: none;
+}
+
+.item {
+  display: block;
+  padding: 2px var(--dos-space-1);
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.25;
+}
+
+.item:hover {
+  color: var(--dos-white);
+  background-color: var(--dos-blue);
+}
+
+.itemActive {
+  color: var(--dos-white);
+  background-color: var(--dos-cyan);
+}
+
+.itemDisabled {
+  color: var(--dos-dark-gray);
+  cursor: not-allowed;
+}
+
+.itemDisabled:hover {
+  color: var(--dos-dark-gray);
+  background-color: transparent;
+}
