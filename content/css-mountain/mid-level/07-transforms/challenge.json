@@ -1,0 +1,53 @@
+{
+  "id": "mid-07-transforms",
+  "slug": "mid-transforms",
+  "title": "CSS Transforms",
+  "description": "Apply transform operations to create a set of cards that rotate, scale, and skew on interaction",
+  "type": "match",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "<div class=\"transform-demo\">\n  <div class=\"box rotate\">Rotated</div>\n  <div class=\"box scale\">Scaled</div>\n  <div class=\"box skew\">Skewed</div>\n</div>",
+  "starterCss": "/* Apply transforms to each box:\n   - .rotate: rotate 15 degrees\n   - .scale: scale to 1.2x size\n   - .skew: skew 10 degrees on X axis */\n.transform-demo {\n  display: flex;\n  gap: 24px;\n  padding: 40px;\n  justify-content: center;\n}\n.box {\n  width: 120px;\n  height: 120px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #4a90d9;\n  color: white;\n  font-weight: bold;\n  border-radius: 8px;\n}",
+  "referenceSolutions": [
+    ".transform-demo {\n  display: flex;\n  gap: 24px;\n  padding: 40px;\n  justify-content: center;\n}\n.box {\n  width: 120px;\n  height: 120px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #4a90d9;\n  color: white;\n  font-weight: bold;\n  border-radius: 8px;\n}\n.rotate {\n  transform: rotate(15deg);\n}\n.scale {\n  transform: scale(1.2);\n}\n.skew {\n  transform: skewX(10deg);\n}",
+    ".transform-demo {\n  display: flex;\n  gap: 24px;\n  padding: 40px;\n  justify-content: center;\n}\n.box {\n  width: 120px;\n  height: 120px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #4a90d9;\n  color: white;\n  font-weight: bold;\n  border-radius: 8px;\n}\n.rotate {\n  transform: rotate(15deg);\n}\n.scale {\n  transform: scale(1.2, 1.2);\n}\n.skew {\n  transform: skew(10deg, 0deg);\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".rotate",
+      "property": "transform",
+      "expected": "rotate(15deg)",
+      "weight": 200,
+      "message": "The rotate box should be rotated 15 degrees"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".scale",
+      "property": "transform",
+      "expected": "scale(1.2)",
+      "weight": 200,
+      "message": "The scale box should be scaled to 1.2x"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".skew",
+      "property": "transform",
+      "expected": "skewX(10deg)",
+      "weight": 200,
+      "message": "The skew box should be skewed 10 degrees on X axis"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "The transform property lets you rotate, scale, translate, and skew elements. Each function takes specific parameters." },
+    { "level": "clue", "text": "Use 'transform: rotate(15deg)' for rotation, 'transform: scale(1.2)' for scaling, and 'transform: skewX(10deg)' for skewing." },
+    { "level": "solution", "text": ".rotate { transform: rotate(15deg); } .scale { transform: scale(1.2); } .skew { transform: skewX(10deg); }", "code": ".rotate { transform: rotate(15deg); }\n.scale { transform: scale(1.2); }\n.skew { transform: skewX(10deg); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["transforms", "rotate", "scale", "skew"],
+    "estimatedMinutes": 4,
+    "difficulty": 6
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "principal-10-layers-advanced",
+  "slug": "principal-layers-advanced",
+  "title": "Summit Boss: The Grand Cascade",
+  "description": "Boss challenge: Build a complete design system using all modern CSS features - @layer for cascade control, @scope for encapsulation, container queries for responsiveness, @property for animation, and native nesting for organization",
+  "type": "build",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": true,
+  "html": "<div class=\"ds-app\">\n  <header class=\"ds-toolbar\">\n    <h1 class=\"ds-logo\">CSS Mountain</h1>\n    <nav class=\"ds-nav\">\n      <a class=\"ds-nav-link\" href=\"#\">Map</a>\n      <a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Challenge</a>\n      <a class=\"ds-nav-link\" href=\"#\">Profile</a>\n    </nav>\n  </header>\n  <main class=\"ds-content\">\n    <div class=\"ds-panel\" style=\"container-type: inline-size\">\n      <div class=\"ds-challenge-card\">\n        <div class=\"ds-card-header\">\n          <span class=\"ds-difficulty\">Principal</span>\n          <span class=\"ds-stars\">★★★</span>\n        </div>\n        <h2 class=\"ds-card-title\">The Grand Cascade</h2>\n        <p class=\"ds-card-desc\">Master every modern CSS feature in one final challenge.</p>\n        <div class=\"ds-progress-bar\">\n          <div class=\"ds-progress-fill\" style=\"--progress: 0.85\"></div>\n        </div>\n      </div>\n    </div>\n  </main>\n</div>",
+  "starterCss": "/* The Grand Cascade - Final Boss Challenge\n\n   Requirements:\n   1. @layer ordering: reset, tokens, layout, components, utilities\n   2. Design tokens as CSS custom properties\n   3. @property for animated progress bar color\n   4. Container query on ds-panel for responsive card\n   5. Native nesting throughout\n   6. BEM-style naming for components\n\n   Token values:\n   --ds-bg: #0a0a1a (dark DOS background)\n   --ds-text: #33ff33 (green terminal text)\n   --ds-accent: #ff6600 (orange accent)\n   --ds-surface: #1a1a2e (surface panels)\n   --ds-border: #333366 (subtle borders)\n   --ds-font: 'IBM Plex Mono', monospace\n*/\n",
+  "referenceSolutions": [
+    "@layer reset, tokens, layout, components, utilities;\n\n@property --progress-color {\n  syntax: '<color>';\n  initial-value: #33ff33;\n  inherits: false;\n}\n\n@layer tokens {\n  :root {\n    --ds-bg: rgb(10, 10, 26);\n    --ds-text: rgb(51, 255, 51);\n    --ds-accent: rgb(255, 102, 0);\n    --ds-surface: rgb(26, 26, 46);\n    --ds-border: rgb(51, 51, 102);\n    --ds-font: 'IBM Plex Mono', monospace;\n    --ds-radius: 4px;\n    --ds-space-sm: 8px;\n    --ds-space-md: 16px;\n    --ds-space-lg: 24px;\n  }\n}\n\n@layer reset {\n  *, *::before, *::after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n  }\n}\n\n@layer layout {\n  .ds-app {\n    min-height: 100vh;\n    background-color: var(--ds-bg);\n    color: var(--ds-text);\n    font-family: var(--ds-font);\n    display: grid;\n    grid-template-rows: auto 1fr;\n  }\n\n  .ds-content {\n    padding: var(--ds-space-lg);\n  }\n}\n\n@layer components {\n  .ds-toolbar {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: var(--ds-space-md) var(--ds-space-lg);\n    background-color: var(--ds-surface);\n    border-bottom: 1px solid var(--ds-border);\n\n    & .ds-logo {\n      font-size: 18px;\n      color: var(--ds-accent);\n    }\n  }\n\n  .ds-nav {\n    display: flex;\n    gap: var(--ds-space-sm);\n\n    & .ds-nav-link {\n      color: var(--ds-text);\n      text-decoration: none;\n      padding: var(--ds-space-sm) var(--ds-space-md);\n      border-radius: var(--ds-radius);\n      opacity: 0.6;\n\n      &:hover {\n        opacity: 1;\n        background-color: rgba(51, 255, 51, 0.1);\n      }\n\n      &.ds-nav-link--active {\n        opacity: 1;\n        background-color: rgba(51, 255, 51, 0.15);\n      }\n    }\n  }\n\n  .ds-challenge-card {\n    background-color: var(--ds-surface);\n    border: 1px solid var(--ds-border);\n    border-radius: var(--ds-radius);\n    padding: var(--ds-space-lg);\n  }\n\n  .ds-card-header {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: var(--ds-space-md);\n  }\n\n  .ds-difficulty {\n    color: var(--ds-accent);\n    font-size: 12px;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n  }\n\n  .ds-stars {\n    color: rgb(255, 215, 0);\n  }\n\n  .ds-card-title {\n    font-size: 20px;\n    margin-bottom: var(--ds-space-sm);\n  }\n\n  .ds-card-desc {\n    opacity: 0.7;\n    line-height: 1.5;\n    margin-bottom: var(--ds-space-md);\n  }\n\n  .ds-progress-bar {\n    height: 8px;\n    background-color: var(--ds-bg);\n    border-radius: 4px;\n    overflow: hidden;\n  }\n\n  .ds-progress-fill {\n    height: 100%;\n    width: calc(var(--progress) * 100%);\n    background-color: var(--ds-text);\n    border-radius: 4px;\n    transition: width 0.5s ease, --progress-color 0.5s;\n  }\n\n  @container (max-width: 400px) {\n    .ds-challenge-card {\n      padding: var(--ds-space-md);\n    }\n    .ds-card-title {\n      font-size: 16px;\n    }\n  }\n}",
+    "@layer reset, tokens, layout, components, utilities;\n\n@property --progress-color {\n  syntax: '<color>';\n  initial-value: #33ff33;\n  inherits: false;\n}\n\n@layer tokens {\n  :root {\n    --ds-bg: #0a0a1a;\n    --ds-text: #33ff33;\n    --ds-accent: #ff6600;\n    --ds-surface: #1a1a2e;\n    --ds-border: #333366;\n    --ds-font: 'IBM Plex Mono', monospace;\n    --ds-radius: 4px;\n    --ds-space-sm: 8px;\n    --ds-space-md: 16px;\n    --ds-space-lg: 24px;\n  }\n}\n\n@layer reset {\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n}\n\n@layer layout {\n  .ds-app {\n    min-height: 100vh;\n    background: var(--ds-bg);\n    color: var(--ds-text);\n    font-family: var(--ds-font);\n    display: grid;\n    grid-template-rows: auto 1fr;\n  }\n  .ds-content { padding: var(--ds-space-lg); }\n}\n\n@layer components {\n  .ds-toolbar {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: var(--ds-space-md) var(--ds-space-lg);\n    background: var(--ds-surface);\n    border-bottom: 1px solid var(--ds-border);\n\n    .ds-logo { font-size: 18px; color: var(--ds-accent); }\n  }\n\n  .ds-nav {\n    display: flex; gap: var(--ds-space-sm);\n\n    .ds-nav-link {\n      color: var(--ds-text); text-decoration: none;\n      padding: var(--ds-space-sm) var(--ds-space-md);\n      border-radius: var(--ds-radius); opacity: 0.6;\n      &:hover { opacity: 1; background: rgba(51,255,51,0.1); }\n      &.ds-nav-link--active { opacity: 1; background: rgba(51,255,51,0.15); }\n    }\n  }\n\n  .ds-challenge-card {\n    background: var(--ds-surface); border: 1px solid var(--ds-border);\n    border-radius: var(--ds-radius); padding: var(--ds-space-lg);\n  }\n  .ds-card-header { display: flex; justify-content: space-between; margin-bottom: var(--ds-space-md); }\n  .ds-difficulty { color: var(--ds-accent); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }\n  .ds-stars { color: gold; }\n  .ds-card-title { font-size: 20px; margin-bottom: var(--ds-space-sm); }\n  .ds-card-desc { opacity: 0.7; line-height: 1.5; margin-bottom: var(--ds-space-md); }\n  .ds-progress-bar { height: 8px; background: var(--ds-bg); border-radius: 4px; overflow: hidden; }\n  .ds-progress-fill { height: 100%; width: calc(var(--progress) * 100%); background: var(--ds-text); border-radius: 4px; }\n\n  @container (max-width: 400px) {\n    .ds-challenge-card { padding: var(--ds-space-md); }\n    .ds-card-title { font-size: 16px; }\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".ds-app",
+      "property": "background-color",
+      "expected": "rgb(10, 10, 26)",
+      "weight": 80,
+      "message": "App should have dark DOS background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ds-app",
+      "property": "color",
+      "expected": "rgb(51, 255, 51)",
+      "weight": 80,
+      "message": "App should have green terminal text"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ds-toolbar",
+      "property": "display",
+      "expected": "flex",
+      "weight": 80,
+      "message": "Toolbar should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ds-logo",
+      "property": "color",
+      "expected": "rgb(255, 102, 0)",
+      "weight": 80,
+      "message": "Logo should use accent color (orange)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ds-challenge-card",
+      "property": "background-color",
+      "expected": "rgb(26, 26, 46)",
+      "weight": 80,
+      "message": "Card should use surface color"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ds-progress-bar",
+      "property": "height",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Progress bar should be 8px tall"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ds-difficulty",
+      "property": "color",
+      "expected": "rgb(255, 102, 0)",
+      "weight": 100,
+      "message": "Difficulty label should use accent color"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "This challenge combines @layer (cascade), @property (typed variables), container queries (responsive), and nesting (organization). Start with layer ordering and design tokens." },
+    { "level": "clue", "text": "Declare layers first. Define tokens in the tokens layer. Use @property for animatable progress color. Nest all component styles. Add @container for responsive card." },
+    { "level": "solution", "text": "Layer order -> tokens -> reset -> layout -> components with nesting + @container + @property for the complete system.", "code": "@layer reset, tokens, layout, components, utilities;\n@property --progress-color { syntax: '<color>'; initial-value: #33ff33; inherits: false; }\n@layer tokens { :root { --ds-bg: #0a0a1a; --ds-text: #33ff33; } }\n@layer components { .ds-toolbar { display: flex; .ds-logo { color: var(--ds-accent); } } }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["cascade-layers", "scope", "container-queries", "property", "nesting", "design-system"],
+    "estimatedMinutes": 15,
+    "difficulty": 10
+  }
+}

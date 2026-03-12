@@ -1,0 +1,53 @@
+{
+  "id": "mid-04-transitions",
+  "slug": "mid-transitions",
+  "title": "Smooth Transitions",
+  "description": "Add CSS transitions to a button so it smoothly changes color, size, and shadow on hover",
+  "type": "match",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "<button class=\"action-btn\">Click Me</button>",
+  "starterCss": "/* Add a smooth transition to the button:\n   - Background changes from blue to dark blue on hover\n   - Add a box-shadow on hover\n   - Transition duration: 0.3s ease */\n.action-btn {\n  padding: 12px 24px;\n  background-color: rgb(0, 123, 255);\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n}",
+  "referenceSolutions": [
+    ".action-btn {\n  padding: 12px 24px;\n  background-color: rgb(0, 123, 255);\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n  transition: background-color 0.3s ease, box-shadow 0.3s ease;\n}\n.action-btn:hover {\n  background-color: rgb(0, 86, 179);\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n}",
+    ".action-btn {\n  padding: 12px 24px;\n  background-color: rgb(0, 123, 255);\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n  transition: all 0.3s ease;\n}\n.action-btn:hover {\n  background-color: rgb(0, 86, 179);\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".action-btn",
+      "property": "transition-duration",
+      "expected": "0.3s",
+      "weight": 200,
+      "message": "The button should have a 0.3s transition duration"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".action-btn",
+      "property": "transition-timing-function",
+      "expected": "ease",
+      "weight": 200,
+      "message": "The transition should use ease timing function"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".action-btn",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 200,
+      "message": "The button default background should be blue"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Transitions animate property changes over time. They are defined on the base state, not the hover state." },
+    { "level": "clue", "text": "Add 'transition: background-color 0.3s ease, box-shadow 0.3s ease' to .action-btn. Define the :hover state with new values." },
+    { "level": "solution", "text": ".action-btn { transition: all 0.3s ease; } .action-btn:hover { background-color: #0056b3; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }", "code": ".action-btn {\n  transition: all 0.3s ease;\n}\n.action-btn:hover {\n  background-color: #0056b3;\n  box-shadow: 0 4px 8px rgba(0,0,0,0.2);\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["transitions", "hover", "animation", "box-shadow"],
+    "estimatedMinutes": 4,
+    "difficulty": 4
+  }
+}

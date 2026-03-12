@@ -1,0 +1,77 @@
+{
+  "id": "principal-01-scroll-animations",
+  "slug": "principal-scroll-animations",
+  "title": "Scroll-Driven Animations",
+  "description": "Create scroll-driven animations using the scroll-timeline and view-timeline APIs to animate elements as they enter and scroll through the viewport",
+  "type": "match",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"scroll-demo\">\n  <section class=\"scroll-section\">\n    <h2 class=\"reveal-heading\">Scroll to Reveal</h2>\n    <p class=\"reveal-text\">This text fades in as you scroll down.</p>\n  </section>\n  <div class=\"progress-bar\">\n    <div class=\"progress-fill\"></div>\n  </div>\n</div>",
+  "starterCss": "/* Create scroll-driven animations:\n   - Progress bar fills based on scroll position\n   - Heading and text fade in when they enter the viewport\n   - Use animation-timeline: scroll() and view() */\n.scroll-demo {\n  height: 200vh;\n  padding: 20px;\n}\n.scroll-section {\n  margin-top: 50vh;\n}\n",
+  "referenceSolutions": [
+    ".scroll-demo {\n  height: 200vh;\n  padding: 20px;\n}\n.scroll-section {\n  margin-top: 50vh;\n}\n.progress-bar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 4px;\n  background-color: rgb(233, 236, 239);\n  z-index: 100;\n}\n.progress-fill {\n  height: 100%;\n  background-color: rgb(0, 123, 255);\n  width: 0%;\n  animation: grow-progress linear;\n  animation-timeline: scroll();\n}\n@keyframes grow-progress {\n  to { width: 100%; }\n}\n.reveal-heading,\n.reveal-text {\n  opacity: 0;\n  transform: translateY(20px);\n  animation: reveal linear both;\n  animation-timeline: view();\n  animation-range: entry 0% entry 100%;\n}\n@keyframes reveal {\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}",
+    ".scroll-demo {\n  height: 200vh;\n  padding: 20px;\n}\n.scroll-section {\n  margin-top: 50vh;\n}\n.progress-bar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 4px;\n  background: #e9ecef;\n  z-index: 100;\n}\n.progress-fill {\n  height: 100%;\n  background: #007bff;\n  animation: fill-bar linear;\n  animation-timeline: scroll();\n  transform-origin: left;\n  scale: 0 1;\n}\n@keyframes fill-bar {\n  to { scale: 1 1; }\n}\n.reveal-heading,\n.reveal-text {\n  opacity: 0;\n  animation: fade-in linear both;\n  animation-timeline: view();\n  animation-range: entry;\n}\n@keyframes fade-in {\n  to { opacity: 1; }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".progress-bar",
+      "property": "position",
+      "expected": "fixed",
+      "weight": 100,
+      "message": "Progress bar should be fixed positioned"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".progress-bar",
+      "property": "height",
+      "expected": "4px",
+      "weight": 100,
+      "message": "Progress bar should be 4px tall"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".progress-fill",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Progress fill should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".progress-bar",
+      "property": "background-color",
+      "expected": "rgb(233, 236, 239)",
+      "weight": 100,
+      "message": "Progress bar track should be light gray"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".progress-bar",
+      "property": "z-index",
+      "expected": "100",
+      "weight": 100,
+      "message": "Progress bar should have high z-index"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".scroll-demo",
+      "property": "height",
+      "expected": { "min": 200, "max": 99999 },
+      "weight": 100,
+      "message": "Scroll demo should be tall enough to scroll"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Scroll-driven animations replace JavaScript scroll handlers with pure CSS. animation-timeline: scroll() links to scroll position; view() links to element visibility." },
+    { "level": "clue", "text": "Create a @keyframes for the progress bar (0-100% width). Set animation-timeline: scroll() on it. For reveals, use animation-timeline: view() with animation-range: entry." },
+    { "level": "solution", "text": "Use scroll() timeline for progress bar, view() timeline for element reveals.", "code": ".progress-fill { animation: grow linear; animation-timeline: scroll(); }\n@keyframes grow { to { width: 100%; } }\n.reveal-heading { animation: reveal linear both; animation-timeline: view(); animation-range: entry; }\n@keyframes reveal { to { opacity: 1; } }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["scroll-animations", "scroll-timeline", "view-timeline", "animation-range"],
+    "estimatedMinutes": 10,
+    "difficulty": 3
+  }
+}

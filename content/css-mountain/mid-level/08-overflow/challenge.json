@@ -1,0 +1,34 @@
+{
+  "id": "mid-08-overflow",
+  "slug": "mid-overflow",
+  "title": "Overflow Control",
+  "description": "Test your knowledge of how CSS handles content that overflows its container boundaries",
+  "type": "quiz",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["1", "overflow: auto adds scrollbars only when content overflows"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 1,
+      "weight": 600,
+      "message": "Select the correct answer about CSS overflow"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "The overflow property controls what happens when content is too large for its container. There are several values." },
+    { "level": "clue", "text": "overflow: auto adds scrollbars only when content overflows. overflow: scroll always shows scrollbars. overflow: hidden clips content." },
+    { "level": "solution", "text": "overflow: auto is the most user-friendly choice for scrollable containers because it only shows scrollbars when needed, unlike overflow: scroll which always shows them." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["overflow", "scroll", "hidden", "clipping"],
+    "estimatedMinutes": 3,
+    "difficulty": 6
+  }
+}

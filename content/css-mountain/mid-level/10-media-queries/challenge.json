@@ -1,0 +1,93 @@
+{
+  "id": "mid-10-media-queries",
+  "slug": "mid-media-queries",
+  "title": "Media Query Master",
+  "description": "Boss challenge: Build a fully responsive navigation that transforms from a horizontal bar to a vertical mobile menu using media queries and flexbox",
+  "type": "match",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": true,
+  "html": "<nav class=\"responsive-nav\">\n  <div class=\"nav-brand\">Brand</div>\n  <ul class=\"nav-links\">\n    <li><a href=\"#\">Home</a></li>\n    <li><a href=\"#\">Products</a></li>\n    <li><a href=\"#\">Services</a></li>\n    <li><a href=\"#\">Contact</a></li>\n  </ul>\n</nav>",
+  "starterCss": "/* Build a responsive nav:\n   Desktop (default): horizontal bar, brand left, links right\n   Mobile (<768px): stack vertically, full-width links\n   All states: dark background, white text, no list bullets */\n",
+  "referenceSolutions": [
+    ".responsive-nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background-color: rgb(33, 37, 41);\n  padding: 0 16px;\n}\n.nav-brand {\n  color: rgb(255, 255, 255);\n  font-weight: 700;\n  font-size: 20px;\n  padding: 12px 0;\n}\n.nav-links {\n  display: flex;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  gap: 4px;\n}\n.nav-links a {\n  color: rgb(255, 255, 255);\n  text-decoration: none;\n  padding: 12px 16px;\n  display: block;\n}\n@media (max-width: 768px) {\n  .responsive-nav {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  .nav-links {\n    flex-direction: column;\n  }\n  .nav-links a {\n    padding: 12px 16px;\n    border-top: 1px solid rgba(255, 255, 255, 0.1);\n  }\n}",
+    ".responsive-nav {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  background: #212529;\n  padding: 0 16px;\n}\n.nav-brand {\n  color: white;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 12px 0;\n}\n.nav-links {\n  display: flex;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  gap: 4px;\n}\n.nav-links a {\n  color: white;\n  text-decoration: none;\n  padding: 12px 16px;\n  display: block;\n}\n@media (max-width: 768px) {\n  .responsive-nav {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  .nav-brand {\n    text-align: center;\n  }\n  .nav-links {\n    flex-direction: column;\n    width: 100%;\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".responsive-nav",
+      "property": "display",
+      "expected": "flex",
+      "weight": 100,
+      "message": "The nav should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".responsive-nav",
+      "property": "background-color",
+      "expected": "rgb(33, 37, 41)",
+      "weight": 100,
+      "message": "The nav should have a dark background (#212529)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-brand",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 75,
+      "message": "The brand text should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-brand",
+      "property": "font-weight",
+      "expected": "700",
+      "weight": 75,
+      "message": "The brand should be bold"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-links",
+      "property": "display",
+      "expected": "flex",
+      "weight": 75,
+      "message": "Nav links should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-links",
+      "property": "list-style-type",
+      "expected": "none",
+      "weight": 75,
+      "message": "Nav links should have no bullets"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-links a",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 50,
+      "message": "Links should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-links a",
+      "property": "text-decoration-line",
+      "expected": "none",
+      "weight": 50,
+      "message": "Links should have no underline"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Use flexbox for the nav layout. Media queries let you change flex-direction based on screen width." },
+    { "level": "clue", "text": "Desktop: nav is flex row with space-between. Mobile (max-width: 768px): nav and links switch to flex-direction: column." },
+    { "level": "solution", "text": "Use flex for horizontal layout, then @media (max-width: 768px) to switch to column direction.", "code": ".responsive-nav { display: flex; justify-content: space-between; background: #212529; }\n.nav-links { display: flex; list-style: none; }\n.nav-links a { color: white; text-decoration: none; padding: 12px 16px; }\n@media (max-width: 768px) {\n  .responsive-nav, .nav-links { flex-direction: column; }\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["media-queries", "responsive", "flexbox", "navigation", "mobile-first"],
+    "estimatedMinutes": 8,
+    "difficulty": 8
+  }
+}

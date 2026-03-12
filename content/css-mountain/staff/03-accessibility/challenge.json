@@ -1,0 +1,69 @@
+{
+  "id": "staff-03-accessibility",
+  "slug": "staff-accessibility",
+  "title": "Accessible Styling",
+  "description": "Fix accessibility issues in a form by adding focus-visible outlines, respecting prefers-reduced-motion, and ensuring sufficient color contrast",
+  "type": "fix",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "<form class=\"a11y-form\">\n  <div class=\"field\">\n    <label for=\"name\">Name</label>\n    <input id=\"name\" type=\"text\" class=\"a11y-input\" placeholder=\"Your name\">\n  </div>\n  <div class=\"field\">\n    <label for=\"email\">Email</label>\n    <input id=\"email\" type=\"email\" class=\"a11y-input\" placeholder=\"you@example.com\">\n  </div>\n  <button class=\"a11y-btn\" type=\"submit\">Submit</button>\n  <p class=\"a11y-note\">Fields marked with * are required</p>\n</form>",
+  "starterCss": "/* Fix accessibility issues:\n   1. Inputs have outline: none (removes focus indicator)\n   2. Note text has poor contrast (light gray on white)\n   3. No prefers-reduced-motion handling for the button animation\n   4. Focus states should use :focus-visible, not :focus */\n.a11y-form {\n  max-width: 400px;\n  padding: 24px;\n}\n.field {\n  margin-bottom: 16px;\n}\n.field label {\n  display: block;\n  margin-bottom: 4px;\n  font-weight: bold;\n}\n.a11y-input {\n  width: 100%;\n  padding: 8px 12px;\n  border: 2px solid #ccc;\n  border-radius: 4px;\n  font-size: 16px;\n  outline: none; /* BAD: removes focus indicator */\n  box-sizing: border-box;\n}\n.a11y-btn {\n  padding: 10px 24px;\n  background-color: #007bff;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n  animation: pulse-btn 2s infinite; /* No reduced-motion check */\n}\n@keyframes pulse-btn {\n  0%, 100% { transform: scale(1); }\n  50% { transform: scale(1.05); }\n}\n.a11y-note {\n  color: #ddd; /* BAD: fails WCAG contrast on white bg */\n  font-size: 12px;\n}",
+  "referenceSolutions": [
+    ".a11y-form {\n  max-width: 400px;\n  padding: 24px;\n}\n.field {\n  margin-bottom: 16px;\n}\n.field label {\n  display: block;\n  margin-bottom: 4px;\n  font-weight: bold;\n}\n.a11y-input {\n  width: 100%;\n  padding: 8px 12px;\n  border: 2px solid #ccc;\n  border-radius: 4px;\n  font-size: 16px;\n  box-sizing: border-box;\n}\n.a11y-input:focus-visible {\n  outline: 3px solid rgb(0, 123, 255);\n  outline-offset: 2px;\n  border-color: rgb(0, 123, 255);\n}\n.a11y-btn {\n  padding: 10px 24px;\n  background-color: rgb(0, 123, 255);\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n  animation: pulse-btn 2s infinite;\n}\n.a11y-btn:focus-visible {\n  outline: 3px solid rgb(0, 123, 255);\n  outline-offset: 2px;\n}\n@keyframes pulse-btn {\n  0%, 100% { transform: scale(1); }\n  50% { transform: scale(1.05); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .a11y-btn {\n    animation: none;\n  }\n}\n.a11y-note {\n  color: rgb(108, 117, 125);\n  font-size: 12px;\n}",
+    ".a11y-form {\n  max-width: 400px;\n  padding: 24px;\n}\n.field {\n  margin-bottom: 16px;\n}\n.field label {\n  display: block;\n  margin-bottom: 4px;\n  font-weight: bold;\n}\n.a11y-input {\n  width: 100%;\n  padding: 8px 12px;\n  border: 2px solid #ccc;\n  border-radius: 4px;\n  font-size: 16px;\n  box-sizing: border-box;\n  outline: revert;\n}\n.a11y-input:focus-visible {\n  outline: 3px solid #007bff;\n  outline-offset: 2px;\n}\n.a11y-btn {\n  padding: 10px 24px;\n  background-color: #007bff;\n  color: #fff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 16px;\n  animation: pulse-btn 2s infinite;\n}\n.a11y-btn:focus-visible {\n  outline: 3px solid #007bff;\n  outline-offset: 2px;\n}\n@keyframes pulse-btn {\n  0%, 100% { transform: scale(1); }\n  50% { transform: scale(1.05); }\n}\n@media (prefers-reduced-motion: reduce) {\n  * {\n    animation-duration: 0.01ms !important;\n    transition-duration: 0.01ms !important;\n  }\n}\n.a11y-note {\n  color: #6c757d;\n  font-size: 12px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".a11y-input",
+      "property": "font-size",
+      "expected": "16px",
+      "weight": 100,
+      "message": "Input font size should be 16px (prevents zoom on mobile)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".a11y-btn",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Button should maintain blue background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".a11y-btn",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Button text should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".a11y-note",
+      "property": "color",
+      "expected": "rgb(108, 117, 125)",
+      "weight": 200,
+      "message": "Note text should use a darker gray (#6c757d) for WCAG contrast compliance"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".a11y-note",
+      "property": "font-size",
+      "expected": "12px",
+      "weight": 100,
+      "message": "Note text should be 12px"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Never remove outline without providing an alternative focus indicator. Use :focus-visible instead of :focus. Respect prefers-reduced-motion." },
+    { "level": "clue", "text": "Remove 'outline: none', add :focus-visible styles, wrap animation in @media (prefers-reduced-motion: reduce), and change note color to #6c757d for 4.5:1 contrast." },
+    { "level": "solution", "text": "Add focus-visible outlines, reduce-motion media query to disable animation, and fix contrast.", "code": ".a11y-input:focus-visible { outline: 3px solid #007bff; outline-offset: 2px; }\n@media (prefers-reduced-motion: reduce) { .a11y-btn { animation: none; } }\n.a11y-note { color: #6c757d; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["accessibility", "focus-visible", "prefers-reduced-motion", "contrast", "wcag"],
+    "estimatedMinutes": 8,
+    "difficulty": 4
+  }
+}

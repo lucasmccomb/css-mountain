@@ -1,0 +1,34 @@
+{
+  "id": "junior-09-text-decoration",
+  "slug": "junior-text-decoration",
+  "title": "Text Decoration Quiz",
+  "description": "Test your knowledge of CSS text decoration properties and their values",
+  "type": "quiz",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["0", "text-decoration: none removes underlines from links"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 0,
+      "weight": 600,
+      "message": "Select the correct answer"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Think about what 'text-decoration' does by default on anchor tags." },
+    { "level": "clue", "text": "Links have an underline by default. The property that controls this is 'text-decoration'." },
+    { "level": "solution", "text": "text-decoration: none removes the underline from links. Other values include underline, overline, and line-through." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["text-decoration", "links", "underline"],
+    "estimatedMinutes": 2,
+    "difficulty": 5
+  }
+}

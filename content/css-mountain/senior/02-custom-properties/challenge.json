@@ -1,0 +1,77 @@
+{
+  "id": "senior-02-custom-properties",
+  "slug": "senior-custom-properties",
+  "title": "CSS Custom Properties",
+  "description": "Build a theme system using CSS custom properties (variables) that controls colors, spacing, and typography across a component",
+  "type": "build",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "<div class=\"themed-card\">\n  <h3 class=\"themed-card-title\">Themed Component</h3>\n  <p class=\"themed-card-body\">This component uses CSS custom properties for all its styling values.</p>\n  <button class=\"themed-card-btn\">Action</button>\n</div>",
+  "starterCss": "/* Define custom properties on :root and use them:\n   --color-primary: #007bff\n   --color-bg: #ffffff\n   --color-text: #333333\n   --spacing-md: 16px\n   --radius: 8px\n   Apply these variables throughout the card */\n",
+  "referenceSolutions": [
+    ":root {\n  --color-primary: #007bff;\n  --color-bg: #ffffff;\n  --color-text: #333333;\n  --spacing-md: 16px;\n  --radius: 8px;\n}\n.themed-card {\n  background-color: var(--color-bg);\n  color: var(--color-text);\n  padding: var(--spacing-md);\n  border-radius: var(--radius);\n  border: 1px solid #e0e0e0;\n}\n.themed-card-title {\n  color: var(--color-primary);\n  margin-top: 0;\n}\n.themed-card-btn {\n  background-color: var(--color-primary);\n  color: var(--color-bg);\n  border: none;\n  padding: 8px var(--spacing-md);\n  border-radius: var(--radius);\n  cursor: pointer;\n}",
+    ":root {\n  --color-primary: rgb(0, 123, 255);\n  --color-bg: rgb(255, 255, 255);\n  --color-text: rgb(51, 51, 51);\n  --spacing-md: 16px;\n  --radius: 8px;\n}\n.themed-card {\n  background: var(--color-bg);\n  color: var(--color-text);\n  padding: var(--spacing-md);\n  border-radius: var(--radius);\n  border: 1px solid #e0e0e0;\n}\n.themed-card-title {\n  color: var(--color-primary);\n  margin: 0 0 var(--spacing-md);\n}\n.themed-card-btn {\n  background: var(--color-primary);\n  color: white;\n  border: none;\n  padding: calc(var(--spacing-md) / 2) var(--spacing-md);\n  border-radius: var(--radius);\n  cursor: pointer;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".themed-card",
+      "property": "background-color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Card background should use the --color-bg variable (white)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".themed-card",
+      "property": "color",
+      "expected": "rgb(51, 51, 51)",
+      "weight": 100,
+      "message": "Card text color should use --color-text (#333)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".themed-card",
+      "property": "padding-top",
+      "expected": "16px",
+      "weight": 100,
+      "message": "Card padding should use --spacing-md (16px)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".themed-card",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Card border-radius should use --radius (8px)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".themed-card-title",
+      "property": "color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Title should use --color-primary"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".themed-card-btn",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Button background should use --color-primary"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS custom properties are declared with -- prefix and accessed with var(). Define them on :root for global scope." },
+    { "level": "clue", "text": "Define variables on :root { --color-primary: #007bff; } then use them with var(--color-primary) in property values." },
+    { "level": "solution", "text": "Define all variables on :root, then reference them with var() throughout the component styles.", "code": ":root { --color-primary: #007bff; --color-bg: #fff; --color-text: #333; --spacing-md: 16px; --radius: 8px; }\n.themed-card { background: var(--color-bg); color: var(--color-text); padding: var(--spacing-md); border-radius: var(--radius); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["custom-properties", "css-variables", "theming"],
+    "estimatedMinutes": 6,
+    "difficulty": 3
+  }
+}

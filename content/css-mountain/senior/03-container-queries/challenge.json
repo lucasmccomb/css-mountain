@@ -1,0 +1,61 @@
+{
+  "id": "senior-03-container-queries",
+  "slug": "senior-container-queries",
+  "title": "Container Queries",
+  "description": "Use container queries to make a card component adapt its layout based on the container width, not the viewport",
+  "type": "match",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "<div class=\"container-wrapper\">\n  <div class=\"responsive-card\">\n    <img class=\"card-img\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' fill='%23ccc'%3E%3Crect width='200' height='150'/%3E%3C/svg%3E\" alt=\"placeholder\">\n    <div class=\"card-content\">\n      <h3>Card Title</h3>\n      <p>Card description that adapts to container width.</p>\n    </div>\n  </div>\n</div>",
+  "starterCss": "/* Make the card layout adapt based on container width:\n   - Define the wrapper as a container\n   - Below 400px: stack image above content\n   - Above 400px: image beside content (horizontal layout)\n   - Image: 100% wide when stacked, 200px when horizontal */\n",
+  "referenceSolutions": [
+    ".container-wrapper {\n  container-type: inline-size;\n  container-name: card-container;\n}\n.responsive-card {\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  overflow: hidden;\n}\n.card-img {\n  width: 100%;\n  height: auto;\n  display: block;\n}\n.card-content {\n  padding: 16px;\n}\n@container card-container (min-width: 400px) {\n  .responsive-card {\n    flex-direction: row;\n  }\n  .card-img {\n    width: 200px;\n    object-fit: cover;\n  }\n}",
+    ".container-wrapper {\n  container-type: inline-size;\n}\n.responsive-card {\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  overflow: hidden;\n}\n.card-img {\n  width: 100%;\n  height: auto;\n  display: block;\n}\n.card-content {\n  padding: 16px;\n}\n@container (min-width: 400px) {\n  .responsive-card {\n    flex-direction: row;\n  }\n  .card-img {\n    width: 200px;\n    flex-shrink: 0;\n    object-fit: cover;\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".container-wrapper",
+      "property": "container-type",
+      "expected": "inline-size",
+      "weight": 200,
+      "message": "The wrapper should be a size container (container-type: inline-size)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".responsive-card",
+      "property": "display",
+      "expected": "flex",
+      "weight": 150,
+      "message": "The card should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".responsive-card",
+      "property": "overflow",
+      "expected": "hidden",
+      "weight": 100,
+      "message": "The card should clip overflow for rounded corners"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".card-content",
+      "property": "padding-top",
+      "expected": "16px",
+      "weight": 150,
+      "message": "Card content should have 16px padding"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Container queries respond to the size of a parent container, not the viewport. You need to define a containment context first." },
+    { "level": "clue", "text": "Set 'container-type: inline-size' on the wrapper. Use @container (min-width: 400px) to change flex-direction to row." },
+    { "level": "solution", "text": "Define container-type on parent, use @container query to switch from column to row layout at 400px.", "code": ".container-wrapper { container-type: inline-size; }\n.responsive-card { display: flex; flex-direction: column; }\n@container (min-width: 400px) {\n  .responsive-card { flex-direction: row; }\n  .card-img { width: 200px; }\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["container-queries", "responsive", "component-design"],
+    "estimatedMinutes": 7,
+    "difficulty": 4
+  }
+}

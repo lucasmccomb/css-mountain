@@ -1,0 +1,85 @@
+{
+  "id": "staff-10-css-variables",
+  "slug": "staff-css-variables-boss",
+  "title": "Dynamic Theming Boss",
+  "description": "Boss challenge: Build a complete dark/light theme system using CSS custom properties with component-scoped overrides and dynamic calculations",
+  "type": "build",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": true,
+  "html": "<div class=\"theme-demo\" data-theme=\"light\">\n  <header class=\"td-header\">\n    <h1 class=\"td-title\">Theme System</h1>\n    <span class=\"td-badge\">Pro</span>\n  </header>\n  <section class=\"td-content\">\n    <p>This component demonstrates a full theme system using CSS custom properties.</p>\n    <div class=\"td-meter\">\n      <div class=\"td-meter-fill\" style=\"--progress: 0.75\"></div>\n    </div>\n  </section>\n  <footer class=\"td-footer\">\n    <button class=\"td-btn\">Primary</button>\n    <button class=\"td-btn td-btn--ghost\">Ghost</button>\n  </footer>\n</div>\n<div class=\"theme-demo\" data-theme=\"dark\">\n  <header class=\"td-header\">\n    <h1 class=\"td-title\">Dark Theme</h1>\n    <span class=\"td-badge\">Pro</span>\n  </header>\n  <section class=\"td-content\">\n    <p>Same component, different theme - powered by CSS variables.</p>\n    <div class=\"td-meter\">\n      <div class=\"td-meter-fill\" style=\"--progress: 0.45\"></div>\n    </div>\n  </section>\n  <footer class=\"td-footer\">\n    <button class=\"td-btn\">Primary</button>\n    <button class=\"td-btn td-btn--ghost\">Ghost</button>\n  </footer>\n</div>",
+  "starterCss": "/* Build a theme system:\n   Light theme: white bg, dark text, blue primary\n   Dark theme: dark bg, light text, cyan primary\n   The meter should use calc() with --progress variable\n   Badge and buttons should reference theme variables */\n",
+  "referenceSolutions": [
+    "[data-theme=\"light\"] {\n  --bg: rgb(255, 255, 255);\n  --bg-secondary: rgb(248, 249, 250);\n  --text: rgb(33, 37, 41);\n  --text-muted: rgb(108, 117, 125);\n  --primary: rgb(0, 123, 255);\n  --primary-text: rgb(255, 255, 255);\n  --border: rgb(222, 226, 230);\n}\n[data-theme=\"dark\"] {\n  --bg: rgb(33, 37, 41);\n  --bg-secondary: rgb(52, 58, 64);\n  --text: rgb(248, 249, 250);\n  --text-muted: rgb(173, 181, 189);\n  --primary: rgb(0, 210, 211);\n  --primary-text: rgb(33, 37, 41);\n  --border: rgb(73, 80, 87);\n}\n.theme-demo {\n  background-color: var(--bg);\n  color: var(--text);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 24px;\n  margin-bottom: 16px;\n  max-width: 400px;\n}\n.td-header {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin-bottom: 16px;\n}\n.td-title {\n  margin: 0;\n  font-size: 20px;\n}\n.td-badge {\n  background-color: var(--primary);\n  color: var(--primary-text);\n  font-size: 11px;\n  font-weight: 700;\n  padding: 2px 8px;\n  border-radius: 4px;\n}\n.td-content {\n  margin-bottom: 16px;\n}\n.td-content p {\n  color: var(--text-muted);\n  line-height: 1.5;\n  margin: 0 0 12px;\n}\n.td-meter {\n  height: 8px;\n  background-color: var(--bg-secondary);\n  border-radius: 4px;\n  overflow: hidden;\n}\n.td-meter-fill {\n  height: 100%;\n  width: calc(var(--progress) * 100%);\n  background-color: var(--primary);\n  border-radius: 4px;\n}\n.td-footer {\n  display: flex;\n  gap: 8px;\n}\n.td-btn {\n  padding: 8px 16px;\n  border-radius: 6px;\n  border: none;\n  cursor: pointer;\n  font-size: 14px;\n  background-color: var(--primary);\n  color: var(--primary-text);\n}\n.td-btn--ghost {\n  background-color: transparent;\n  color: var(--primary);\n  border: 1px solid var(--primary);\n}",
+    "[data-theme=\"light\"] {\n  --bg: #ffffff;\n  --bg-secondary: #f8f9fa;\n  --text: #212529;\n  --text-muted: #6c757d;\n  --primary: #007bff;\n  --primary-text: #fff;\n  --border: #dee2e6;\n}\n[data-theme=\"dark\"] {\n  --bg: #212529;\n  --bg-secondary: #343a40;\n  --text: #f8f9fa;\n  --text-muted: #adb5bd;\n  --primary: #00d2d3;\n  --primary-text: #212529;\n  --border: #495057;\n}\n.theme-demo {\n  background: var(--bg);\n  color: var(--text);\n  border: 1px solid var(--border);\n  border-radius: 12px;\n  padding: 24px;\n  margin-bottom: 16px;\n  max-width: 400px;\n}\n.td-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }\n.td-title { margin: 0; font-size: 20px; }\n.td-badge { background: var(--primary); color: var(--primary-text); font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 4px; }\n.td-content { margin-bottom: 16px; }\n.td-content p { color: var(--text-muted); line-height: 1.5; margin: 0 0 12px; }\n.td-meter { height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; }\n.td-meter-fill { height: 100%; width: calc(var(--progress) * 100%); background: var(--primary); border-radius: 4px; }\n.td-footer { display: flex; gap: 8px; }\n.td-btn { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; background: var(--primary); color: var(--primary-text); }\n.td-btn--ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": "[data-theme='light'] .td-title",
+      "property": "color",
+      "expected": "rgb(33, 37, 41)",
+      "weight": 80,
+      "message": "Light theme title should be dark text"
+    },
+    {
+      "type": "computed-style",
+      "selector": "[data-theme='dark']",
+      "property": "background-color",
+      "expected": "rgb(33, 37, 41)",
+      "weight": 80,
+      "message": "Dark theme should have dark background"
+    },
+    {
+      "type": "computed-style",
+      "selector": "[data-theme='dark'] .td-title",
+      "property": "color",
+      "expected": "rgb(248, 249, 250)",
+      "weight": 80,
+      "message": "Dark theme title should be light text"
+    },
+    {
+      "type": "computed-style",
+      "selector": "[data-theme='light'] .td-badge",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 80,
+      "message": "Light theme badge should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": "[data-theme='dark'] .td-badge",
+      "property": "background-color",
+      "expected": "rgb(0, 210, 211)",
+      "weight": 80,
+      "message": "Dark theme badge should be cyan"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".td-meter",
+      "property": "height",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Meter should be 8px tall"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".td-footer",
+      "property": "display",
+      "expected": "flex",
+      "weight": 100,
+      "message": "Footer should use flexbox"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Define theme variables on [data-theme] selectors. Component styles reference variables with var(). calc() can multiply a 0-1 progress value to percentage." },
+    { "level": "clue", "text": "Two [data-theme] blocks define colors. Components use var(--primary), var(--bg), etc. The meter uses calc(var(--progress) * 100%) for width." },
+    { "level": "solution", "text": "Define light/dark variable sets, reference them in components, use calc() for dynamic meter width.", "code": "[data-theme='light'] { --bg: #fff; --text: #212529; --primary: #007bff; }\n[data-theme='dark'] { --bg: #212529; --text: #f8f9fa; --primary: #00d2d3; }\n.theme-demo { background: var(--bg); color: var(--text); }\n.td-meter-fill { width: calc(var(--progress) * 100%); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["css-variables", "theming", "dark-mode", "calc", "data-attributes"],
+    "estimatedMinutes": 12,
+    "difficulty": 9
+  }
+}

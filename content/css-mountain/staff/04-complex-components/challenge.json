@@ -1,0 +1,85 @@
+{
+  "id": "staff-04-complex-components",
+  "slug": "staff-complex-components",
+  "title": "Component System",
+  "description": "Build a complete card component system with variants, states, and responsive behavior using modern CSS techniques",
+  "type": "build",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "<div class=\"card-system\">\n  <article class=\"sys-card sys-card--elevated\">\n    <header class=\"sys-card__header\">\n      <span class=\"sys-card__badge\">NEW</span>\n      <h3 class=\"sys-card__title\">Elevated Card</h3>\n    </header>\n    <p class=\"sys-card__body\">This card has an elevated shadow and a badge.</p>\n    <footer class=\"sys-card__footer\">\n      <button class=\"sys-card__btn sys-card__btn--primary\">Action</button>\n      <button class=\"sys-card__btn sys-card__btn--secondary\">Cancel</button>\n    </footer>\n  </article>\n  <article class=\"sys-card sys-card--outlined\">\n    <header class=\"sys-card__header\">\n      <h3 class=\"sys-card__title\">Outlined Card</h3>\n    </header>\n    <p class=\"sys-card__body\">This card uses a border instead of shadow.</p>\n    <footer class=\"sys-card__footer\">\n      <button class=\"sys-card__btn sys-card__btn--primary\">Learn More</button>\n    </footer>\n  </article>\n</div>",
+  "starterCss": "/* Build a card component system using BEM naming:\n   - Base card: padding, rounded corners, white background\n   - Elevated variant: box-shadow\n   - Outlined variant: 2px border, no shadow\n   - Badge: small pill with blue background\n   - Primary button: blue, white text\n   - Secondary button: gray, dark text\n   - Footer: flex layout with gap */\n.card-system {\n  display: flex;\n  gap: 24px;\n  flex-wrap: wrap;\n}\n",
+  "referenceSolutions": [
+    ".card-system {\n  display: flex;\n  gap: 24px;\n  flex-wrap: wrap;\n}\n.sys-card {\n  background-color: rgb(255, 255, 255);\n  border-radius: 8px;\n  padding: 20px;\n  max-width: 320px;\n  flex: 1;\n  min-width: 250px;\n}\n.sys-card--elevated {\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n}\n.sys-card--outlined {\n  border: 2px solid rgb(221, 221, 221);\n}\n.sys-card__header {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin-bottom: 12px;\n}\n.sys-card__badge {\n  background-color: rgb(0, 123, 255);\n  color: rgb(255, 255, 255);\n  font-size: 11px;\n  font-weight: 700;\n  padding: 2px 8px;\n  border-radius: 12px;\n  text-transform: uppercase;\n}\n.sys-card__title {\n  margin: 0;\n  font-size: 18px;\n}\n.sys-card__body {\n  color: rgb(108, 117, 125);\n  line-height: 1.5;\n  margin: 0 0 16px;\n}\n.sys-card__footer {\n  display: flex;\n  gap: 8px;\n}\n.sys-card__btn {\n  padding: 8px 16px;\n  border-radius: 4px;\n  border: none;\n  cursor: pointer;\n  font-size: 14px;\n}\n.sys-card__btn--primary {\n  background-color: rgb(0, 123, 255);\n  color: rgb(255, 255, 255);\n}\n.sys-card__btn--secondary {\n  background-color: rgb(233, 236, 239);\n  color: rgb(73, 80, 87);\n}",
+    ".card-system {\n  display: flex;\n  gap: 24px;\n  flex-wrap: wrap;\n}\n.sys-card {\n  background: white;\n  border-radius: 8px;\n  padding: 20px;\n  max-width: 320px;\n  flex: 1 1 250px;\n}\n.sys-card--elevated {\n  box-shadow: 0 4px 12px rgba(0,0,0,0.15);\n}\n.sys-card--outlined {\n  border: 2px solid #ddd;\n}\n.sys-card__header {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin-bottom: 12px;\n}\n.sys-card__badge {\n  background: #007bff;\n  color: white;\n  font-size: 11px;\n  font-weight: bold;\n  padding: 2px 8px;\n  border-radius: 12px;\n}\n.sys-card__title {\n  margin: 0;\n  font-size: 18px;\n}\n.sys-card__body {\n  color: #6c757d;\n  line-height: 1.5;\n  margin: 0 0 16px;\n}\n.sys-card__footer {\n  display: flex;\n  gap: 8px;\n}\n.sys-card__btn {\n  padding: 8px 16px;\n  border-radius: 4px;\n  border: 0;\n  cursor: pointer;\n}\n.sys-card__btn--primary {\n  background: #007bff;\n  color: white;\n}\n.sys-card__btn--secondary {\n  background: #e9ecef;\n  color: #495057;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".sys-card",
+      "property": "background-color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 80,
+      "message": "Cards should have white background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sys-card",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 80,
+      "message": "Cards should have 8px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sys-card",
+      "property": "padding-top",
+      "expected": "20px",
+      "weight": 80,
+      "message": "Cards should have 20px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sys-card__badge",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 80,
+      "message": "Badge should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sys-card__footer",
+      "property": "display",
+      "expected": "flex",
+      "weight": 80,
+      "message": "Footer should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sys-card__btn--primary",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Primary button should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sys-card__btn--secondary",
+      "property": "background-color",
+      "expected": "rgb(233, 236, 239)",
+      "weight": 100,
+      "message": "Secondary button should be light gray"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "BEM naming: Block (sys-card), Element (sys-card__header), Modifier (sys-card--elevated). Keep selectors flat with single class names." },
+    { "level": "clue", "text": "Base .sys-card gets shared styles. --elevated adds box-shadow. --outlined adds border. __btn--primary is blue, __btn--secondary is gray." },
+    { "level": "solution", "text": "Build the component layer by layer: base card, variants, elements, and button modifiers.", "code": ".sys-card { background: white; padding: 20px; border-radius: 8px; }\n.sys-card--elevated { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }\n.sys-card--outlined { border: 2px solid #ddd; }\n.sys-card__btn--primary { background: #007bff; color: white; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["components", "bem", "variants", "design-system"],
+    "estimatedMinutes": 10,
+    "difficulty": 5
+  }
+}

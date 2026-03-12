@@ -1,0 +1,34 @@
+{
+  "id": "mid-06-specificity",
+  "slug": "mid-specificity",
+  "title": "Specificity Showdown",
+  "description": "Test your understanding of CSS specificity rules: which selector wins when multiple rules target the same element?",
+  "type": "quiz",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["2", "ID selectors have higher specificity than class selectors"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 2,
+      "weight": 600,
+      "message": "Select the correct answer about CSS specificity"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Specificity is calculated based on the types of selectors used. IDs are more specific than classes, which are more specific than elements." },
+    { "level": "clue", "text": "The specificity hierarchy (low to high): element selectors, class selectors, ID selectors, inline styles. !important overrides all." },
+    { "level": "solution", "text": "An ID selector (#nav) has higher specificity (0,1,0,0) than a class selector (.nav) which is (0,0,1,0), which beats an element selector (div) at (0,0,0,1)." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["specificity", "selectors", "cascade"],
+    "estimatedMinutes": 3,
+    "difficulty": 5
+  }
+}

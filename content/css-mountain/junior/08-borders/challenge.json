@@ -1,0 +1,69 @@
+{
+  "id": "junior-08-borders",
+  "slug": "junior-borders",
+  "title": "Border Styles",
+  "description": "Build a set of cards with different border styles: solid, dashed, dotted, and rounded corners",
+  "type": "build",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<div class=\"card solid\">Solid Border</div>\n<div class=\"card dashed\">Dashed Border</div>\n<div class=\"card dotted\">Dotted Border</div>\n<div class=\"card rounded\">Rounded Corners</div>",
+  "starterCss": "/* Style each card with the described border type.\n   All cards should have 2px borders and 16px padding.\n   The rounded card should have a 8px border-radius. */\n.card {\n  margin: 8px;\n  padding: 16px;\n}",
+  "referenceSolutions": [
+    ".card {\n  margin: 8px;\n  padding: 16px;\n}\n.solid {\n  border: 2px solid rgb(0, 0, 0);\n}\n.dashed {\n  border: 2px dashed rgb(0, 0, 0);\n}\n.dotted {\n  border: 2px dotted rgb(0, 0, 0);\n}\n.rounded {\n  border: 2px solid rgb(0, 0, 0);\n  border-radius: 8px;\n}",
+    ".card {\n  margin: 8px;\n  padding: 16px;\n  border-width: 2px;\n  border-color: black;\n}\n.solid {\n  border-style: solid;\n}\n.dashed {\n  border-style: dashed;\n}\n.dotted {\n  border-style: dotted;\n}\n.rounded {\n  border-style: solid;\n  border-radius: 8px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".solid",
+      "property": "border-top-style",
+      "expected": "solid",
+      "weight": 120,
+      "message": "The solid card should have a solid border"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dashed",
+      "property": "border-top-style",
+      "expected": "dashed",
+      "weight": 120,
+      "message": "The dashed card should have a dashed border"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dotted",
+      "property": "border-top-style",
+      "expected": "dotted",
+      "weight": 120,
+      "message": "The dotted card should have a dotted border"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".rounded",
+      "property": "border-top-style",
+      "expected": "solid",
+      "weight": 120,
+      "message": "The rounded card should have a solid border"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".rounded",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 120,
+      "message": "The rounded card should have 8px border-radius"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS border shorthand takes three values: width, style, and color. Border-radius rounds the corners." },
+    { "level": "clue", "text": "Each card class maps to a border-style value. Use 'border: 2px solid black' as a pattern and change the style keyword." },
+    { "level": "solution", "text": ".solid { border: 2px solid black; } .dashed { border: 2px dashed black; } .dotted { border: 2px dotted black; } .rounded { border: 2px solid black; border-radius: 8px; }", "code": ".solid { border: 2px solid black; }\n.dashed { border: 2px dashed black; }\n.dotted { border: 2px dotted black; }\n.rounded {\n  border: 2px solid black;\n  border-radius: 8px;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["borders", "border-style", "border-radius"],
+    "estimatedMinutes": 4,
+    "difficulty": 5
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "staff-01-architecture",
+  "slug": "staff-architecture",
+  "title": "CSS Architecture Quiz",
+  "description": "Test your knowledge of CSS architecture methodologies: BEM, ITCSS, CUBE CSS, and when to use each approach",
+  "type": "quiz",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["2", "BEM uses Block__Element--Modifier naming to manage specificity"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 2,
+      "weight": 600,
+      "message": "Select the correct answer about CSS architecture"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS architecture methodologies provide naming conventions and organization strategies to manage specificity and maintainability at scale." },
+    { "level": "clue", "text": "BEM uses Block__Element--Modifier pattern. ITCSS organizes by specificity layers. CUBE CSS uses Composition, Utility, Block, Exception." },
+    { "level": "solution", "text": "BEM (Block Element Modifier) separates concerns with clear naming: .block__element--modifier. It prevents specificity wars by keeping selectors flat and predictable." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["architecture", "bem", "itcss", "methodology"],
+    "estimatedMinutes": 3,
+    "difficulty": 2
+  }
+}

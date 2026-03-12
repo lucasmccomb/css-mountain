@@ -1,0 +1,34 @@
+{
+  "id": "principal-04-experimental",
+  "slug": "principal-experimental",
+  "title": "Experimental CSS Quiz",
+  "description": "Test your knowledge of cutting-edge CSS features: color-mix(), light-dark(), relative color syntax, and new color spaces",
+  "type": "quiz",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["1", "color-mix() blends two colors in a specified color space"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 1,
+      "weight": 600,
+      "message": "Select the correct answer about experimental CSS features"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Modern CSS is gaining new color functions. color-mix() blends two colors, light-dark() switches based on color scheme, and oklch provides perceptually uniform colors." },
+    { "level": "clue", "text": "color-mix(in srgb, red 50%, blue) produces a purple. oklch() uses Lightness, Chroma, Hue for more perceptually uniform color manipulation than hsl()." },
+    { "level": "solution", "text": "color-mix(in srgb, red, blue) blends colors in the specified color space. oklch is preferred over hsl for perceptual uniformity because equal chroma changes feel visually equal." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["color-mix", "oklch", "experimental", "color-spaces"],
+    "estimatedMinutes": 4,
+    "difficulty": 5
+  }
+}

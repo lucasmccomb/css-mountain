@@ -1,0 +1,61 @@
+{
+  "id": "mid-05-responsive",
+  "slug": "mid-responsive",
+  "title": "Responsive Design",
+  "description": "Fix the responsive layout so the sidebar stacks below the main content on small screens using a media query",
+  "type": "fix",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "<div class=\"page\">\n  <main class=\"content\">Main content area with lots of text that needs to be readable on all screen sizes.</main>\n  <aside class=\"sidebar\">Sidebar with extra info</aside>\n</div>",
+  "starterCss": "/* Fix: On screens narrower than 600px, the sidebar\n   should stack below the content instead of beside it */\n.page {\n  display: flex;\n  gap: 16px;\n}\n.content {\n  flex: 1;\n  padding: 16px;\n  background-color: #f5f5f5;\n}\n.sidebar {\n  width: 200px;\n  padding: 16px;\n  background-color: #e0e0e0;\n}\n/* The media query below is broken - fix it */\n@media (max-width: 600px) {\n  .page {\n    flex-direction: row; /* should stack */\n  }\n  .sidebar {\n    width: 200px; /* should be full width */\n  }\n}",
+  "referenceSolutions": [
+    ".page {\n  display: flex;\n  gap: 16px;\n}\n.content {\n  flex: 1;\n  padding: 16px;\n  background-color: #f5f5f5;\n}\n.sidebar {\n  width: 200px;\n  padding: 16px;\n  background-color: #e0e0e0;\n}\n@media (max-width: 600px) {\n  .page {\n    flex-direction: column;\n  }\n  .sidebar {\n    width: 100%;\n  }\n}",
+    ".page {\n  display: flex;\n  gap: 16px;\n  flex-wrap: wrap;\n}\n.content {\n  flex: 1;\n  min-width: 300px;\n  padding: 16px;\n  background-color: #f5f5f5;\n}\n.sidebar {\n  width: 200px;\n  padding: 16px;\n  background-color: #e0e0e0;\n}\n@media (max-width: 600px) {\n  .page {\n    flex-direction: column;\n  }\n  .sidebar {\n    width: auto;\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".page",
+      "property": "display",
+      "expected": "flex",
+      "weight": 200,
+      "message": "The page should use flexbox layout"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".page",
+      "property": "gap",
+      "expected": "16px",
+      "weight": 100,
+      "message": "The page should have a 16px gap"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".content",
+      "property": "padding-top",
+      "expected": "16px",
+      "weight": 150,
+      "message": "Content should have 16px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sidebar",
+      "property": "padding-top",
+      "expected": "16px",
+      "weight": 150,
+      "message": "Sidebar should have 16px padding"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "To stack flex items vertically, change the flex-direction. Think about what direction makes items stack." },
+    { "level": "clue", "text": "In the media query, change 'flex-direction: row' to 'flex-direction: column' and set the sidebar width to '100%' or 'auto'." },
+    { "level": "solution", "text": "@media (max-width: 600px) { .page { flex-direction: column; } .sidebar { width: 100%; } }", "code": "@media (max-width: 600px) {\n  .page {\n    flex-direction: column;\n  }\n  .sidebar {\n    width: 100%;\n  }\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["responsive", "media-queries", "flexbox", "mobile-first"],
+    "estimatedMinutes": 5,
+    "difficulty": 5
+  }
+}

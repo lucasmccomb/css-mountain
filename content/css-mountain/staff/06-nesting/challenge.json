@@ -1,0 +1,77 @@
+{
+  "id": "staff-06-nesting",
+  "slug": "staff-nesting",
+  "title": "Native CSS Nesting",
+  "description": "Refactor flat CSS into native CSS nesting syntax to improve readability and reduce selector repetition",
+  "type": "optimize",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "<nav class=\"main-nav\">\n  <a class=\"main-nav-link\" href=\"#\">Home</a>\n  <a class=\"main-nav-link active\" href=\"#\">About</a>\n  <a class=\"main-nav-link\" href=\"#\">Contact</a>\n</nav>",
+  "starterCss": "/* Refactor using native CSS nesting.\n   The result should produce identical styles\n   but with nested selectors (fewer top-level rules). */\n.main-nav {\n  display: flex;\n  gap: 4px;\n  background-color: #1a1a2e;\n  padding: 8px;\n  border-radius: 8px;\n}\n.main-nav .main-nav-link {\n  color: #a0a0b8;\n  text-decoration: none;\n  padding: 8px 16px;\n  border-radius: 4px;\n  transition: color 0.2s, background-color 0.2s;\n}\n.main-nav .main-nav-link:hover {\n  color: white;\n  background-color: rgba(255, 255, 255, 0.1);\n}\n.main-nav .main-nav-link.active {\n  color: white;\n  background-color: #007bff;\n}",
+  "referenceSolutions": [
+    ".main-nav {\n  display: flex;\n  gap: 4px;\n  background-color: rgb(26, 26, 46);\n  padding: 8px;\n  border-radius: 8px;\n\n  & .main-nav-link {\n    color: rgb(160, 160, 184);\n    text-decoration: none;\n    padding: 8px 16px;\n    border-radius: 4px;\n    transition: color 0.2s, background-color 0.2s;\n\n    &:hover {\n      color: rgb(255, 255, 255);\n      background-color: rgba(255, 255, 255, 0.1);\n    }\n\n    &.active {\n      color: rgb(255, 255, 255);\n      background-color: rgb(0, 123, 255);\n    }\n  }\n}",
+    ".main-nav {\n  display: flex;\n  gap: 4px;\n  background-color: #1a1a2e;\n  padding: 8px;\n  border-radius: 8px;\n\n  .main-nav-link {\n    color: #a0a0b8;\n    text-decoration: none;\n    padding: 8px 16px;\n    border-radius: 4px;\n    transition: color 0.2s, background-color 0.2s;\n\n    &:hover {\n      color: white;\n      background-color: rgba(255, 255, 255, 0.1);\n    }\n\n    &.active {\n      color: white;\n      background-color: #007bff;\n    }\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".main-nav",
+      "property": "display",
+      "expected": "flex",
+      "weight": 100,
+      "message": "Nav should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".main-nav",
+      "property": "background-color",
+      "expected": "rgb(26, 26, 46)",
+      "weight": 100,
+      "message": "Nav should have dark background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".main-nav-link",
+      "property": "color",
+      "expected": "rgb(160, 160, 184)",
+      "weight": 100,
+      "message": "Links should be muted gray"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".main-nav-link",
+      "property": "text-decoration-line",
+      "expected": "none",
+      "weight": 100,
+      "message": "Links should have no underline"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".main-nav-link.active",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Active link should have blue background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".main-nav-link.active",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Active link text should be white"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Native CSS nesting uses & to reference the parent selector. You can nest selectors inside their parent's rule block." },
+    { "level": "clue", "text": "Put .main-nav-link rules inside .main-nav { }. Use & for pseudo-classes: &:hover and compound selectors: &.active." },
+    { "level": "solution", "text": "Nest child and state selectors inside the parent using & syntax.", "code": ".main-nav {\n  display: flex;\n  & .main-nav-link {\n    color: #a0a0b8;\n    &:hover { color: white; }\n    &.active { background: #007bff; color: white; }\n  }\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["nesting", "css-nesting", "refactoring", "selectors"],
+    "estimatedMinutes": 6,
+    "difficulty": 6
+  }
+}

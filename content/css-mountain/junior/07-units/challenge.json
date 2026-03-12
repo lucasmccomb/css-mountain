@@ -1,0 +1,53 @@
+{
+  "id": "junior-07-units",
+  "slug": "junior-units",
+  "title": "CSS Units",
+  "description": "Fix the broken layout by replacing incorrect CSS units with the correct ones: px, em, rem, and percentages",
+  "type": "fix",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<div class=\"container\">\n  <h2 class=\"heading\">Units Matter</h2>\n  <p class=\"text\">This text should be properly sized.</p>\n  <div class=\"box\">I take up half the container width.</div>\n</div>",
+  "starterCss": "/* Fix the units - the heading should be 24px,\n   the text should be 1rem,\n   and the box should be 50% wide */\n.container {\n  width: 400px;\n  padding: 16px;\n}\n.heading {\n  font-size: 24em; /* wrong unit */\n}\n.text {\n  font-size: 100px; /* wrong unit */\n}\n.box {\n  width: 50px; /* should be percentage */\n  background-color: lightblue;\n  padding: 10px;\n}",
+  "referenceSolutions": [
+    ".container {\n  width: 400px;\n  padding: 16px;\n}\n.heading {\n  font-size: 24px;\n}\n.text {\n  font-size: 1rem;\n}\n.box {\n  width: 50%;\n  background-color: lightblue;\n  padding: 10px;\n}",
+    ".container {\n  width: 400px;\n  padding: 16px;\n}\n.heading {\n  font-size: 1.5rem;\n}\n.text {\n  font-size: 16px;\n}\n.box {\n  width: 50%;\n  background-color: lightblue;\n  padding: 10px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".heading",
+      "property": "font-size",
+      "expected": { "min": 23, "max": 25 },
+      "weight": 200,
+      "message": "The heading should be approximately 24px"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".text",
+      "property": "font-size",
+      "expected": "16px",
+      "weight": 200,
+      "message": "The text should be 1rem (16px at default)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".box",
+      "property": "width",
+      "expected": { "min": 180, "max": 220 },
+      "weight": 200,
+      "message": "The box should be approximately 50% of the container width"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Check each unit carefully. 'em' and 'px' mean very different things. Percentages are relative to the parent." },
+    { "level": "clue", "text": "The heading needs 'px' not 'em'. The text needs 'rem' not 'px' (1rem = 16px default). The box needs '%' not 'px'." },
+    { "level": "solution", "text": ".heading { font-size: 24px; } .text { font-size: 1rem; } .box { width: 50%; }", "code": ".heading {\n  font-size: 24px;\n}\n.text {\n  font-size: 1rem;\n}\n.box {\n  width: 50%;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["units", "px", "rem", "em", "percentage"],
+    "estimatedMinutes": 4,
+    "difficulty": 4
+  }
+}

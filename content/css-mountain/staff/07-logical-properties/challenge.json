@@ -1,0 +1,69 @@
+{
+  "id": "staff-07-logical-properties",
+  "slug": "staff-logical-properties",
+  "title": "Logical Properties",
+  "description": "Refactor physical CSS properties to logical properties for better internationalization support (LTR and RTL layouts)",
+  "type": "match",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "<article class=\"lp-article\" dir=\"ltr\">\n  <h2 class=\"lp-title\">Logical Properties</h2>\n  <p class=\"lp-body\">This article uses logical properties that adapt to writing direction automatically.</p>\n  <aside class=\"lp-sidebar\">Related content goes here.</aside>\n</article>",
+  "starterCss": "/* Convert physical properties to logical equivalents:\n   margin-left -> margin-inline-start\n   padding-top/bottom -> padding-block\n   border-right -> border-inline-end\n   width -> inline-size\n   height -> block-size */\n.lp-article {\n  max-width: 600px;\n  padding: 24px;\n}\n.lp-title {\n  margin-bottom: 12px;\n  padding-bottom: 12px;\n  border-bottom: 2px solid #007bff;\n}\n.lp-body {\n  margin-bottom: 16px;\n  line-height: 1.6;\n}\n.lp-sidebar {\n  margin-left: 24px;\n  padding: 16px;\n  border-left: 4px solid #e0e0e0;\n  background-color: #f8f9fa;\n}",
+  "referenceSolutions": [
+    ".lp-article {\n  max-inline-size: 600px;\n  padding: 24px;\n}\n.lp-title {\n  margin-block-end: 12px;\n  padding-block-end: 12px;\n  border-block-end: 2px solid rgb(0, 123, 255);\n}\n.lp-body {\n  margin-block-end: 16px;\n  line-height: 1.6;\n}\n.lp-sidebar {\n  margin-inline-start: 24px;\n  padding: 16px;\n  border-inline-start: 4px solid rgb(224, 224, 224);\n  background-color: rgb(248, 249, 250);\n}",
+    ".lp-article {\n  max-inline-size: 600px;\n  padding: 24px;\n}\n.lp-title {\n  margin-block-end: 12px;\n  padding-block-end: 12px;\n  border-block-end: 2px solid #007bff;\n}\n.lp-body {\n  margin-block-end: 16px;\n  line-height: 1.6;\n}\n.lp-sidebar {\n  margin-inline-start: 24px;\n  padding: 16px;\n  border-inline-start: 4px solid #e0e0e0;\n  background: #f8f9fa;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".lp-title",
+      "property": "border-bottom-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 150,
+      "message": "Title should have blue bottom border (block-end)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".lp-title",
+      "property": "margin-bottom",
+      "expected": "12px",
+      "weight": 100,
+      "message": "Title should have 12px bottom margin (block-end)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".lp-sidebar",
+      "property": "margin-left",
+      "expected": "24px",
+      "weight": 150,
+      "message": "Sidebar should have 24px left margin (inline-start in LTR)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".lp-sidebar",
+      "property": "border-left-color",
+      "expected": "rgb(224, 224, 224)",
+      "weight": 100,
+      "message": "Sidebar should have a gray left border (inline-start)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".lp-sidebar",
+      "property": "background-color",
+      "expected": "rgb(248, 249, 250)",
+      "weight": 100,
+      "message": "Sidebar should have a light gray background"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Logical properties use 'block' (vertical in LTR) and 'inline' (horizontal in LTR) axes, with 'start' and 'end' instead of top/bottom/left/right." },
+    { "level": "clue", "text": "margin-left becomes margin-inline-start. border-bottom becomes border-block-end. max-width becomes max-inline-size." },
+    { "level": "solution", "text": "Replace all physical properties with their logical equivalents for writing-mode-aware layouts.", "code": ".lp-title { margin-block-end: 12px; border-block-end: 2px solid #007bff; }\n.lp-sidebar { margin-inline-start: 24px; border-inline-start: 4px solid #e0e0e0; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["logical-properties", "internationalization", "rtl", "writing-mode"],
+    "estimatedMinutes": 6,
+    "difficulty": 6
+  }
+}

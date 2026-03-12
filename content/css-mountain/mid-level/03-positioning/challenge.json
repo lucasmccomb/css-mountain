@@ -1,0 +1,53 @@
+{
+  "id": "mid-03-positioning",
+  "slug": "mid-positioning",
+  "title": "Position and Stacking",
+  "description": "Fix the broken tooltip by correctly positioning it relative to its parent button using CSS positioning",
+  "type": "fix",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "<div class=\"btn-wrapper\">\n  <button class=\"btn\">Hover Me</button>\n  <span class=\"tooltip\">I am a tooltip!</span>\n</div>",
+  "starterCss": "/* Fix the tooltip positioning:\n   - The wrapper should be the positioning context\n   - The tooltip should be positioned above the button\n   - Center the tooltip horizontally */\n.btn-wrapper {\n  position: static; /* wrong */\n  display: inline-block;\n  margin: 60px;\n}\n.btn {\n  padding: 8px 16px;\n  cursor: pointer;\n}\n.tooltip {\n  position: absolute; /* correct, but parent is wrong */\n  bottom: -30px; /* should be above, not below */\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #333;\n  color: white;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  white-space: nowrap;\n}",
+  "referenceSolutions": [
+    ".btn-wrapper {\n  position: relative;\n  display: inline-block;\n  margin: 60px;\n}\n.btn {\n  padding: 8px 16px;\n  cursor: pointer;\n}\n.tooltip {\n  position: absolute;\n  bottom: 100%;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #333;\n  color: white;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  white-space: nowrap;\n  margin-bottom: 4px;\n}",
+    ".btn-wrapper {\n  position: relative;\n  display: inline-block;\n  margin: 60px;\n}\n.btn {\n  padding: 8px 16px;\n  cursor: pointer;\n}\n.tooltip {\n  position: absolute;\n  top: auto;\n  bottom: calc(100% + 4px);\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #333;\n  color: white;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  white-space: nowrap;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".btn-wrapper",
+      "property": "position",
+      "expected": "relative",
+      "weight": 300,
+      "message": "The wrapper should have position: relative to establish a positioning context"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".tooltip",
+      "property": "position",
+      "expected": "absolute",
+      "weight": 200,
+      "message": "The tooltip should be absolutely positioned"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".tooltip",
+      "property": "transform",
+      "expected": "translateX(-50%)",
+      "weight": 100,
+      "message": "The tooltip should be horizontally centered with translateX(-50%)"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "An absolutely positioned element positions itself relative to its nearest positioned ancestor. The parent needs to establish that context." },
+    { "level": "clue", "text": "Change the wrapper from 'position: static' to 'position: relative'. Change the tooltip's 'bottom: -30px' to 'bottom: 100%' to place it above." },
+    { "level": "solution", "text": ".btn-wrapper { position: relative; } .tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); }", "code": ".btn-wrapper {\n  position: relative;\n}\n.tooltip {\n  position: absolute;\n  bottom: 100%;\n  left: 50%;\n  transform: translateX(-50%);\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["positioning", "relative", "absolute", "transform"],
+    "estimatedMinutes": 5,
+    "difficulty": 4
+  }
+}
