@@ -1,6 +1,8 @@
 import { useCallback } from "react";
 import { Menu, ASCIIBorder } from "@css-mountain/shared-ui";
 import { hasSavedData } from "@css-mountain/core";
+import { DonationBanner } from "@/components/DonationBanner";
+import { authClient, type AuthState } from "@/services/auth-client";
 import styles from "./MainMenu.module.css";
 
 const ASCII_MOUNTAIN = `
@@ -17,10 +19,12 @@ const ASCII_MOUNTAIN = `
 
 interface MainMenuProps {
   onNavigate: (route: string) => void;
+  authState?: AuthState;
 }
 
-export function MainMenu({ onNavigate }: MainMenuProps) {
+export function MainMenu({ onNavigate, authState }: MainMenuProps) {
   const savedDataExists = hasSavedData();
+  const isAuthenticated = authState?.status === "authenticated";
 
   const menuItems = [
     ...(savedDataExists
@@ -29,6 +33,12 @@ export function MainMenu({ onNavigate }: MainMenuProps) {
     { id: "new-game", label: "New Game" },
     { id: "settings", label: "Settings" },
     { id: "achievements", label: "Achievements", disabled: true },
+    ...(isAuthenticated
+      ? [{ id: "sign-out", label: `Sign Out (${authState.user?.displayName ?? "User"})` }]
+      : [
+          { id: "sign-in-google", label: "Sign In (Google)" },
+          { id: "sign-in-github", label: "Sign In (GitHub)" },
+        ]),
   ];
 
   const handleSelect = useCallback(
@@ -46,6 +56,17 @@ export function MainMenu({ onNavigate }: MainMenuProps) {
         case "achievements":
           onNavigate("/achievements");
           break;
+        case "sign-in-google":
+          authClient.login("google");
+          break;
+        case "sign-in-github":
+          authClient.login("github");
+          break;
+        case "sign-out":
+          authClient.logout().then(() => {
+            window.location.reload();
+          });
+          break;
       }
     },
     [onNavigate],
@@ -61,6 +82,10 @@ export function MainMenu({ onNavigate }: MainMenuProps) {
         <ASCIIBorder double>
           <Menu items={menuItems} onSelect={handleSelect} />
         </ASCIIBorder>
+      </div>
+
+      <div className={styles.donationArea}>
+        <DonationBanner />
       </div>
 
       <div className={styles.version}>v1.0 - DOS Edition</div>

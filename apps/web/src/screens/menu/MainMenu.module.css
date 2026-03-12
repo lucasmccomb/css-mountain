@@ -26,6 +26,12 @@
   min-width: 30ch;
 }
 
+.donationArea {
+  margin-top: var(--dos-space-3);
+  display: flex;
+  justify-content: center;
+}
+
 .version {
   color: var(--dos-dark-gray);
   text-align: center;

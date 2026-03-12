@@ -1,0 +1,44 @@
+/**
+ * LoadingScreen - DOS-styled loading animation
+ */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dos-bg);
+  padding: var(--dos-space-2);
+}
+
+.text {
+  color: var(--dos-accent);
+  font-size: var(--dos-font-sm);
+  margin-bottom: var(--dos-space-2);
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.dots {
+  color: var(--dos-fg);
+  font-size: var(--dos-font-sm);
+  min-width: 4ch;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-1);
+}

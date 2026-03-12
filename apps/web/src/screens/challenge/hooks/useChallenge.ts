@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useStore } from "zustand";
 import type { Challenge, ScoreBreakdown, ValidationRule } from "@css-mountain/core";
 import { gameStore, progressStore, calculateScore } from "@css-mountain/core";
+import { saveAndSync } from "@/services/sync-service";
 
 /**
  * Minimal rule result interface that both core and runner-css RuleResult satisfy.
@@ -62,6 +63,9 @@ interface ChallengeActions {
  *
  * Accepts a challengeId (slug or ID) and an optional validate function.
  * If no validate function is provided, submission is a no-op.
+ *
+ * On submission, progress is saved to the local progress store AND
+ * queued for server sync via the sync service.
  */
 export function useChallenge(
   challengeId: string | undefined,
@@ -111,6 +115,7 @@ export function useChallenge(
 
       // Calculate full score breakdown and record the attempt
       const elapsed = gameStore.getState().getElapsedMs();
+      const solutionViewed = hintsRevealed >= 3;
       const scoreBreakdown: ScoreBreakdown = calculateScore({
         ruleResults: result.ruleResults.map((rr) => ({
           ...rr,
@@ -119,17 +124,45 @@ export function useChallenge(
         totalRules: challenge.validationRules.length,
         timeSpentMs: elapsed,
         hintsUsed: hintsRevealed,
-        solutionViewed: hintsRevealed >= 3,
+        solutionViewed,
         cssSource: cssCode,
       });
 
+      // Update local progress store
       progressStore.getState().recordAttempt(
         challenge.id,
         scoreBreakdown,
         cssCode,
         elapsed,
         hintsRevealed,
-        hintsRevealed >= 3,
+        solutionViewed,
+      );
+
+      // Save locally and queue for API sync
+      const completedAt = scoreBreakdown.stars > 0
+        ? new Date().toISOString()
+        : null;
+
+      saveAndSync(
+        challenge.id,
+        {
+          challengeId: challenge.id,
+          status: scoreBreakdown.stars > 0 ? "completed" : "attempted",
+          bestScore: scoreBreakdown.total,
+          stars: scoreBreakdown.stars,
+          attempts: 1,
+          bestSolution: cssCode,
+          hintsUsed: hintsRevealed,
+          solutionViewed,
+          timeSpentMs: elapsed,
+          completedAt,
+        },
+        {
+          score: scoreBreakdown.total,
+          stars: scoreBreakdown.stars,
+          timeMs: elapsed,
+          cssSource: cssCode,
+        },
       );
     } finally {
       setIsSubmitting(false);
