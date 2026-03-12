@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, useParams } from "wouter";
 import { CRTOverlay, useCRTMode } from "@css-mountain/shared-ui";
 import { BootSequence } from "./screens/menu/BootSequence";
 import { MainMenu } from "./screens/menu/MainMenu";
@@ -8,6 +8,12 @@ import { TutorialChallenge } from "./screens/onboarding/TutorialChallenge";
 import { MapScreen } from "./screens/map/MapScreen";
 import { SettingsScreen } from "./screens/settings/SettingsScreen";
 import { ComponentDemo } from "./pages/ComponentDemo";
+import { ChallengeScreen } from "./screens/challenge/ChallengeScreen";
+
+function ChallengeRoute() {
+  const params = useParams<{ id: string }>();
+  return <ChallengeScreen challengeId={params.id} />;
+}
 
 const ONBOARDING_KEY = "css-mountain-onboarding-complete";
 
@@ -100,39 +106,6 @@ function MapRoute() {
   return <MapScreen onSelectChallenge={handleSelectChallenge} onBack={handleBack} />;
 }
 
-function ChallengeRoute({ id }: { id: string }) {
-  const [, navigate] = useLocation();
-
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        padding: "2rem",
-        color: "var(--dos-accent)",
-      }}
-    >
-      <h1>Challenge: {id}</h1>
-      <p style={{ color: "var(--dos-fg)", marginTop: "1rem" }}>
-        Challenge screen coming in a future epic.
-      </p>
-      <button
-        onClick={() => navigate("/map")}
-        style={{
-          marginTop: "1rem",
-          background: "none",
-          border: "1px solid var(--dos-accent)",
-          color: "var(--dos-accent)",
-          padding: "8px 16px",
-          cursor: "pointer",
-          fontFamily: "inherit",
-        }}
-      >
-        Back to Map
-      </button>
-    </div>
-  );
-}
-
 function SettingsRoute() {
   const [, navigate] = useLocation();
 
@@ -201,8 +174,9 @@ export function App() {
         <Route path="/" component={HomeRoute} />
         <Route path="/map" component={MapRoute} />
         <Route path="/challenge/:id">
-          {(params) => <ChallengeRoute id={params.id} />}
+          <ChallengeRoute />
         </Route>
+        <Route path="/challenge" component={ChallengeScreen} />
         <Route path="/settings" component={SettingsRoute} />
         <Route path="/achievements" component={AchievementsRoute} />
         <Route path="/dev/components" component={ComponentDemo} />

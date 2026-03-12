@@ -1,0 +1,27 @@
+/**
+ * Editor wrapper - fills available space and applies DOS border styling.
+ */
+
+.editorWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 200px;
+  border: 1px solid var(--dos-dark-gray);
+  background-color: var(--dos-black);
+  cursor: text;
+}
+
+.editorContainer {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Ensure CodeMirror fills the container */
+.editorContainer :global(.cm-editor) {
+  height: 100%;
+}
+
+.editorContainer :global(.cm-scroller) {
+  overflow: auto;
+}

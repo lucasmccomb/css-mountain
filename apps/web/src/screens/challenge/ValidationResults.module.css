@@ -1,0 +1,67 @@
+.container {
+  border: 1px solid var(--dos-dark-gray);
+  background-color: var(--dos-black);
+  padding: var(--dos-space-1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--dos-space-1);
+  border-bottom: 1px solid var(--dos-dark-gray);
+  margin-bottom: var(--dos-space-1);
+}
+
+.passedHeader {
+  color: var(--dos-success);
+  font-weight: normal;
+}
+
+.failedHeader {
+  color: var(--dos-warning);
+  font-weight: normal;
+}
+
+.count {
+  color: var(--dos-light-gray);
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rule {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dos-space-1);
+  padding: 2px 0;
+}
+
+.indicator {
+  flex-shrink: 0;
+  width: 1ch;
+}
+
+.message {
+  flex: 1;
+  word-break: break-word;
+}
+
+.passed .indicator {
+  color: var(--dos-success);
+}
+
+.passed .message {
+  color: var(--dos-success);
+}
+
+.failed .indicator {
+  color: var(--dos-error);
+}
+
+.failed .message {
+  color: var(--dos-error);
+}

@@ -1,0 +1,242 @@
+/**
+ * Challenge Screen Layout
+ *
+ * Desktop (>1024px): Three columns - editor | preview | info sidebar
+ * Tablet (640-1024px): Two rows - editor on top, preview+info on bottom
+ * Mobile (<640px): Tabbed single-column layout
+ */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--dos-bg);
+}
+
+/* ── Header ── */
+
+.header {
+  padding: var(--dos-space-1) var(--dos-space-2);
+  border-bottom: 1px solid var(--dos-dark-gray);
+  flex-shrink: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-1);
+  flex-wrap: wrap;
+}
+
+.challengeType {
+  color: var(--dos-cyan);
+  font-size: var(--dos-font-xs);
+}
+
+.challengeTitle {
+  color: var(--dos-white);
+  font-size: var(--dos-font-sm);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.difficulty {
+  color: var(--dos-yellow);
+  font-size: var(--dos-font-xs);
+}
+
+.description {
+  color: var(--dos-fg);
+  font-size: var(--dos-font-xs);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ── Loading/Error States ── */
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--dos-accent);
+  font-size: var(--dos-font-sm);
+}
+
+.blink {
+  animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  50% { opacity: 0; }
+}
+
+/* ── Mobile Tab Bar ── */
+
+.mobileTabBar {
+  display: none;
+  flex-shrink: 0;
+}
+
+/* ── Main Content ── */
+
+.content {
+  flex: 1;
+  display: grid;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── Panels ── */
+
+.editorPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.editorActions {
+  display: flex;
+  gap: var(--dos-space-1);
+  padding: var(--dos-space-1);
+  border-top: 1px solid var(--dos-dark-gray);
+  flex-shrink: 0;
+}
+
+.previewPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-1);
+  padding: var(--dos-space-1);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.infoPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-1);
+  padding: var(--dos-space-1);
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.metadata {
+  border: 1px solid var(--dos-dark-gray);
+  padding: var(--dos-space-1);
+}
+
+.metaItem {
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-xs);
+  padding: 2px 0;
+}
+
+/* ── Desktop Layout (>1024px) ── */
+
+@media (min-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr 1fr 280px;
+  }
+
+  .mobileTabBar {
+    display: none;
+  }
+
+  .mobileHidden {
+    /* On desktop, never hide any panel */
+    display: flex;
+  }
+}
+
+/* ── Tablet Layout (640-1024px) ── */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .editorPanel {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .previewPanel {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .infoPanel {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 200px;
+  }
+
+  .infoPanel > * {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .mobileTabBar {
+    display: none;
+  }
+
+  .mobileHidden {
+    display: flex;
+  }
+}
+
+/* ── Mobile Layout (<640px) ── */
+
+@media (max-width: 639px) {
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .mobileTabBar {
+    display: flex;
+    border-bottom: 1px solid var(--dos-dark-gray);
+  }
+
+  .mobileTab {
+    flex: 1;
+    padding: var(--dos-space-1);
+    background: none;
+    border: none;
+    color: var(--dos-dark-gray);
+    font-family: "PxPlus IBM VGA8", monospace;
+    font-size: var(--dos-font-xs);
+    cursor: pointer;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+  }
+
+  .mobileTab:active {
+    color: var(--dos-white);
+  }
+
+  .activeTab {
+    color: var(--dos-accent);
+    border-bottom-color: var(--dos-accent);
+  }
+
+  .mobileHidden {
+    display: none !important;
+  }
+
+  .previewPanel {
+    gap: 4px;
+    padding: 4px;
+  }
+}

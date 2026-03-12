@@ -1,0 +1,71 @@
+.container {
+  border: 1px solid var(--dos-dark-gray);
+  background-color: var(--dos-black);
+  padding: var(--dos-space-2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--dos-space-2);
+  padding-bottom: var(--dos-space-1);
+  border-bottom: 1px solid var(--dos-dark-gray);
+}
+
+.stars {
+  font-size: var(--dos-font-md);
+  display: flex;
+  gap: 4px;
+}
+
+.starFilled {
+  color: var(--dos-yellow);
+}
+
+.starEmpty {
+  color: var(--dos-dark-gray);
+}
+
+.totalScore {
+  text-align: right;
+}
+
+.totalValue {
+  font-size: var(--dos-font-md);
+  color: var(--dos-white);
+}
+
+.totalMax {
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-sm);
+}
+
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-1);
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.categoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoryLabel {
+  color: var(--dos-fg);
+  font-size: var(--dos-font-xs);
+  text-transform: uppercase;
+}
+
+.categoryValue {
+  color: var(--dos-dark-gray);
+  font-size: var(--dos-font-xs);
+}
