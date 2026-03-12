@@ -1,34 +1,27 @@
-import type { Challenge, ValidationRule } from "@css-mountain/core";
+// Core runners
+export { CSSRunner } from "./css-runner";
+export { QuizRunner } from "./quiz-runner";
 
-/**
- * Result of running a CSS challenge validation.
- */
-export interface RunResult {
-  /** Whether all validation rules passed */
-  passed: boolean;
-  /** Score as a percentage (0-100) */
-  score: number;
-  /** Per-rule results */
-  ruleResults: RuleResult[];
-}
+// Sandbox
+export { IframeSandbox } from "./iframe-sandbox";
 
-/**
- * Result of a single validation rule check.
- */
-export interface RuleResult {
-  rule: ValidationRule;
-  passed: boolean;
-  message: string;
-}
+// Live preview
+export { LivePreviewEngine } from "./preview";
 
-/**
- * Run CSS validation against a challenge's rules.
- * Placeholder implementation - will be built out in Epic 3.
- */
-export function runChallenge(_challenge: Challenge, _submittedCss: string): RunResult {
-  return {
-    passed: false,
-    score: 0,
-    ruleResults: [],
-  };
-}
+// CSS sanitizer
+export { sanitizeCSS } from "./css-sanitizer";
+export type { SanitizeResult } from "./css-sanitizer";
+
+// Types
+export type { Challenge, ValidationRule, QuizChallenge, ValidationResult, RuleResult } from "./types";
+export { calculateStars } from "./types";
+
+// Validators
+export { validateComputedStyle } from "./validators/computed-style";
+export type { ComputedStyleRule, ComputedStyleResult } from "./validators/computed-style";
+
+export { validateLayoutBounds } from "./validators/layout-bounds";
+export type { LayoutBoundsRule, LayoutBoundsResult } from "./validators/layout-bounds";
+
+export { validatePropertyExists } from "./validators/property-check";
+export type { PropertyCheckRule, PropertyCheckResult } from "./validators/property-check";
