@@ -1,0 +1,77 @@
+{
+  "id": "senior-06-filters",
+  "slug": "senior-filters",
+  "title": "CSS Filters and Effects",
+  "description": "Apply CSS filter functions to create image effects: blur, brightness, grayscale, and drop-shadow",
+  "type": "fix",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "<div class=\"gallery\">\n  <div class=\"photo blurred\">\n    <div class=\"photo-inner\">Blurred</div>\n  </div>\n  <div class=\"photo bright\">\n    <div class=\"photo-inner\">Bright</div>\n  </div>\n  <div class=\"photo grayscale\">\n    <div class=\"photo-inner\">Grayscale</div>\n  </div>\n  <div class=\"photo shadowed\">\n    <div class=\"photo-inner\">Shadow</div>\n  </div>\n</div>",
+  "starterCss": "/* Fix the filter syntax:\n   - .blurred: blur by 4px\n   - .bright: increase brightness to 150%\n   - .grayscale: full grayscale (100%)\n   - .shadowed: add a drop-shadow */\n.gallery {\n  display: flex;\n  gap: 16px;\n  flex-wrap: wrap;\n}\n.photo {\n  width: 150px;\n  height: 150px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 8px;\n  overflow: hidden;\n}\n.photo-inner {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n.blurred {\n  filter: blur(4em); /* wrong unit */\n}\n.bright {\n  filter: brightness(15); /* wrong scale */\n}\n.grayscale {\n  filter: grayscale(1%); /* wrong value */\n}\n.shadowed {\n  filter: box-shadow(4px 4px 8px black); /* wrong function */\n}",
+  "referenceSolutions": [
+    ".gallery {\n  display: flex;\n  gap: 16px;\n  flex-wrap: wrap;\n}\n.photo {\n  width: 150px;\n  height: 150px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 8px;\n  overflow: hidden;\n}\n.photo-inner {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n.blurred {\n  filter: blur(4px);\n}\n.bright {\n  filter: brightness(1.5);\n}\n.grayscale {\n  filter: grayscale(100%);\n}\n.shadowed {\n  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));\n}",
+    ".gallery {\n  display: flex;\n  gap: 16px;\n  flex-wrap: wrap;\n}\n.photo {\n  width: 150px;\n  height: 150px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 8px;\n  overflow: hidden;\n}\n.photo-inner {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n}\n.blurred {\n  filter: blur(4px);\n}\n.bright {\n  filter: brightness(150%);\n}\n.grayscale {\n  filter: grayscale(1);\n}\n.shadowed {\n  filter: drop-shadow(4px 4px 8px black);\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".photo",
+      "property": "width",
+      "expected": "150px",
+      "weight": 100,
+      "message": "Photos should be 150px wide"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".photo",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Photos should have 8px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".gallery",
+      "property": "display",
+      "expected": "flex",
+      "weight": 100,
+      "message": "Gallery should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".gallery",
+      "property": "gap",
+      "expected": "16px",
+      "weight": 100,
+      "message": "Gallery should have 16px gap"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".photo-inner",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Photo text should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".photo-inner",
+      "property": "font-weight",
+      "expected": "700",
+      "weight": 100,
+      "message": "Photo text should be bold"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS filter functions have specific parameter formats. blur() uses pixels, brightness() uses a multiplier or percentage, and the shadow filter is not called 'box-shadow'." },
+    { "level": "clue", "text": "blur(4px) not em. brightness(1.5) or 150%. grayscale(100%) not 1%. drop-shadow() not box-shadow()." },
+    { "level": "solution", "text": "Fix units and function names: blur(4px), brightness(1.5), grayscale(100%), drop-shadow(4px 4px 8px black)", "code": ".blurred { filter: blur(4px); }\n.bright { filter: brightness(1.5); }\n.grayscale { filter: grayscale(100%); }\n.shadowed { filter: drop-shadow(4px 4px 8px black); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["filters", "blur", "brightness", "grayscale", "drop-shadow"],
+    "estimatedMinutes": 5,
+    "difficulty": 6
+  }
+}

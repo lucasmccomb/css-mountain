@@ -1,0 +1,61 @@
+{
+  "id": "junior-05-display",
+  "slug": "junior-display",
+  "title": "Display Property",
+  "description": "Use the display property to control how elements are rendered: block, inline, inline-block, and none",
+  "type": "match",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<nav class=\"menu\">\n  <a class=\"menu-item\" href=\"#\">Home</a>\n  <a class=\"menu-item\" href=\"#\">About</a>\n  <a class=\"menu-item\" href=\"#\">Contact</a>\n</nav>\n<p class=\"hidden-text\">This text should be hidden</p>",
+  "starterCss": "/* Make menu items display as inline-block with padding\n   Hide the paragraph */\n.menu {\n  background-color: #333;\n}\n.menu-item {\n  color: white;\n  text-decoration: none;\n}",
+  "referenceSolutions": [
+    ".menu {\n  background-color: #333;\n}\n.menu-item {\n  color: white;\n  text-decoration: none;\n  display: inline-block;\n  padding: 10px 20px;\n}\n.hidden-text {\n  display: none;\n}",
+    ".menu {\n  background-color: #333;\n}\n.menu-item {\n  color: white;\n  text-decoration: none;\n  display: inline-block;\n  padding: 10px 20px;\n}\n.hidden-text {\n  display: none;\n  visibility: hidden;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".menu-item",
+      "property": "display",
+      "expected": "inline-block",
+      "weight": 200,
+      "message": "Menu items should be inline-block"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".menu-item",
+      "property": "padding-top",
+      "expected": "10px",
+      "weight": 100,
+      "message": "Menu items should have 10px vertical padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".menu-item",
+      "property": "padding-left",
+      "expected": "20px",
+      "weight": 100,
+      "message": "Menu items should have 20px horizontal padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".hidden-text",
+      "property": "display",
+      "expected": "none",
+      "weight": 200,
+      "message": "The hidden text should not be displayed"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "The display property determines how an element generates boxes. Inline-block allows width/height and padding on inline elements." },
+    { "level": "clue", "text": "Set 'display: inline-block' and 'padding: 10px 20px' on .menu-item. Set 'display: none' on .hidden-text." },
+    { "level": "solution", "text": ".menu-item { display: inline-block; padding: 10px 20px; } .hidden-text { display: none; }", "code": ".menu-item {\n  display: inline-block;\n  padding: 10px 20px;\n}\n.hidden-text {\n  display: none;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["display", "inline-block", "none", "layout"],
+    "estimatedMinutes": 3,
+    "difficulty": 3
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "senior-08-clipping",
+  "slug": "senior-clipping",
+  "title": "Clipping and Masking",
+  "description": "Build decorative shapes using clip-path to create a hexagon, a star badge, and a custom polygon",
+  "type": "build",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "<div class=\"shapes\">\n  <div class=\"shape hexagon\">HEX</div>\n  <div class=\"shape circle-clip\">CLIP</div>\n  <div class=\"shape arrow\">GO</div>\n</div>",
+  "starterCss": "/* Create shapes using clip-path:\n   - Hexagon: use polygon() for a 6-sided shape\n   - Circle clip: use circle() to clip to a circle\n   - Arrow: use polygon() for a right-pointing arrow\n   Each shape: 120x120px, centered text, colored background */\n.shapes {\n  display: flex;\n  gap: 32px;\n  padding: 20px;\n  align-items: center;\n  justify-content: center;\n}\n.shape {\n  width: 120px;\n  height: 120px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n  font-size: 14px;\n}",
+  "referenceSolutions": [
+    ".shapes {\n  display: flex;\n  gap: 32px;\n  padding: 20px;\n  align-items: center;\n  justify-content: center;\n}\n.shape {\n  width: 120px;\n  height: 120px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n  font-size: 14px;\n}\n.hexagon {\n  background-color: rgb(111, 66, 193);\n  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);\n}\n.circle-clip {\n  background-color: rgb(0, 123, 255);\n  clip-path: circle(50%);\n}\n.arrow {\n  background-color: rgb(40, 167, 69);\n  clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);\n}",
+    ".shapes {\n  display: flex;\n  gap: 32px;\n  padding: 20px;\n  align-items: center;\n  justify-content: center;\n}\n.shape {\n  width: 120px;\n  height: 120px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-weight: bold;\n  font-size: 14px;\n}\n.hexagon {\n  background: #6f42c1;\n  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);\n}\n.circle-clip {\n  background: #007bff;\n  clip-path: circle(50% at 50% 50%);\n}\n.arrow {\n  background: #28a745;\n  clip-path: polygon(0 20%, 60% 20%, 60% 0, 100% 50%, 60% 100%, 60% 80%, 0 80%);\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".shape",
+      "property": "width",
+      "expected": "120px",
+      "weight": 100,
+      "message": "Shapes should be 120px wide"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".shape",
+      "property": "height",
+      "expected": "120px",
+      "weight": 100,
+      "message": "Shapes should be 120px tall"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".hexagon",
+      "property": "background-color",
+      "expected": "rgb(111, 66, 193)",
+      "weight": 100,
+      "message": "Hexagon should be purple"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".circle-clip",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Circle should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".arrow",
+      "property": "background-color",
+      "expected": "rgb(40, 167, 69)",
+      "weight": 100,
+      "message": "Arrow should be green"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".shape",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Shape text should be white"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "clip-path defines a visible area. polygon() takes pairs of x,y percentages. circle() defines a circular clip region." },
+    { "level": "clue", "text": "Hexagon uses 6 polygon points. Circle uses clip-path: circle(50%). Arrow uses a 7-point polygon that creates a right-pointing arrow shape." },
+    { "level": "solution", "text": "Apply clip-path with polygon() for hexagon and arrow, circle() for the circle.", "code": ".hexagon { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }\n.circle-clip { clip-path: circle(50%); }\n.arrow { clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["clip-path", "polygon", "circle", "shapes"],
+    "estimatedMinutes": 8,
+    "difficulty": 7
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "junior-10-pseudo-classes",
+  "slug": "junior-pseudo-classes",
+  "title": "Pseudo-Class Mastery",
+  "description": "Boss challenge: Style interactive states using pseudo-classes like :hover, :first-child, and :nth-child to create a polished navigation menu",
+  "type": "match",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": true,
+  "html": "<ul class=\"nav\">\n  <li class=\"nav-item\"><a href=\"#\">Home</a></li>\n  <li class=\"nav-item\"><a href=\"#\">Products</a></li>\n  <li class=\"nav-item\"><a href=\"#\">Services</a></li>\n  <li class=\"nav-item\"><a href=\"#\">About</a></li>\n  <li class=\"nav-item\"><a href=\"#\">Contact</a></li>\n</ul>",
+  "starterCss": "/* Create a horizontal nav:\n   - Remove list bullets\n   - Display items inline\n   - Style links: no underline, dark text, 12px horizontal padding\n   - First item should be bold\n   - Odd items get a light background */\n.nav {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}",
+  "referenceSolutions": [
+    ".nav {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.nav-item {\n  display: inline-block;\n}\n.nav-item a {\n  text-decoration: none;\n  color: rgb(51, 51, 51);\n  padding: 8px 12px;\n  display: inline-block;\n}\n.nav-item:first-child a {\n  font-weight: 700;\n}\n.nav-item:nth-child(odd) {\n  background-color: rgb(245, 245, 245);\n}",
+    ".nav {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  display: flex;\n}\n.nav-item a {\n  text-decoration: none;\n  color: #333;\n  padding: 8px 12px;\n  display: block;\n}\n.nav-item:first-child a {\n  font-weight: bold;\n}\n.nav-item:nth-child(odd) {\n  background-color: whitesmoke;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".nav",
+      "property": "list-style-type",
+      "expected": "none",
+      "weight": 100,
+      "message": "The nav should have no list bullets"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-item a",
+      "property": "text-decoration-line",
+      "expected": "none",
+      "weight": 100,
+      "message": "Links should have no underline"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-item a",
+      "property": "color",
+      "expected": "rgb(51, 51, 51)",
+      "weight": 100,
+      "message": "Links should have dark text color (#333)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-item a",
+      "property": "padding-left",
+      "expected": "12px",
+      "weight": 100,
+      "message": "Links should have 12px horizontal padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-item:first-child a",
+      "property": "font-weight",
+      "expected": "700",
+      "weight": 100,
+      "message": "The first nav item's link should be bold"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nav-item:nth-child(odd)",
+      "property": "background-color",
+      "expected": "rgb(245, 245, 245)",
+      "weight": 100,
+      "message": "Odd nav items should have a light background"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Pseudo-classes target elements in specific states. :first-child selects the first element, :nth-child(odd) targets alternating elements." },
+    { "level": "clue", "text": "Chain pseudo-classes: .nav-item:first-child a { font-weight: bold; } and .nav-item:nth-child(odd) { background-color: whitesmoke; }" },
+    { "level": "solution", "text": "Style .nav-item as inline-block, remove link underlines, use :first-child for bold and :nth-child(odd) for alternating backgrounds.", "code": ".nav-item { display: inline-block; }\n.nav-item a { text-decoration: none; color: #333; padding: 8px 12px; }\n.nav-item:first-child a { font-weight: bold; }\n.nav-item:nth-child(odd) { background-color: whitesmoke; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["pseudo-classes", "first-child", "nth-child", "hover", "navigation"],
+    "estimatedMinutes": 6,
+    "difficulty": 7
+  }
+}

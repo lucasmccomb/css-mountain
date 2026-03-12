@@ -1,0 +1,77 @@
+{
+  "id": "staff-08-complex-selectors",
+  "slug": "staff-complex-selectors",
+  "title": "Advanced Selectors",
+  "description": "Fix a stylesheet that uses overly specific selectors by refactoring to :is(), :where(), and :not() pseudo-classes",
+  "type": "fix",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "<div class=\"content\">\n  <h1>Main Heading</h1>\n  <h2>Sub Heading</h2>\n  <h3>Section Heading</h3>\n  <p class=\"intro\">Introduction paragraph with special styling.</p>\n  <p>Regular paragraph text.</p>\n  <ul class=\"feature-list\">\n    <li>Feature one</li>\n    <li class=\"disabled\">Feature two (disabled)</li>\n    <li>Feature three</li>\n  </ul>\n</div>",
+  "starterCss": "/* Refactor these repetitive selectors using :is(), :where(), and :not():\n   1. All headings should be dark blue\n   2. All paragraphs except .intro should be gray\n   3. List items that are not .disabled should be bold */\n.content h1 {\n  color: #1a365d;\n}\n.content h2 {\n  color: #1a365d;\n}\n.content h3 {\n  color: #1a365d;\n}\n.content p {\n  color: #6c757d;\n  line-height: 1.6;\n}\n.content p.intro {\n  color: #333;\n  font-size: 18px;\n  /* BUG: this should override the gray, but p.intro is same specificity as the gray rule */\n}\n.feature-list li {\n  font-weight: bold;\n  padding: 4px 0;\n}\n.feature-list li.disabled {\n  font-weight: normal;\n  opacity: 0.5;\n  /* BUG: need to undo bold, but specificity fight */\n}",
+  "referenceSolutions": [
+    ".content :is(h1, h2, h3) {\n  color: rgb(26, 54, 93);\n}\n.content p:not(.intro) {\n  color: rgb(108, 117, 125);\n}\n.content p {\n  line-height: 1.6;\n}\n.content .intro {\n  color: rgb(51, 51, 51);\n  font-size: 18px;\n}\n.feature-list li:not(.disabled) {\n  font-weight: 700;\n  padding: 4px 0;\n}\n.feature-list li.disabled {\n  font-weight: 400;\n  opacity: 0.5;\n  padding: 4px 0;\n}",
+    ".content :is(h1, h2, h3) {\n  color: #1a365d;\n}\n.content :where(p) {\n  line-height: 1.6;\n}\n.content p:not(.intro) {\n  color: #6c757d;\n}\n.content p.intro {\n  color: #333;\n  font-size: 18px;\n}\n.feature-list li:not(.disabled) {\n  font-weight: bold;\n  padding: 4px 0;\n}\n.feature-list .disabled {\n  font-weight: normal;\n  opacity: 0.5;\n  padding: 4px 0;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".content h1",
+      "property": "color",
+      "expected": "rgb(26, 54, 93)",
+      "weight": 100,
+      "message": "H1 should be dark blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".content h2",
+      "property": "color",
+      "expected": "rgb(26, 54, 93)",
+      "weight": 100,
+      "message": "H2 should be dark blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".content p.intro",
+      "property": "color",
+      "expected": "rgb(51, 51, 51)",
+      "weight": 100,
+      "message": "Intro paragraph should be dark gray, not the lighter gray"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".content p.intro",
+      "property": "font-size",
+      "expected": "18px",
+      "weight": 100,
+      "message": "Intro paragraph should be 18px"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".feature-list li.disabled",
+      "property": "opacity",
+      "expected": "0.5",
+      "weight": 100,
+      "message": "Disabled items should have 0.5 opacity"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".feature-list li.disabled",
+      "property": "font-weight",
+      "expected": "400",
+      "weight": 100,
+      "message": "Disabled items should not be bold"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": ":is() groups selectors with the highest specificity of the list. :where() does the same but with zero specificity. :not() excludes matches." },
+    { "level": "clue", "text": "Use ':is(h1, h2, h3)' to group headings. Use 'p:not(.intro)' for non-intro paragraphs. Use 'li:not(.disabled)' for active list items." },
+    { "level": "solution", "text": "Group with :is(), exclude with :not(), and use :where() for zero-specificity defaults.", "code": ".content :is(h1, h2, h3) { color: #1a365d; }\n.content p:not(.intro) { color: #6c757d; }\n.feature-list li:not(.disabled) { font-weight: bold; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["selectors", "is", "where", "not", "specificity"],
+    "estimatedMinutes": 7,
+    "difficulty": 7
+  }
+}

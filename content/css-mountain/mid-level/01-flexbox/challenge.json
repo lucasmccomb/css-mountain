@@ -1,0 +1,61 @@
+{
+  "id": "mid-01-flexbox",
+  "slug": "mid-flexbox",
+  "title": "Flexbox Fundamentals",
+  "description": "Use flexbox to create a responsive card layout with evenly spaced items that wrap to new rows",
+  "type": "match",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "<div class=\"card-grid\">\n  <div class=\"card\">Card 1</div>\n  <div class=\"card\">Card 2</div>\n  <div class=\"card\">Card 3</div>\n  <div class=\"card\">Card 4</div>\n</div>",
+  "starterCss": "/* Create a flex container that:\n   - Wraps items to new rows\n   - Has 16px gap between items\n   - Each card is 200px wide with 16px padding */\n.card {\n  background-color: #f0f0f0;\n  border: 1px solid #ccc;\n}",
+  "referenceSolutions": [
+    ".card-grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n.card {\n  background-color: #f0f0f0;\n  border: 1px solid #ccc;\n  width: 200px;\n  padding: 16px;\n}",
+    ".card-grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n.card {\n  background-color: #f0f0f0;\n  border: 1px solid #ccc;\n  flex: 0 0 200px;\n  padding: 16px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".card-grid",
+      "property": "display",
+      "expected": "flex",
+      "weight": 200,
+      "message": "The card grid should use flexbox display"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".card-grid",
+      "property": "flex-wrap",
+      "expected": "wrap",
+      "weight": 150,
+      "message": "The flex container should wrap items"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".card-grid",
+      "property": "gap",
+      "expected": "16px",
+      "weight": 100,
+      "message": "The gap between cards should be 16px"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".card",
+      "property": "padding-top",
+      "expected": "16px",
+      "weight": 150,
+      "message": "Cards should have 16px padding"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Flexbox is a one-dimensional layout method. Set the parent to display: flex and control wrapping behavior." },
+    { "level": "clue", "text": "The container needs 'display: flex', 'flex-wrap: wrap', and 'gap: 16px'. Each card needs a fixed width and padding." },
+    { "level": "solution", "text": ".card-grid { display: flex; flex-wrap: wrap; gap: 16px; } .card { width: 200px; padding: 16px; }", "code": ".card-grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n.card {\n  width: 200px;\n  padding: 16px;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["flexbox", "flex-wrap", "gap", "layout"],
+    "estimatedMinutes": 4,
+    "difficulty": 2
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "mid-02-grid",
+  "slug": "mid-grid",
+  "title": "CSS Grid Layout",
+  "description": "Create a classic blog layout with CSS Grid: header spanning full width, sidebar, main content, and footer",
+  "type": "match",
+  "difficulty": "mid-level",
+  "zone": 2,
+  "isBoss": false,
+  "html": "<div class=\"layout\">\n  <header class=\"header\">Header</header>\n  <nav class=\"sidebar\">Sidebar</nav>\n  <main class=\"main\">Main Content</main>\n  <footer class=\"footer\">Footer</footer>\n</div>",
+  "starterCss": "/* Create a grid layout:\n   - 2 columns: 200px sidebar + 1fr main\n   - Header and footer span both columns\n   - 10px gap between all areas */\n.layout > * {\n  padding: 16px;\n  background-color: #e0e0e0;\n}",
+  "referenceSolutions": [
+    ".layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  gap: 10px;\n}\n.layout > * {\n  padding: 16px;\n  background-color: #e0e0e0;\n}\n.header {\n  grid-column: 1 / -1;\n}\n.footer {\n  grid-column: 1 / -1;\n}",
+    ".layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  grid-template-areas:\n    \"header header\"\n    \"sidebar main\"\n    \"footer footer\";\n  gap: 10px;\n}\n.layout > * {\n  padding: 16px;\n  background-color: #e0e0e0;\n}\n.header { grid-area: header; }\n.sidebar { grid-area: sidebar; }\n.main { grid-area: main; }\n.footer { grid-area: footer; }"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".layout",
+      "property": "display",
+      "expected": "grid",
+      "weight": 200,
+      "message": "The layout should use CSS Grid"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".layout",
+      "property": "gap",
+      "expected": "10px",
+      "weight": 100,
+      "message": "The grid gap should be 10px"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".header",
+      "property": "grid-column-end",
+      "expected": "-1",
+      "weight": 150,
+      "message": "The header should span all columns"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".footer",
+      "property": "grid-column-end",
+      "expected": "-1",
+      "weight": 150,
+      "message": "The footer should span all columns"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS Grid is a two-dimensional layout system. Define columns with grid-template-columns and span items with grid-column." },
+    { "level": "clue", "text": "Set 'display: grid' and 'grid-template-columns: 200px 1fr'. Use 'grid-column: 1 / -1' to span full width." },
+    { "level": "solution", "text": ".layout { display: grid; grid-template-columns: 200px 1fr; gap: 10px; } .header, .footer { grid-column: 1 / -1; }", "code": ".layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  gap: 10px;\n}\n.header, .footer {\n  grid-column: 1 / -1;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["grid", "grid-template-columns", "grid-column", "layout"],
+    "estimatedMinutes": 5,
+    "difficulty": 3
+  }
+}

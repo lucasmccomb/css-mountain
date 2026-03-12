@@ -1,0 +1,69 @@
+{
+  "id": "senior-05-gradients",
+  "slug": "senior-gradients",
+  "title": "Gradient Mastery",
+  "description": "Fix the broken gradient backgrounds on a set of banners using linear, radial, and conic gradients",
+  "type": "fix",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "<div class=\"banner linear-banner\">Linear Gradient</div>\n<div class=\"banner radial-banner\">Radial Gradient</div>\n<div class=\"banner conic-banner\">Conic Gradient</div>",
+  "starterCss": "/* Fix the gradient syntax errors:\n   - Linear: should go from blue to purple (left to right)\n   - Radial: should be a circle from yellow center to orange edge\n   - Conic: should show a rainbow color wheel */\n.banner {\n  padding: 40px;\n  margin: 8px;\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  border-radius: 8px;\n}\n.linear-banner {\n  background: linear-gradient(blue, purple); /* wrong direction */\n}\n.radial-banner {\n  background: radial-gradient(yellow, orange); /* should be circle */\n}\n.conic-banner {\n  background: linear-gradient(red, orange, yellow, green, blue, purple); /* wrong type */\n}",
+  "referenceSolutions": [
+    ".banner {\n  padding: 40px;\n  margin: 8px;\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  border-radius: 8px;\n}\n.linear-banner {\n  background: linear-gradient(to right, rgb(0, 0, 255), rgb(128, 0, 128));\n}\n.radial-banner {\n  background: radial-gradient(circle, rgb(255, 255, 0), rgb(255, 165, 0));\n}\n.conic-banner {\n  background: conic-gradient(red, orange, yellow, green, blue, purple, red);\n}",
+    ".banner {\n  padding: 40px;\n  margin: 8px;\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  border-radius: 8px;\n}\n.linear-banner {\n  background: linear-gradient(90deg, blue, purple);\n}\n.radial-banner {\n  background: radial-gradient(circle at center, yellow, orange);\n}\n.conic-banner {\n  background: conic-gradient(from 0deg, red, orange, yellow, green, blue, purple, red);\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".banner",
+      "property": "padding-top",
+      "expected": "40px",
+      "weight": 100,
+      "message": "Banners should have 40px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".banner",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Banners should have 8px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".banner",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Banner text should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".banner",
+      "property": "font-weight",
+      "expected": "700",
+      "weight": 100,
+      "message": "Banner text should be bold"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".banner",
+      "property": "text-align",
+      "expected": "center",
+      "weight": 200,
+      "message": "Banner text should be centered"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS has three gradient types: linear (line), radial (circle/ellipse), and conic (angle). Each has different syntax for direction and shape." },
+    { "level": "clue", "text": "Linear needs 'to right' for horizontal. Radial needs 'circle' keyword. The last one should use 'conic-gradient' not 'linear-gradient'." },
+    { "level": "solution", "text": "Fix: linear-gradient(to right, blue, purple), radial-gradient(circle, yellow, orange), conic-gradient(red, orange, yellow, green, blue, purple, red)", "code": ".linear-banner { background: linear-gradient(to right, blue, purple); }\n.radial-banner { background: radial-gradient(circle, yellow, orange); }\n.conic-banner { background: conic-gradient(red, orange, yellow, green, blue, purple, red); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["gradients", "linear-gradient", "radial-gradient", "conic-gradient"],
+    "estimatedMinutes": 6,
+    "difficulty": 5
+  }
+}

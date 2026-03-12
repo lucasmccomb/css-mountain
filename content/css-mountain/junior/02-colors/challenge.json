@@ -1,0 +1,53 @@
+{
+  "id": "junior-02-colors",
+  "slug": "junior-colors",
+  "title": "Color Theory",
+  "description": "Apply different colors to a set of elements using named colors, hex, and RGB values",
+  "type": "match",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<div class=\"card\">\n  <h2 class=\"card-title\">Colorful Card</h2>\n  <p class=\"card-body\">This card needs some color!</p>\n</div>",
+  "starterCss": "/* Give the card a light gray background,\n   the title a dark green color,\n   and the body text a navy color */\n",
+  "referenceSolutions": [
+    ".card {\n  background-color: rgb(211, 211, 211);\n}\n.card-title {\n  color: rgb(0, 100, 0);\n}\n.card-body {\n  color: rgb(0, 0, 128);\n}",
+    ".card {\n  background-color: lightgray;\n}\n.card-title {\n  color: darkgreen;\n}\n.card-body {\n  color: navy;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".card",
+      "property": "background-color",
+      "expected": "rgb(211, 211, 211)",
+      "weight": 200,
+      "message": "The card background should be light gray"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".card-title",
+      "property": "color",
+      "expected": "rgb(0, 100, 0)",
+      "weight": 200,
+      "message": "The title should be dark green"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".card-body",
+      "property": "color",
+      "expected": "rgb(0, 0, 128)",
+      "weight": 200,
+      "message": "The body text should be navy"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS has many named colors. Try 'lightgray', 'darkgreen', and 'navy'." },
+    { "level": "clue", "text": "Use 'background-color' for the card and 'color' for text. Target elements with their class selectors." },
+    { "level": "solution", "text": ".card { background-color: lightgray; } .card-title { color: darkgreen; } .card-body { color: navy; }", "code": ".card {\n  background-color: lightgray;\n}\n.card-title {\n  color: darkgreen;\n}\n.card-body {\n  color: navy;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["colors", "background-color", "named-colors"],
+    "estimatedMinutes": 3,
+    "difficulty": 2
+  }
+}

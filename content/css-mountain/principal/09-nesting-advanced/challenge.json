@@ -1,0 +1,77 @@
+{
+  "id": "principal-09-nesting-advanced",
+  "slug": "principal-nesting-advanced",
+  "title": "Advanced Nesting Patterns",
+  "description": "Optimize complex CSS using advanced nesting: media queries inside selectors, @layer nesting, and combining with :is()/:has()",
+  "type": "optimize",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"dashboard\">\n  <header class=\"dash-header\">\n    <h1 class=\"dash-title\">Dashboard</h1>\n    <nav class=\"dash-nav\">\n      <a href=\"#\" class=\"dash-link active\">Overview</a>\n      <a href=\"#\" class=\"dash-link\">Analytics</a>\n      <a href=\"#\" class=\"dash-link\">Settings</a>\n    </nav>\n  </header>\n  <main class=\"dash-main\">\n    <div class=\"dash-widget\">\n      <h2>Widget</h2>\n      <p>Widget content.</p>\n    </div>\n  </main>\n</div>",
+  "starterCss": "/* Optimize by nesting media queries inside selectors,\n   combining :is() with nesting, and reducing repetition.\n   Current code has 15+ top-level rules - target 5 or fewer. */\n.dashboard {\n  display: grid;\n  grid-template-rows: auto 1fr;\n  min-height: 100vh;\n  background-color: #f8f9fa;\n}\n.dash-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 16px 24px;\n  background-color: white;\n  border-bottom: 1px solid #dee2e6;\n}\n.dash-title {\n  margin: 0;\n  font-size: 20px;\n  color: #212529;\n}\n.dash-nav {\n  display: flex;\n  gap: 4px;\n}\n.dash-link {\n  color: #6c757d;\n  text-decoration: none;\n  padding: 8px 12px;\n  border-radius: 4px;\n}\n.dash-link:hover {\n  color: #212529;\n  background-color: #f8f9fa;\n}\n.dash-link.active {\n  color: #007bff;\n  background-color: #e7f1ff;\n}\n.dash-main {\n  padding: 24px;\n}\n.dash-widget {\n  background-color: white;\n  padding: 20px;\n  border-radius: 8px;\n  border: 1px solid #dee2e6;\n}\n@media (max-width: 768px) {\n  .dash-header {\n    flex-direction: column;\n    gap: 12px;\n  }\n  .dash-nav {\n    width: 100%;\n  }\n  .dash-main {\n    padding: 12px;\n  }\n}",
+  "referenceSolutions": [
+    ".dashboard {\n  display: grid;\n  grid-template-rows: auto 1fr;\n  min-height: 100vh;\n  background-color: rgb(248, 249, 250);\n\n  & .dash-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 16px 24px;\n    background-color: rgb(255, 255, 255);\n    border-bottom: 1px solid rgb(222, 226, 230);\n\n    @media (max-width: 768px) {\n      flex-direction: column;\n      gap: 12px;\n    }\n  }\n\n  & .dash-title {\n    margin: 0;\n    font-size: 20px;\n    color: rgb(33, 37, 41);\n  }\n\n  & .dash-nav {\n    display: flex;\n    gap: 4px;\n\n    @media (max-width: 768px) {\n      width: 100%;\n    }\n  }\n\n  & .dash-link {\n    color: rgb(108, 117, 125);\n    text-decoration: none;\n    padding: 8px 12px;\n    border-radius: 4px;\n\n    &:hover {\n      color: rgb(33, 37, 41);\n      background-color: rgb(248, 249, 250);\n    }\n\n    &.active {\n      color: rgb(0, 123, 255);\n      background-color: rgb(231, 241, 255);\n    }\n  }\n\n  & .dash-main {\n    padding: 24px;\n\n    @media (max-width: 768px) {\n      padding: 12px;\n    }\n  }\n\n  & .dash-widget {\n    background-color: rgb(255, 255, 255);\n    padding: 20px;\n    border-radius: 8px;\n    border: 1px solid rgb(222, 226, 230);\n  }\n}",
+    ".dashboard {\n  display: grid;\n  grid-template-rows: auto 1fr;\n  min-height: 100vh;\n  background: #f8f9fa;\n\n  .dash-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 16px 24px;\n    background: white;\n    border-bottom: 1px solid #dee2e6;\n\n    @media (width <= 768px) {\n      flex-direction: column;\n      gap: 12px;\n    }\n  }\n\n  .dash-title { margin: 0; font-size: 20px; color: #212529; }\n\n  .dash-nav {\n    display: flex;\n    gap: 4px;\n    @media (width <= 768px) { width: 100%; }\n  }\n\n  .dash-link {\n    color: #6c757d;\n    text-decoration: none;\n    padding: 8px 12px;\n    border-radius: 4px;\n    &:hover { color: #212529; background: #f8f9fa; }\n    &.active { color: #007bff; background: #e7f1ff; }\n  }\n\n  .dash-main {\n    padding: 24px;\n    @media (width <= 768px) { padding: 12px; }\n  }\n\n  .dash-widget {\n    background: white;\n    padding: 20px;\n    border-radius: 8px;\n    border: 1px solid #dee2e6;\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".dashboard",
+      "property": "display",
+      "expected": "grid",
+      "weight": 100,
+      "message": "Dashboard should use CSS Grid"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dash-header",
+      "property": "background-color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Header should have white background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dash-link",
+      "property": "color",
+      "expected": "rgb(108, 117, 125)",
+      "weight": 100,
+      "message": "Links should be gray"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dash-link.active",
+      "property": "color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Active link should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dash-widget",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Widget should have 8px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".dash-main",
+      "property": "padding-top",
+      "expected": "24px",
+      "weight": 100,
+      "message": "Main area should have 24px padding"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Modern CSS nesting allows media queries inside selectors, keeping responsive styles co-located with the component they modify." },
+    { "level": "clue", "text": "Nest everything inside .dashboard { }. Put @media queries inside each element's rule block, right next to the styles they override." },
+    { "level": "solution", "text": "One top-level .dashboard rule with all children and their media queries nested inside.", "code": ".dashboard {\n  display: grid;\n  .dash-header {\n    display: flex;\n    @media (max-width: 768px) { flex-direction: column; }\n  }\n  .dash-link {\n    &:hover { color: #212529; }\n    &.active { color: #007bff; }\n  }\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["nesting", "media-queries", "optimization", "code-organization"],
+    "estimatedMinutes": 8,
+    "difficulty": 8
+  }
+}

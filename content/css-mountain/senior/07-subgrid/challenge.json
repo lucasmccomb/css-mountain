@@ -1,0 +1,34 @@
+{
+  "id": "senior-07-subgrid",
+  "slug": "senior-subgrid",
+  "title": "CSS Subgrid",
+  "description": "Test your knowledge of CSS subgrid, which allows child grids to inherit their parent's grid tracks",
+  "type": "quiz",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["1", "grid-template-columns: subgrid inherits parent grid tracks"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 1,
+      "weight": 600,
+      "message": "Select the correct answer about CSS subgrid"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Subgrid is a value for grid-template-rows or grid-template-columns. It makes a nested grid use its parent's track sizing." },
+    { "level": "clue", "text": "With 'grid-template-columns: subgrid', the child grid items align to the parent's column tracks instead of defining their own." },
+    { "level": "solution", "text": "Subgrid inherits track definitions from the parent grid. A child with display: grid; grid-template-columns: subgrid; will align its items to the parent's columns within the area it spans." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["subgrid", "grid", "nested-grid", "alignment"],
+    "estimatedMinutes": 3,
+    "difficulty": 6
+  }
+}

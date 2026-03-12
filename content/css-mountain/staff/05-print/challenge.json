@@ -1,0 +1,34 @@
+{
+  "id": "staff-05-print",
+  "slug": "staff-print",
+  "title": "Print Stylesheet Quiz",
+  "description": "Test your understanding of CSS print media: page breaks, hiding elements, and creating printer-friendly layouts",
+  "type": "quiz",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["0", "@media print allows hiding navigation and optimizing for paper"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 0,
+      "weight": 600,
+      "message": "Select the correct answer about print stylesheets"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Print styles use @media print to target printed output. You can control page breaks, hide screen-only elements, and adjust colors." },
+    { "level": "clue", "text": "@media print lets you hide navigation, set backgrounds to white, show URLs for links, and control page-break-inside/before/after." },
+    { "level": "solution", "text": "In @media print, use 'display: none' to hide nav/footer, 'break-inside: avoid' on cards/figures, and 'color: black; background: white' for ink savings." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["print", "media-print", "page-break", "print-stylesheet"],
+    "estimatedMinutes": 3,
+    "difficulty": 5
+  }
+}

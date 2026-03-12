@@ -1,0 +1,45 @@
+{
+  "id": "junior-01-selectors",
+  "slug": "junior-selectors",
+  "title": "Basic Selectors",
+  "description": "Style the heading using an element selector to make it stand out from the paragraph text",
+  "type": "match",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<h1 class=\"title\">Hello World</h1>\n<p>Some paragraph text below the heading.</p>",
+  "starterCss": "/* Make the heading blue and 32px */\n",
+  "referenceSolutions": [
+    "h1 {\n  color: rgb(0, 0, 255);\n  font-size: 32px;\n}",
+    ".title {\n  color: blue;\n  font-size: 32px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": "h1",
+      "property": "color",
+      "expected": "rgb(0, 0, 255)",
+      "weight": 300,
+      "message": "The heading should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": "h1",
+      "property": "font-size",
+      "expected": "32px",
+      "weight": 300,
+      "message": "The heading font size should be 32px"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Target the heading element directly using its tag name." },
+    { "level": "clue", "text": "Use 'color' for the text color and 'font-size' for the size. The selector is 'h1'." },
+    { "level": "solution", "text": "h1 { color: blue; font-size: 32px; }", "code": "h1 {\n  color: blue;\n  font-size: 32px;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["element-selectors", "color", "font-size"],
+    "estimatedMinutes": 2,
+    "difficulty": 1
+  }
+}

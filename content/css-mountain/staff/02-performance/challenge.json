@@ -1,0 +1,69 @@
+{
+  "id": "staff-02-performance",
+  "slug": "staff-performance",
+  "title": "Render Performance",
+  "description": "Optimize a poorly performing animation by eliminating layout thrash and using compositor-friendly properties",
+  "type": "optimize",
+  "difficulty": "staff",
+  "zone": 4,
+  "isBoss": false,
+  "html": "<div class=\"perf-demo\">\n  <div class=\"animated-box\">Smooth Animation</div>\n</div>",
+  "starterCss": "/* Optimize: This animation causes layout thrash.\n   Replace width/height/top/left changes with\n   transform and opacity for GPU-accelerated rendering. */\n.perf-demo {\n  position: relative;\n  height: 200px;\n  background: #f0f0f0;\n  overflow: hidden;\n}\n.animated-box {\n  position: absolute;\n  width: 100px;\n  height: 60px;\n  background-color: #007bff;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  border-radius: 4px;\n  top: 70px;\n  left: 0;\n  /* BAD: animating layout properties */\n  animation: slide-bad 2s ease-in-out infinite alternate;\n}\n@keyframes slide-bad {\n  from {\n    left: 0;\n    width: 100px;\n  }\n  to {\n    left: calc(100% - 140px);\n    width: 140px;\n  }\n}",
+  "referenceSolutions": [
+    ".perf-demo {\n  position: relative;\n  height: 200px;\n  background: #f0f0f0;\n  overflow: hidden;\n}\n.animated-box {\n  position: absolute;\n  width: 100px;\n  height: 60px;\n  background-color: rgb(0, 123, 255);\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  border-radius: 4px;\n  top: 70px;\n  left: 0;\n  will-change: transform;\n  animation: slide-good 2s ease-in-out infinite alternate;\n}\n@keyframes slide-good {\n  from {\n    transform: translateX(0) scaleX(1);\n  }\n  to {\n    transform: translateX(calc(100cqw - 140px)) scaleX(1.4);\n  }\n}",
+    ".perf-demo {\n  position: relative;\n  height: 200px;\n  background: #f0f0f0;\n  overflow: hidden;\n}\n.animated-box {\n  position: absolute;\n  width: 100px;\n  height: 60px;\n  background-color: #007bff;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  border-radius: 4px;\n  top: 70px;\n  left: 0;\n  will-change: transform;\n  animation: slide-optimized 2s ease-in-out infinite alternate;\n}\n@keyframes slide-optimized {\n  0% {\n    transform: translateX(0);\n  }\n  100% {\n    transform: translateX(200px) scaleX(1.4);\n  }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".animated-box",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Box should maintain blue background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".animated-box",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Box text should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".animated-box",
+      "property": "will-change",
+      "expected": "transform",
+      "weight": 200,
+      "message": "Box should have will-change: transform for GPU hint"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".animated-box",
+      "property": "animation-duration",
+      "expected": "2s",
+      "weight": 100,
+      "message": "Animation should be 2 seconds"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".perf-demo",
+      "property": "height",
+      "expected": "200px",
+      "weight": 100,
+      "message": "Demo container should be 200px tall"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "The browser can animate transform and opacity on the compositor thread without triggering layout. Properties like width, height, top, and left trigger layout recalculation." },
+    { "level": "clue", "text": "Replace 'left' animation with translateX(), and 'width' changes with scaleX(). Add 'will-change: transform' for the GPU promotion hint." },
+    { "level": "solution", "text": "Use transform: translateX() + scaleX() instead of left + width. Add will-change: transform.", "code": ".animated-box { will-change: transform; animation: slide 2s ease-in-out infinite alternate; }\n@keyframes slide { from { transform: translateX(0) scaleX(1); } to { transform: translateX(200px) scaleX(1.4); } }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["performance", "will-change", "compositor", "layout-thrash"],
+    "estimatedMinutes": 7,
+    "difficulty": 3
+  }
+}

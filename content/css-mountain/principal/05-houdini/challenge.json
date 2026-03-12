@@ -1,0 +1,34 @@
+{
+  "id": "principal-05-houdini",
+  "slug": "principal-houdini",
+  "title": "CSS Houdini Quiz",
+  "description": "Test your understanding of the CSS Houdini APIs: @property, Paint API, and typed custom properties",
+  "type": "quiz",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "",
+  "starterCss": "",
+  "referenceSolutions": ["0", "@property registers typed custom properties enabling animation"],
+  "validationRules": [
+    {
+      "type": "property-check",
+      "selector": "quiz",
+      "property": "correctOptionIndex",
+      "expected": 0,
+      "weight": 600,
+      "message": "Select the correct answer about CSS Houdini"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS Houdini gives developers low-level access to the CSS engine. @property lets you define typed custom properties with initial values and inheritance." },
+    { "level": "clue", "text": "@property --my-color { syntax: '<color>'; initial-value: blue; inherits: false; } enables animating custom properties between color values." },
+    { "level": "solution", "text": "@property registers a custom property with a type, allowing the browser to interpolate it in animations. Without @property, custom properties are opaque strings and cannot be smoothly animated." }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["houdini", "property", "paint-api", "typed-custom-properties"],
+    "estimatedMinutes": 4,
+    "difficulty": 6
+  }
+}

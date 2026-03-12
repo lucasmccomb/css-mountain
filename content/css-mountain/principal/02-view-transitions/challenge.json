@@ -1,0 +1,69 @@
+{
+  "id": "principal-02-view-transitions",
+  "slug": "principal-view-transitions",
+  "title": "View Transitions",
+  "description": "Fix the broken view transition CSS that should create smooth cross-fade animations between page states",
+  "type": "fix",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"vt-demo\">\n  <div class=\"vt-card\" style=\"view-transition-name: card-1\">\n    <h3 class=\"vt-card-title\" style=\"view-transition-name: title-1\">Card One</h3>\n    <p>This card transitions smoothly between states.</p>\n  </div>\n  <div class=\"vt-card vt-card--expanded\" style=\"view-transition-name: card-2\">\n    <h3 class=\"vt-card-title\" style=\"view-transition-name: title-2\">Card Two (Expanded)</h3>\n    <p>This is the expanded state of a card with a view transition name.</p>\n  </div>\n</div>",
+  "starterCss": "/* Fix the view transition styles:\n   1. ::view-transition pseudo-elements need correct syntax\n   2. Transition group animations should use the right keyframes\n   3. Cross-fade duration should be 0.3s */\n.vt-demo {\n  display: flex;\n  gap: 16px;\n  padding: 20px;\n}\n.vt-card {\n  padding: 20px;\n  border-radius: 12px;\n  background-color: white;\n  border: 1px solid #dee2e6;\n  flex: 1;\n}\n.vt-card--expanded {\n  flex: 2;\n  background-color: #f0f7ff;\n}\n.vt-card-title {\n  margin: 0 0 8px;\n}\n/* BUG: wrong pseudo-element syntax */\n::view-transition-old {\n  animation-duration: 3s; /* too slow */\n}\n::view-transition-new {\n  animation-duration: 3s; /* too slow */\n}\n/* BUG: missing group styles for named transitions */",
+  "referenceSolutions": [
+    ".vt-demo {\n  display: flex;\n  gap: 16px;\n  padding: 20px;\n}\n.vt-card {\n  padding: 20px;\n  border-radius: 12px;\n  background-color: rgb(255, 255, 255);\n  border: 1px solid rgb(222, 226, 230);\n  flex: 1;\n}\n.vt-card--expanded {\n  flex: 2;\n  background-color: rgb(240, 247, 255);\n}\n.vt-card-title {\n  margin: 0 0 8px;\n}\n::view-transition-old(*) {\n  animation-duration: 0.3s;\n}\n::view-transition-new(*) {\n  animation-duration: 0.3s;\n}\n::view-transition-group(card-1),\n::view-transition-group(card-2) {\n  animation-duration: 0.3s;\n}\n::view-transition-group(title-1),\n::view-transition-group(title-2) {\n  animation-duration: 0.3s;\n}",
+    ".vt-demo {\n  display: flex;\n  gap: 16px;\n  padding: 20px;\n}\n.vt-card {\n  padding: 20px;\n  border-radius: 12px;\n  background: white;\n  border: 1px solid #dee2e6;\n  flex: 1;\n}\n.vt-card--expanded {\n  flex: 2;\n  background: #f0f7ff;\n}\n.vt-card-title {\n  margin: 0 0 8px;\n}\n::view-transition-old(*),\n::view-transition-new(*) {\n  animation-duration: 0.3s;\n  animation-timing-function: ease-in-out;\n}\n::view-transition-group(*) {\n  animation-duration: 0.3s;\n  animation-timing-function: ease-in-out;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".vt-demo",
+      "property": "display",
+      "expected": "flex",
+      "weight": 100,
+      "message": "Demo container should use flexbox"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".vt-card",
+      "property": "padding-top",
+      "expected": "20px",
+      "weight": 100,
+      "message": "Cards should have 20px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".vt-card",
+      "property": "border-top-left-radius",
+      "expected": "12px",
+      "weight": 100,
+      "message": "Cards should have 12px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".vt-card--expanded",
+      "property": "background-color",
+      "expected": "rgb(240, 247, 255)",
+      "weight": 150,
+      "message": "Expanded card should have light blue background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".vt-demo",
+      "property": "gap",
+      "expected": "16px",
+      "weight": 150,
+      "message": "Demo should have 16px gap"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "View Transition pseudo-elements require a transition-name parameter: ::view-transition-old(*) or ::view-transition-old(specific-name)." },
+    { "level": "clue", "text": "Add (*) to ::view-transition-old and ::view-transition-new. Change 3s to 0.3s. Add ::view-transition-group rules for named transitions." },
+    { "level": "solution", "text": "Fix pseudo-element syntax with (*) parameter and reduce duration to 0.3s.", "code": "::view-transition-old(*) { animation-duration: 0.3s; }\n::view-transition-new(*) { animation-duration: 0.3s; }\n::view-transition-group(*) { animation-duration: 0.3s; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["view-transitions", "page-transitions", "cross-fade"],
+    "estimatedMinutes": 8,
+    "difficulty": 4
+  }
+}

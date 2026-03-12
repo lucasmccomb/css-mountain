@@ -1,0 +1,77 @@
+{
+  "id": "principal-06-anchor-positioning",
+  "slug": "principal-anchor-positioning",
+  "title": "CSS Anchor Positioning",
+  "description": "Build a tooltip system using the CSS Anchor Positioning API, eliminating the need for JavaScript positioning logic",
+  "type": "build",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"anchor-demo\">\n  <button class=\"anchor-btn\" id=\"btn-anchor\" style=\"anchor-name: --btn-anchor\">Hover for tooltip</button>\n  <div class=\"anchor-tooltip\" popover>\n    <p>This tooltip is positioned using CSS Anchor Positioning!</p>\n  </div>\n  <div class=\"anchor-note\">\n    <span class=\"note-marker\" style=\"anchor-name: --note-marker\">*</span>\n    <div class=\"note-content\">\n      Footnote using anchor positioning.\n    </div>\n  </div>\n</div>",
+  "starterCss": "/* Build an anchor-positioned tooltip system:\n   - Button establishes an anchor with anchor-name\n   - Tooltip positions itself relative to the anchor\n   - Use position-anchor and anchor() functions\n   - Note marker creates a second anchor with its footnote */\n.anchor-demo {\n  padding: 60px 40px;\n  min-height: 200px;\n}\n",
+  "referenceSolutions": [
+    ".anchor-demo {\n  padding: 60px 40px;\n  min-height: 200px;\n}\n.anchor-btn {\n  padding: 10px 20px;\n  background-color: rgb(0, 123, 255);\n  color: rgb(255, 255, 255);\n  border: none;\n  border-radius: 6px;\n  cursor: pointer;\n  font-size: 14px;\n}\n.anchor-tooltip {\n  position: fixed;\n  position-anchor: --btn-anchor;\n  top: anchor(bottom);\n  left: anchor(center);\n  translate: -50% 8px;\n  background-color: rgb(33, 37, 41);\n  color: rgb(255, 255, 255);\n  padding: 8px 12px;\n  border-radius: 6px;\n  font-size: 13px;\n  max-width: 200px;\n  margin: 0;\n  border: none;\n}\n.anchor-note {\n  margin-top: 40px;\n  position: relative;\n}\n.note-marker {\n  color: rgb(220, 53, 69);\n  font-weight: 700;\n  cursor: help;\n}\n.note-content {\n  position: fixed;\n  position-anchor: --note-marker;\n  top: anchor(bottom);\n  left: anchor(right);\n  translate: 4px 4px;\n  background-color: rgb(255, 243, 205);\n  padding: 8px 12px;\n  border: 1px solid rgb(255, 193, 7);\n  border-radius: 4px;\n  font-size: 12px;\n  max-width: 200px;\n}",
+    ".anchor-demo {\n  padding: 60px 40px;\n  min-height: 200px;\n}\n.anchor-btn {\n  padding: 10px 20px;\n  background: #007bff;\n  color: white;\n  border: none;\n  border-radius: 6px;\n  cursor: pointer;\n  font-size: 14px;\n}\n.anchor-tooltip {\n  position: absolute;\n  position-anchor: --btn-anchor;\n  inset-area: bottom span-all;\n  margin-top: 8px;\n  background: #212529;\n  color: white;\n  padding: 8px 12px;\n  border-radius: 6px;\n  font-size: 13px;\n  max-width: 200px;\n  border: none;\n}\n.anchor-note {\n  margin-top: 40px;\n}\n.note-marker {\n  color: #dc3545;\n  font-weight: bold;\n  cursor: help;\n}\n.note-content {\n  position: absolute;\n  position-anchor: --note-marker;\n  top: anchor(bottom);\n  left: anchor(right);\n  margin: 4px;\n  background: #fff3cd;\n  padding: 8px 12px;\n  border: 1px solid #ffc107;\n  border-radius: 4px;\n  font-size: 12px;\n  max-width: 200px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".anchor-btn",
+      "property": "background-color",
+      "expected": "rgb(0, 123, 255)",
+      "weight": 100,
+      "message": "Button should be blue"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".anchor-btn",
+      "property": "color",
+      "expected": "rgb(255, 255, 255)",
+      "weight": 100,
+      "message": "Button text should be white"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".anchor-tooltip",
+      "property": "background-color",
+      "expected": "rgb(33, 37, 41)",
+      "weight": 100,
+      "message": "Tooltip should have dark background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".anchor-tooltip",
+      "property": "border-radius",
+      "expected": "6px",
+      "weight": 100,
+      "message": "Tooltip should have 6px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".note-content",
+      "property": "background-color",
+      "expected": "rgb(255, 243, 205)",
+      "weight": 100,
+      "message": "Note content should have yellow background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".note-marker",
+      "property": "color",
+      "expected": "rgb(220, 53, 69)",
+      "weight": 100,
+      "message": "Note marker should be red"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "CSS Anchor Positioning uses anchor-name on the anchor element and position-anchor + anchor() functions on the positioned element." },
+    { "level": "clue", "text": "Set position-anchor: --btn-anchor on the tooltip. Use top: anchor(bottom) and left: anchor(center) with translate: -50% 8px to center below." },
+    { "level": "solution", "text": "Use anchor-name on triggers, position-anchor and anchor() on positioned elements.", "code": ".anchor-tooltip { position: fixed; position-anchor: --btn-anchor; top: anchor(bottom); left: anchor(center); translate: -50% 8px; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["anchor-positioning", "tooltips", "popover", "positioning"],
+    "estimatedMinutes": 10,
+    "difficulty": 7
+  }
+}

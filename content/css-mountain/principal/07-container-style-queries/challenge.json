@@ -1,0 +1,77 @@
+{
+  "id": "principal-07-container-style-queries",
+  "slug": "principal-container-style-queries",
+  "title": "Container Style Queries",
+  "description": "Build an adaptive component that changes its appearance based on a parent's custom property values using container style queries",
+  "type": "build",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"csq-wrapper\" style=\"--variant: default\">\n  <div class=\"csq-card\">\n    <h3 class=\"csq-title\">Default Card</h3>\n    <p class=\"csq-text\">Styled by container style query.</p>\n  </div>\n</div>\n<div class=\"csq-wrapper\" style=\"--variant: featured\">\n  <div class=\"csq-card\">\n    <h3 class=\"csq-title\">Featured Card</h3>\n    <p class=\"csq-text\">This card detects its parent's --variant property.</p>\n  </div>\n</div>\n<div class=\"csq-wrapper\" style=\"--variant: danger\">\n  <div class=\"csq-card\">\n    <h3 class=\"csq-title\">Danger Card</h3>\n    <p class=\"csq-text\">Adaptive styling without class changes.</p>\n  </div>\n</div>",
+  "starterCss": "/* Build a container-style-query system:\n   - Wrapper defines --variant custom property\n   - Cards adapt their style based on parent's --variant value\n   - default: white bg, gray border\n   - featured: blue bg, white text\n   - danger: red border, red tinted bg */\n.csq-wrapper {\n  container-type: normal;\n  margin-bottom: 12px;\n}",
+  "referenceSolutions": [
+    ".csq-wrapper {\n  container-type: normal;\n  margin-bottom: 12px;\n}\n.csq-card {\n  padding: 20px;\n  border-radius: 8px;\n  border: 1px solid rgb(222, 226, 230);\n  background-color: rgb(255, 255, 255);\n}\n.csq-title {\n  margin: 0 0 8px;\n  font-size: 18px;\n}\n.csq-text {\n  margin: 0;\n  color: rgb(108, 117, 125);\n  line-height: 1.5;\n}\n@container style(--variant: featured) {\n  .csq-card {\n    background-color: rgb(0, 123, 255);\n    border-color: rgb(0, 123, 255);\n    color: rgb(255, 255, 255);\n  }\n  .csq-text {\n    color: rgba(255, 255, 255, 0.85);\n  }\n}\n@container style(--variant: danger) {\n  .csq-card {\n    background-color: rgb(255, 243, 243);\n    border-color: rgb(220, 53, 69);\n    border-width: 2px;\n  }\n  .csq-title {\n    color: rgb(220, 53, 69);\n  }\n}",
+    ".csq-wrapper {\n  container-type: normal;\n  margin-bottom: 12px;\n}\n.csq-card {\n  padding: 20px;\n  border-radius: 8px;\n  border: 1px solid #dee2e6;\n  background: white;\n}\n.csq-title {\n  margin: 0 0 8px;\n  font-size: 18px;\n}\n.csq-text {\n  margin: 0;\n  color: #6c757d;\n  line-height: 1.5;\n}\n@container style(--variant: featured) {\n  .csq-card {\n    background: #007bff;\n    border-color: #007bff;\n    color: white;\n  }\n  .csq-text { color: rgba(255,255,255,0.85); }\n}\n@container style(--variant: danger) {\n  .csq-card {\n    background: #fff3f3;\n    border: 2px solid #dc3545;\n  }\n  .csq-title { color: #dc3545; }\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".csq-card",
+      "property": "padding-top",
+      "expected": "20px",
+      "weight": 100,
+      "message": "Cards should have 20px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".csq-card",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Cards should have 8px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".csq-wrapper",
+      "property": "margin-bottom",
+      "expected": "12px",
+      "weight": 100,
+      "message": "Wrappers should have 12px bottom margin"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".csq-title",
+      "property": "font-size",
+      "expected": "18px",
+      "weight": 100,
+      "message": "Titles should be 18px"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".csq-text",
+      "property": "line-height",
+      "expected": "24px",
+      "weight": 100,
+      "message": "Text should have 1.5 line-height"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".csq-wrapper",
+      "property": "container-type",
+      "expected": "normal",
+      "weight": 100,
+      "message": "Wrapper should have container-type: normal for style queries"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Container style queries use @container style(--property: value) to match based on a parent's custom property. No size containment needed - use container-type: normal." },
+    { "level": "clue", "text": "Use @container style(--variant: featured) { .csq-card { background: blue; color: white; } } to style cards based on their parent's --variant value." },
+    { "level": "solution", "text": "Define container-type: normal on wrapper. Use @container style() queries for each variant.", "code": ".csq-wrapper { container-type: normal; }\n@container style(--variant: featured) { .csq-card { background: #007bff; color: white; } }\n@container style(--variant: danger) { .csq-card { background: #fff3f3; border-color: #dc3545; } }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["container-style-queries", "custom-properties", "adaptive-components"],
+    "estimatedMinutes": 10,
+    "difficulty": 7
+  }
+}

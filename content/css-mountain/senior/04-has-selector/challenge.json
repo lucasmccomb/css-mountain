@@ -1,0 +1,53 @@
+{
+  "id": "senior-04-has-selector",
+  "slug": "senior-has-selector",
+  "title": "The :has() Selector",
+  "description": "Use the :has() relational pseudo-class to style parent elements based on their children's state",
+  "type": "match",
+  "difficulty": "senior",
+  "zone": 3,
+  "isBoss": false,
+  "html": "<div class=\"form-group\">\n  <label>Name</label>\n  <input type=\"text\" class=\"input\" placeholder=\"Enter name\">\n</div>\n<div class=\"form-group\">\n  <label>Email</label>\n  <input type=\"email\" class=\"input\" placeholder=\"Enter email\">\n  <span class=\"error\">Invalid email address</span>\n</div>\n<div class=\"form-group\">\n  <label>Bio</label>\n  <textarea class=\"input\" placeholder=\"Tell us about yourself\"></textarea>\n</div>",
+  "starterCss": "/* Use :has() to:\n   - Highlight form groups that contain an error span with a red left border\n   - Style form groups containing a textarea differently (more height)\n   - Give all form groups base styling */\n.form-group {\n  margin-bottom: 16px;\n  padding: 12px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n}\n.input {\n  display: block;\n  width: 100%;\n  padding: 8px;\n  margin-top: 4px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n.error {\n  color: red;\n  font-size: 12px;\n  margin-top: 4px;\n}",
+  "referenceSolutions": [
+    ".form-group {\n  margin-bottom: 16px;\n  padding: 12px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n}\n.form-group:has(.error) {\n  border-left: 4px solid rgb(220, 53, 69);\n  background-color: rgb(255, 243, 243);\n}\n.form-group:has(textarea) {\n  min-height: 120px;\n}\n.input {\n  display: block;\n  width: 100%;\n  padding: 8px;\n  margin-top: 4px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n.error {\n  color: red;\n  font-size: 12px;\n  margin-top: 4px;\n}",
+    ".form-group {\n  margin-bottom: 16px;\n  padding: 12px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n}\n.form-group:has(> .error) {\n  border-left: 4px solid #dc3545;\n  background: #fff3f3;\n}\n.form-group:has(> textarea) {\n  min-height: 120px;\n}\n.input {\n  display: block;\n  width: 100%;\n  padding: 8px;\n  margin-top: 4px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n.error {\n  color: red;\n  font-size: 12px;\n  margin-top: 4px;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".form-group:has(.error)",
+      "property": "border-left-color",
+      "expected": "rgb(220, 53, 69)",
+      "weight": 200,
+      "message": "Form groups with errors should have a red left border"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".form-group:has(.error)",
+      "property": "background-color",
+      "expected": "rgb(255, 243, 243)",
+      "weight": 200,
+      "message": "Form groups with errors should have a light red background"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".form-group:has(textarea)",
+      "property": "min-height",
+      "expected": "120px",
+      "weight": 200,
+      "message": "Form groups with textarea should have min-height: 120px"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": ":has() is the 'parent selector' - it lets you select an element based on what it contains. Think: 'does this parent have a child that matches?'" },
+    { "level": "clue", "text": "Use '.form-group:has(.error)' to target groups containing an error span. Use '.form-group:has(textarea)' for textarea groups." },
+    { "level": "solution", "text": ".form-group:has(.error) { border-left: 4px solid #dc3545; background: #fff3f3; } .form-group:has(textarea) { min-height: 120px; }", "code": ".form-group:has(.error) {\n  border-left: 4px solid #dc3545;\n  background-color: #fff3f3;\n}\n.form-group:has(textarea) {\n  min-height: 120px;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["has-selector", "relational-pseudo-class", "forms"],
+    "estimatedMinutes": 6,
+    "difficulty": 5
+  }
+}

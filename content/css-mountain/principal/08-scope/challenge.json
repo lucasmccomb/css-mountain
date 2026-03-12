@@ -1,0 +1,61 @@
+{
+  "id": "principal-08-scope",
+  "slug": "principal-scope",
+  "title": "CSS @scope",
+  "description": "Optimize a component library by using @scope to limit style application boundaries, preventing leaky selectors and unwanted inheritance",
+  "type": "optimize",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"card-wrapper\">\n  <div class=\"scoped-card\">\n    <h3 class=\"scoped-title\">Parent Card</h3>\n    <p class=\"scoped-text\">Parent card content.</p>\n    <div class=\"scoped-card nested\">\n      <h3 class=\"scoped-title\">Nested Card</h3>\n      <p class=\"scoped-text\">Nested card should not inherit parent card title styles.</p>\n    </div>\n  </div>\n</div>",
+  "starterCss": "/* Optimize using @scope:\n   Current styles leak into nested cards.\n   Use @scope to limit styles to the immediate card only,\n   excluding nested .scoped-card children.\n   The nested card should have its own default styling. */\n.card-wrapper {\n  padding: 20px;\n}\n/* These styles leak into nested cards */\n.scoped-card {\n  padding: 20px;\n  border: 1px solid #dee2e6;\n  border-radius: 8px;\n  background-color: white;\n  margin-bottom: 12px;\n}\n.scoped-title {\n  color: #007bff;\n  margin: 0 0 8px;\n  font-size: 18px;\n  border-bottom: 2px solid #007bff;\n  padding-bottom: 8px;\n}\n.scoped-text {\n  color: #6c757d;\n  margin: 0;\n  line-height: 1.5;\n}",
+  "referenceSolutions": [
+    ".card-wrapper {\n  padding: 20px;\n}\n.scoped-card {\n  padding: 20px;\n  border: 1px solid rgb(222, 226, 230);\n  border-radius: 8px;\n  background-color: rgb(255, 255, 255);\n  margin-bottom: 12px;\n}\n@scope (.scoped-card) to (.scoped-card .scoped-card) {\n  .scoped-title {\n    color: rgb(0, 123, 255);\n    margin: 0 0 8px;\n    font-size: 18px;\n    border-bottom: 2px solid rgb(0, 123, 255);\n    padding-bottom: 8px;\n  }\n  .scoped-text {\n    color: rgb(108, 117, 125);\n    margin: 0;\n    line-height: 1.5;\n  }\n}\n.nested .scoped-title {\n  color: rgb(73, 80, 87);\n  margin: 0 0 8px;\n  font-size: 16px;\n  border-bottom: 1px solid rgb(222, 226, 230);\n  padding-bottom: 8px;\n}\n.nested .scoped-text {\n  color: rgb(108, 117, 125);\n  margin: 0;\n  line-height: 1.5;\n}",
+    ".card-wrapper {\n  padding: 20px;\n}\n.scoped-card {\n  padding: 20px;\n  border: 1px solid #dee2e6;\n  border-radius: 8px;\n  background: white;\n  margin-bottom: 12px;\n}\n@scope (.scoped-card) to (.nested) {\n  .scoped-title {\n    color: #007bff;\n    margin: 0 0 8px;\n    font-size: 18px;\n    border-bottom: 2px solid #007bff;\n    padding-bottom: 8px;\n  }\n  .scoped-text {\n    color: #6c757d;\n    margin: 0;\n    line-height: 1.5;\n  }\n}\n.nested .scoped-title {\n  color: #495057;\n  margin: 0 0 8px;\n  font-size: 16px;\n  border-bottom: 1px solid #dee2e6;\n  padding-bottom: 8px;\n}\n.nested .scoped-text {\n  color: #6c757d;\n  margin: 0;\n  line-height: 1.5;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".scoped-card",
+      "property": "padding-top",
+      "expected": "20px",
+      "weight": 100,
+      "message": "Cards should have 20px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".scoped-card",
+      "property": "border-top-left-radius",
+      "expected": "8px",
+      "weight": 100,
+      "message": "Cards should have 8px border-radius"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nested .scoped-title",
+      "property": "color",
+      "expected": "rgb(73, 80, 87)",
+      "weight": 200,
+      "message": "Nested card title should be dark gray, not blue (scope should prevent leaking)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".nested .scoped-title",
+      "property": "font-size",
+      "expected": "16px",
+      "weight": 100,
+      "message": "Nested card title should be 16px (smaller than parent)"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "@scope creates a styling boundary. The 'to' clause defines where styles stop applying, preventing them from leaking into nested instances." },
+    { "level": "clue", "text": "Use '@scope (.scoped-card) to (.scoped-card .scoped-card)' to limit parent card styles. Add separate rules for .nested children." },
+    { "level": "solution", "text": "@scope limits style application to a subtree, with an optional exclusion boundary.", "code": "@scope (.scoped-card) to (.nested) {\n  .scoped-title { color: #007bff; font-size: 18px; }\n}\n.nested .scoped-title { color: #495057; font-size: 16px; }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["scope", "encapsulation", "component-isolation", "nesting"],
+    "estimatedMinutes": 8,
+    "difficulty": 8
+  }
+}

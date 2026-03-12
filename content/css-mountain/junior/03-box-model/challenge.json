@@ -1,0 +1,69 @@
+{
+  "id": "junior-03-box-model",
+  "slug": "junior-box-model",
+  "title": "The Box Model",
+  "description": "Apply padding, margin, and border to a box element to understand the CSS box model",
+  "type": "match",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<div class=\"box\">I am a box with padding, margin, and a border!</div>",
+  "starterCss": "/* Add 20px padding, 10px margin, and a 2px solid black border */\n.box {\n  background-color: lightyellow;\n}",
+  "referenceSolutions": [
+    ".box {\n  background-color: lightyellow;\n  padding: 20px;\n  margin: 10px;\n  border: 2px solid rgb(0, 0, 0);\n}",
+    ".box {\n  background-color: lightyellow;\n  padding: 20px 20px 20px 20px;\n  margin: 10px 10px 10px 10px;\n  border-width: 2px;\n  border-style: solid;\n  border-color: black;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".box",
+      "property": "padding-top",
+      "expected": "20px",
+      "weight": 150,
+      "message": "The box should have 20px padding"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".box",
+      "property": "margin-top",
+      "expected": "10px",
+      "weight": 150,
+      "message": "The box should have 10px margin"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".box",
+      "property": "border-top-width",
+      "expected": "2px",
+      "weight": 100,
+      "message": "The border should be 2px wide"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".box",
+      "property": "border-top-style",
+      "expected": "solid",
+      "weight": 100,
+      "message": "The border should be solid"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".box",
+      "property": "border-top-color",
+      "expected": "rgb(0, 0, 0)",
+      "weight": 100,
+      "message": "The border should be black"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "The box model has three layers around content: padding (inside), border (middle), and margin (outside)." },
+    { "level": "clue", "text": "Use 'padding: 20px', 'margin: 10px', and 'border: 2px solid black' on the .box selector." },
+    { "level": "solution", "text": ".box { padding: 20px; margin: 10px; border: 2px solid black; }", "code": ".box {\n  padding: 20px;\n  margin: 10px;\n  border: 2px solid black;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["box-model", "padding", "margin", "border"],
+    "estimatedMinutes": 3,
+    "difficulty": 2
+  }
+}

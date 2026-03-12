@@ -1,0 +1,85 @@
+{
+  "id": "principal-03-creative-css",
+  "slug": "principal-creative-css",
+  "title": "CSS Art: Mountain Scene",
+  "description": "Build a mountain landscape scene using only CSS - gradients, clip-paths, shadows, and pseudo-elements (no images)",
+  "type": "build",
+  "difficulty": "principal",
+  "zone": 5,
+  "isBoss": false,
+  "html": "<div class=\"scene\">\n  <div class=\"sky\"></div>\n  <div class=\"sun\"></div>\n  <div class=\"mountain mountain-back\"></div>\n  <div class=\"mountain mountain-front\"></div>\n  <div class=\"ground\"></div>\n</div>",
+  "starterCss": "/* Build a mountain scene using pure CSS:\n   - Sky: gradient from dark blue to light blue\n   - Sun: yellow circle with a glow effect\n   - Mountains: triangles using clip-path, different shades\n   - Ground: green gradient for grass\n   Scene should be 500x300px */\n.scene {\n  width: 500px;\n  height: 300px;\n  position: relative;\n  overflow: hidden;\n  border-radius: 12px;\n}",
+  "referenceSolutions": [
+    ".scene {\n  width: 500px;\n  height: 300px;\n  position: relative;\n  overflow: hidden;\n  border-radius: 12px;\n}\n.sky {\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(to bottom, rgb(25, 25, 112), rgb(135, 206, 235));\n}\n.sun {\n  position: absolute;\n  width: 60px;\n  height: 60px;\n  background-color: rgb(255, 215, 0);\n  border-radius: 50%;\n  top: 40px;\n  right: 80px;\n  box-shadow: 0 0 40px 20px rgba(255, 215, 0, 0.4);\n}\n.mountain {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n.mountain-back {\n  height: 200px;\n  background-color: rgb(75, 85, 100);\n  clip-path: polygon(0% 100%, 25% 20%, 50% 70%, 75% 10%, 100% 100%);\n}\n.mountain-front {\n  height: 160px;\n  background-color: rgb(60, 70, 85);\n  clip-path: polygon(0% 100%, 15% 40%, 40% 80%, 60% 30%, 85% 70%, 100% 100%);\n}\n.ground {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 60px;\n  background: linear-gradient(to bottom, rgb(76, 153, 0), rgb(34, 102, 0));\n}",
+    ".scene {\n  width: 500px;\n  height: 300px;\n  position: relative;\n  overflow: hidden;\n  border-radius: 12px;\n}\n.sky {\n  position: absolute;\n  inset: 0;\n  background: linear-gradient(180deg, midnightblue, skyblue);\n}\n.sun {\n  position: absolute;\n  width: 60px;\n  height: 60px;\n  background: gold;\n  border-radius: 50%;\n  top: 40px;\n  right: 80px;\n  box-shadow: 0 0 40px 20px rgba(255, 215, 0, 0.4);\n}\n.mountain {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n.mountain-back {\n  height: 200px;\n  background: #4b5564;\n  clip-path: polygon(0 100%, 25% 20%, 50% 70%, 75% 10%, 100% 100%);\n}\n.mountain-front {\n  height: 160px;\n  background: #3c4655;\n  clip-path: polygon(0 100%, 15% 40%, 40% 80%, 60% 30%, 85% 70%, 100% 100%);\n}\n.ground {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: 60px;\n  background: linear-gradient(#4c9900, #226600);\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".scene",
+      "property": "width",
+      "expected": "500px",
+      "weight": 80,
+      "message": "Scene should be 500px wide"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".scene",
+      "property": "height",
+      "expected": "300px",
+      "weight": 80,
+      "message": "Scene should be 300px tall"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".scene",
+      "property": "overflow",
+      "expected": "hidden",
+      "weight": 80,
+      "message": "Scene should clip overflow"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sun",
+      "property": "border-radius",
+      "expected": "50%",
+      "weight": 80,
+      "message": "Sun should be circular"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".sun",
+      "property": "background-color",
+      "expected": "rgb(255, 215, 0)",
+      "weight": 80,
+      "message": "Sun should be gold colored"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".mountain",
+      "property": "position",
+      "expected": "absolute",
+      "weight": 100,
+      "message": "Mountains should be absolutely positioned"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".ground",
+      "property": "height",
+      "expected": "60px",
+      "weight": 100,
+      "message": "Ground should be 60px tall"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Layer elements with position: absolute. Use gradients for sky and ground, clip-path: polygon() for mountain silhouettes, border-radius: 50% and box-shadow for the glowing sun." },
+    { "level": "clue", "text": "Sky: linear-gradient(to bottom, midnightblue, skyblue). Sun: gold circle with box-shadow glow. Mountains: clip-path with polygon points. Ground: green gradient." },
+    { "level": "solution", "text": "Layer sky, sun, mountains, and ground with absolute positioning and CSS-only effects.", "code": ".sky { position: absolute; inset: 0; background: linear-gradient(midnightblue, skyblue); }\n.sun { position: absolute; width: 60px; height: 60px; background: gold; border-radius: 50%; box-shadow: 0 0 40px 20px rgba(255,215,0,0.4); }\n.mountain-back { clip-path: polygon(0% 100%, 25% 20%, 75% 10%, 100% 100%); }" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["css-art", "clip-path", "gradients", "box-shadow", "creative"],
+    "estimatedMinutes": 12,
+    "difficulty": 5
+  }
+}

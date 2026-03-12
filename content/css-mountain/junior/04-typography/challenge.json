@@ -1,0 +1,53 @@
+{
+  "id": "junior-04-typography",
+  "slug": "junior-typography",
+  "title": "Typography Basics",
+  "description": "Style text with font-family, font-weight, line-height, and text-align properties",
+  "type": "match",
+  "difficulty": "junior",
+  "zone": 1,
+  "isBoss": false,
+  "html": "<article class=\"post\">\n  <h2 class=\"post-title\">My First Post</h2>\n  <p class=\"post-body\">This is the body text of my very first blog post. It should be easy to read with proper line spacing and alignment.</p>\n</article>",
+  "starterCss": "/* Style the title: center-aligned, bold, sans-serif font\n   Style the body: 1.6 line-height, serif font */\n",
+  "referenceSolutions": [
+    ".post-title {\n  text-align: center;\n  font-weight: 700;\n  font-family: sans-serif;\n}\n.post-body {\n  line-height: 1.6;\n  font-family: serif;\n}",
+    ".post-title {\n  text-align: center;\n  font-weight: bold;\n  font-family: Arial, sans-serif;\n}\n.post-body {\n  line-height: 1.6;\n  font-family: Georgia, serif;\n}"
+  ],
+  "validationRules": [
+    {
+      "type": "computed-style",
+      "selector": ".post-title",
+      "property": "text-align",
+      "expected": "center",
+      "weight": 200,
+      "message": "The title should be center-aligned"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".post-title",
+      "property": "font-weight",
+      "expected": "700",
+      "weight": 200,
+      "message": "The title should be bold (font-weight: 700)"
+    },
+    {
+      "type": "computed-style",
+      "selector": ".post-body",
+      "property": "line-height",
+      "expected": "25.6px",
+      "weight": 200,
+      "message": "The body text should have 1.6 line-height"
+    }
+  ],
+  "hints": [
+    { "level": "nudge", "text": "Font properties control how text appears. Think about alignment, weight, and spacing." },
+    { "level": "clue", "text": "Use 'text-align: center' and 'font-weight: bold' on the title. Use 'line-height: 1.6' on the body." },
+    { "level": "solution", "text": ".post-title { text-align: center; font-weight: bold; } .post-body { line-height: 1.6; }", "code": ".post-title {\n  text-align: center;\n  font-weight: bold;\n}\n.post-body {\n  line-height: 1.6;\n}" }
+  ],
+  "maxScore": 1000,
+  "metadata": {
+    "topics": ["typography", "font-family", "font-weight", "line-height", "text-align"],
+    "estimatedMinutes": 3,
+    "difficulty": 3
+  }
+}
